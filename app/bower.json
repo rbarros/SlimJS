@@ -1,0 +1,38 @@
+{
+  "name": "SlimJS",
+  "version": "0.1.0",
+  "main": [
+    "dist/js/slim.js"
+  ],
+  "homepage": "http://rsb.cc/SlimJS/",
+  "license": "MIT",
+  "description": "Slim JS is a frontend library for integration with the famous Slim Framework",
+  "authors": [
+    "Ramon Barros <contato@ramon-barros.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rbarros/slim.js.git"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "2.1.3",
+    "bootstrap": "3.3.5",
+    "notifyjs": "^0.4.2",
+    "twig.js": "^0.8.9"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "less/bootstrap.less",
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    }
+  }
+}
