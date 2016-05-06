@@ -110,7 +110,6 @@ config/local.js
 
 # Grunt #
 ######################
-dist
 .sass-cache
 bower_components
 libs
