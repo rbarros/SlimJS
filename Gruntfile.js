@@ -28,6 +28,31 @@ module.exports = function(grunt) {
       '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
+
+    // Limpa pastas para começar novamente
+    clean: {
+      build: {
+        files: [{
+          dot: true,
+          src: [
+            '.tmp',
+            '<%= config.dist %>'
+          ]
+        }]
+      }
+    },
+
+    // Importa arquivos para o App.js
+    import_js: {
+      files: {
+        expand: true,
+        cwd: 'src/',
+        src: ['**/Slim.js'],
+        dest: '.tmp',
+        ext: '.js'
+      }
+    },
+
     // Verifica error no código
     jshint: {
       options: {
@@ -48,75 +73,11 @@ module.exports = function(grunt) {
       },
       build: {
         src: '.tmp/*.js',
-        dest: '.tmp/<%= pkg.name %>.min.js'
-      }
-    },
-    // Copia arquivos para outros lugares, para determinadas tarefas possam utilizar.
-    copy: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= config.app %>/styles',
-          dest: '<%= config.dist %>/styles/',
-          src: '{,*/}*.css'
-        },
-        {
-          expand: true,
-          cwd: '<%= config.app %>/scripts',
-          dest: '<%= config.dist %>/scripts/',
-          src: '{,*/}*.js'
-        },
-        {
-          expand: true,
-          dot: true,
-          cwd: '<%= config.app %>',
-          dest: '<%= config.dist %>',
-          src: [
-              '*.{ico,png,txt}',
-              '.htaccess',
-              '*.html',
-              'views/{,**/}*.{html,twig}',
-              'images/{,*/}*.{webp}',
-              'styles/fonts/{,*/}*.*'
-          ]
-        }, {
-            expand: true,
-            cwd: '<%= config.app %>/images',
-            dest: '<%= config.dist %>/images',
-            src: ['{,*/}*.{png,jpg,jpeg,gif,webp,svg}']
-        }, {
-            expand: true,
-            cwd: './libs/font-awesome/fonts',
-            dest: '<%= config.dist %>/fonts',
-            src: ['{,*/}*.{otf,eot,svg,ttf,woff,woff2}']
-        }, {
-            expand: true,
-            cwd: '<%= config.app %>/fonts',
-            dest: '<%= config.dist %>/fonts',
-            src: ['{,*/}*.{otf,eot,svg,ttf,woff,woff2}']
-        },
-        {
-          expand: true,
-          cwd: '.tmp',
-          dest: '<%= config.dist %>',
-          src: ['{,*/}*.{js,min.js}']
-        }]
-      },
-    },
-    // Importa arquivos para o App.js
-    import_js: {
-      files: {
-        expand: true,
-        cwd: '<%= config.app %>/src/',
-        src: ['**/app.js'],
-        dest: '.tmp',
-        ext: '.js'
+        dest: '<%= config.dist %>/js/<%= pkg.name %>.min.js'
       }
     }
   });
 
   // Default task(s).
-  grunt.registerTask('default', ['jshint', 'import_js', 'copy']);
-
-  grunt.registerTask('build', ['jshint', 'import_js', 'copy', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'clean', 'import_js', 'uglify']);
 };

@@ -1,5 +1,5 @@
 // follow @HenrikJoreteg and @andyet if you like this ;)
-(function () {
+(function (window) {
     var inNode = typeof window === 'undefined',
         ls = !inNode && window.localStorage,
         out = {};
@@ -26,4 +26,4 @@
     } else {
         window.console = out;
     }
-})();
+}(window));

@@ -5,7 +5,7 @@
  * @date   2016-04-11
  * Copyright (c) 2016 Ramon Barros
  */
-/* jslint devel: true, unparam: true, indent: 4 */
+/* jslint devel: true, unparam: true, indent: 2 */
 (function (window) {
     'use strict';
 
@@ -16,7 +16,7 @@
      * @return {Url}
      */
     var Url = function() {
-        this.system = 'app';
+        this.system = 'sac';
         this.host = window.document.location.host;
         this.hostname = window.document.location.hostname;
         return this.__constructor();

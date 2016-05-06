@@ -3,9 +3,12 @@
  * MIT License
  * (c) 2010 François de Metz
  */
+/* jslint devel: true, unparam: true, quotmark: double, indent: 2 */
 (function(w) {
-    if (w.FormData)
+    "use strict";
+    if (w.FormData) {
         return;
+    }
     function FormData() {
         this.fake = true;
         this.boundary = "--------FormData" + Math.random();
@@ -13,7 +16,7 @@
     }
     FormData.prototype.append = function(key, value) {
         this._fields.push([key, value]);
-    }
+    };
     FormData.prototype.toString = function() {
         var boundary = this.boundary;
         var body = "";
@@ -32,6 +35,6 @@
         });
         body += "--" + boundary +"--";
         return body;
-    }
+    };
     w.FormData = FormData;
-})(window);
+}(window));

@@ -6,10 +6,9 @@
  * Copyright (c) 2016 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
-/* global window, AndLog, FormData, Unserialize, EventListener, View, Router */
+/* global window, AndLog, FormData, EventListener, View, Router */
 // @import "AndLog.js";
 // @import "FormData.js";
-// @import "Unserialize.js";
 // @import "Url.js";
 // @import "EventListener.js";
 // @import "Exceptions.js";
@@ -83,7 +82,7 @@
         params,
         first,
         sep;
-    if (uri == '/') {
+    if (uri === '/') {
       hash = '#/';
     } else {
       uri = this.cleanUri(uri);
@@ -125,7 +124,6 @@
       e.preventDefault(); // Totally stop stuff happening
       var elementOrigin = e.originalEvent.currentTarget.activeElement,
           $btn = $(elementOrigin),
-          $form = $(e.target), // Create a jQuery object from the form
           action = $(this).attr('action'),
           enctype = $(this).attr('enctype'),
           method = ($('input[name=_METHOD]').val() || $('form').attr('method')).toLowerCase(),
@@ -133,7 +131,7 @@
       if (self.routes.hasOwnProperty(method)) {
         if (self.routes[method].hasOwnProperty(action)) {
           self.params = [];
-          if (enctype == 'multipart/form-data') {
+          if (enctype === 'multipart/form-data') {
             data = new FormData(e.target);
           }
           self.params.push(data);
@@ -149,9 +147,6 @@
     });
     if (window.location.hash.length > 0) {
       var route = self.cleanUri(window.location.hash);
-      var urlSplit = route.split('?', 2);
-      var pathParts = urlSplit[0].split('/', 50);
-      var queryParts = urlSplit[1] ? urlSplit[1].split('&', 50) : [];
       self.setHash(route);
     } else if (this.defaultRouter) {
       self.setHash(this.defaultRouter);
@@ -164,7 +159,7 @@
         parts = rule.split('/', 50);
 
     // Don't match if fixed rule is longer than path
-    if (parts.length < pathParts.length) return false;
+    if (parts.length < pathParts.length) { return false; }
 
     // Parse path components
     for (var i = 0; i < parts.length; i++) {
@@ -173,7 +168,7 @@
 
         if (part !== undefined) {
             // Assign part to named parameter
-            if (rulePart.charAt(0) == ':') {
+            if (rulePart.charAt(0) === ':') {
                 params[rulePart.substr(1)] = part;
                 continue;
             }
@@ -183,20 +178,19 @@
             }
         }
         // If no path part and not a named parameter, no match
-        else if (rulePart.charAt(0) != ':') {
+        else if (rulePart.charAt(0) !== ':') {
             return false;
         }
         else {
             missingParams[rulePart.substr(1)] = true;
         }
     }
-
     // Parse query strings
-    for (var i=0; i<queryParts.length; i++) {
-        var nameValue = queryParts[i].split('=', 2);
+    for (var x=0; x<queryParts.length; x++) {
+        var nameValue = queryParts[x].split('=', 2);
         var key = nameValue[0];
         // But ignore empty parameters and don't override named parameters
-        if (nameValue.length == 2 && !params[key] && !missingParams[key]) {
+        if (nameValue.length === 2 && !params[key] && !missingParams[key]) {
             params[key] = nameValue[1];
         }
     }
@@ -243,8 +237,7 @@
    * @return {void}
    */
   Core.prototype.get = function(uri, callback) {
-    var uri = uri.replace(/^\//, '');
-    this.routes.get[uri] = callback;
+    this.routes.get[uri.replace(/^\//, '')] = callback;
   };
 
   /**
@@ -254,8 +247,7 @@
    * @return {void}
    */
   Core.prototype.post = function(uri, callback) {
-    var uri = uri.replace(/^\//, '');
-    this.routes.post[uri] = callback;
+    this.routes.post[uri.replace(/^\//, '')] = callback;
   };
 
   /**
@@ -265,8 +257,7 @@
    * @return {void}
    */
   Core.prototype.put = function(uri, callback) {
-    var uri = uri.replace(/^\//, '');
-    this.routes.put[uri] = callback;
+    this.routes.put[uri.replace(/^\//, '')] = callback;
   };
 
   /**
@@ -288,34 +279,36 @@
   Core.prototype.request = function(method, url, params, async) {
     console.log('Core:request');
     var jqxhr,
-        async = async || true,
-        method = method || 'GET',
-        url = url || this.options.baseUrl + 'api',
-        params = params || {},
         processData = !(params instanceof FormData), // default: true, application/x-www-form-urlencoded: false (Don't process the files)
         // Set content type to false as jQuery will tell the server its a query string request
         contentType = (params instanceof FormData) ? false : 'application/x-www-form-urlencoded; charset=UTF-8', // files set false or default
         debug = false;
     jqxhr = $.ajax({
-      method: method,
-      url: url,
-      data: params,
+      method: method || 'GET',
+      url: url || this.options.baseUrl + 'api/sac',
+      data: params || {},
       processData: processData,
       contentType: contentType,
       dataType: 'json',
-      async: async
+      async: async || true
     })
     .done(function(/* msg */) {
       // console.log(msg);
-      debug ? $.notify('Ok!', 'success') : null;
+      if (debug) {
+        $.notify('Ok!', 'success');
+      }
     })
     .fail(function(/* msg */) {
       // console.log(msg);
-      debug ? $.notify('Error!', 'error') : null;
+      if (debug) {
+        $.notify('Error!', 'error');
+      }
     })
     .always(function(/* msg */) {
       // console.log(msg);
-      debug ? $.notify('Complete!', 'warn'): null;
+      if (debug) {
+        $.notify('Complete!', 'warn');
+      }
     });
     return jqxhr;
   };
@@ -336,11 +329,11 @@
     var urlSplit = route.split('?', 2);
     var pathParts = urlSplit[0].split('/', 50);
     var queryParts = urlSplit[1] ? urlSplit[1].split('&', 50) : [];
-    if (window.Core['routes']['get'].hasOwnProperty(route)) {
-      (window.Core['routes']['get'][route]).apply(window.Core, window.Core.params);
+    if (window.Core.routes.get.hasOwnProperty(route)) {
+      (window.Core.routes.get[route]).apply(window.Core, window.Core.params);
     } else {
       var call = false;
-      $.each(window.Core['routes']['get'], function(url, handler) {
+      $.each(window.Core.routes.get, function(url, handler) {
         var params = window.Core.getParamsFromRouter(url, pathParts, queryParts);
         if (params) {
           // Automatic parameter assignment

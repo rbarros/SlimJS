@@ -33,6 +33,7 @@
     console.log('Router:__constructor()');
     this.config({ mode: 'history'});
     // returning the user to the initial state
+    // this.navigate('/sac');
     return this;
   };
 

@@ -5,7 +5,7 @@
  * @date   2016-04-11
  * Copyright (c) 2016 Ramon Barros
  */
-/* jslint devel: true, unparam: true, indent: 4 */
+/* jslint devel: true, unparam: true, indent: 2 */
 /* global twig */
 (function (window) {
     'use strict';
@@ -44,21 +44,20 @@
      * @return {Twig}
      */
     View.prototype.render = function(view, data, outputReturn) {
-        var self = this;
+        var self = this,
+            output;
         self.data = $.extend({}, self.data, data);
-        // Load notes page
-        var output,
-            template = twig({
-                href: view,
-                async: !outputReturn,
-                load: function(template) {
-                    output = template.render(self.data);
-                    if (!outputReturn) {
-                        $('.app').html(output)
-                                 .fadeIn();
-                    }
+        twig({
+            href: view,
+            async: !outputReturn,
+            load: function(template) {
+                output = template.render(self.data);
+                if (!outputReturn) {
+                    $('.app').html(output)
+                             .fadeIn();
                 }
-            });
+            }
+        });
         return output;
     };
 

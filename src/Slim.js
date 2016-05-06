@@ -1,12 +1,12 @@
 /*!
- * Classe App
+ * Classe Slim
  *
  * @author Ramon Barros [contato@ramon-barros.com]
  * @date   2016-04-11
  * Copyright (c) 2016 Ramon Barros
  */
-/* jslint devel: true, unparam: true, indent: 4 */
-/* global Core */
+/* jslint devel: true, unparam: true, indent: 2 */
+/* global Core, Config */
 // @import "Core.js";
 (function (window) {
   'use strict';
@@ -15,18 +15,18 @@
    * Inicia propriedades da classe
    * @author Ramon Barros [contato@ramon-barros.com]
    * @date   2016-04-11
-   * @return {App}
+   * @return {Slim}
    */
-  var App = function() {
+  var Slim = function() {
     return this.__constructor();
   };
 
   /**
    * Extende o Objeto
-   * @type {App}
+   * @type {Slim}
    */
-  App.prototype = Core;
-  App.prototype.constructor = App;
+  Slim.prototype = Core;
+  Slim.prototype.constructor = Slim;
 
   /**
    * Construtor da classe
@@ -34,18 +34,18 @@
    * @date   2016-04-11
    * @return {View}
    */
-  App.prototype.__constructor = function() {
-    console.log('App:__constructor()');
+  Slim.prototype.__constructor = function() {
+    console.log('Slim:__constructor()');
     return this;
   };
 
   /**
    * Executa comandos para a api
    * @param  {String} command
-   * @return {App}
+   * @return {Slim}
    */
-  App.prototype.api = function(command) {
-    console.log('App:api');
+  Slim.prototype.api = function(command) {
+    console.log('Slim:api');
     var method,
         url,
         params;
@@ -62,27 +62,25 @@
     return this.request(method, url, params);
   };
 
-  App.prototype.run = function(callback) {
-    console.log('App:run');
+  Slim.prototype.run = function(callback) {
+    console.log('Slim:run');
     return Config.loadOptions(callback);
   };
 
-  App.prototype.flash = function(text, className, position) {
-    console.log('App:flash');
-    var el = 'form',
-        className = className || 'warn',
-        position = position || 'top center';
+  Slim.prototype.flash = function(text, className, position) {
+    console.log('Slim:flash');
+    var el = 'form';
     $(el).notify(
       text,
       {
-        className: className,
-        position: position
+        className: className || 'warn',
+        position: position || 'top center'
       }
     );
     return this;
   };
 
-  window.$app = new App();
+  window.$app = new Slim();
   return window.$app;
 
 }(window));

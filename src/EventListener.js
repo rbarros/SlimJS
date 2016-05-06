@@ -5,7 +5,7 @@
  * @date   2016-04-11
  * Copyright (c) 2016 Ramon Barros
  */
-/* jslint devel: true, unparam: true, indent: 4 */
+/* jslint devel: true, unparam: true, indent: 2 */
 (function (window) {
   'use strict';
 
@@ -34,7 +34,7 @@
 
   EventListener.prototype.onhashchange = function() {
     // exit if the browser implements that event
-    if ( "onhashchange" in window.document.body ) { return; }
+    if ('onhashchange' in window.document.body ) { return; }
 
     var location = window.location,
       oldURL = location.href,
@@ -46,10 +46,10 @@
         newHash = location.hash;
 
       // if the hash has changed and a handler has been bound...
-      if ( newHash != oldHash && typeof window.onhashchange === "function" ) {
+      if (newHash !== oldHash && typeof window.onhashchange === 'function') {
         // execute the handler
         window.onhashchange({
-          type: "hashchange",
+          type: 'hashchange',
           oldURL: oldURL,
           newURL: newURL
         });

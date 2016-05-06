@@ -17,24 +17,8 @@
    */
   var Config = function() {
     this.system = 'app';
-    this.basePath = '';
-    this.commonPath = '../assets/';
-    this.rootPath = '../';
-    this.DEV = false;
-    this.componentsPath = '../assets/components/';
-    this.layoutApp = false;
-    this.module = Url.segments(0);
-
-    this.primaryColor = '#5BC0DE';
-    this.dangerColor = '#bd362f';
-    this.successColor = '#8bbf61';
-    this.infoColor = '#4193d0';
-    this.warningColor = '#ab7a4b';
-    this.inverseColor = '#424242';
     this.options = null;
     this.env = 'local';
-
-    this.themerPrimaryColor = this.primaryColor;
 
     if (Url.host === 'localhost' || /192\.168\.1/.test(Url.host) || /.dev/.test(Url.host)) {
         localStorage.debug = true;
@@ -75,11 +59,11 @@
       //   };
       //   worker.postMessage('package.json');
       // } else {
-        self.getJsonAsync('app/config/'+self.env+'.json').then(json => {
+        self.getJsonAsync('app/config/'+self.env+'.json').then(function(json) {
           self.options = JSON.parse(json);
           self.save('app.options', self.options, 1200);
           callback(self.options);
-        }).catch(error => {
+        }).catch(function(error) {
           throw error;
         });
       //}
@@ -100,7 +84,7 @@
       console.log('Config:getJsonAsync()');
       var xhr = new XMLHttpRequest();
       xhr.open('GET', url);
-      xhr.onload = () => {
+      xhr.onload = function() {
         if (xhr.status === 200) {
           // We can resolve the promise
           resolve(xhr.response);
@@ -109,7 +93,7 @@
           reject('Unable to load JSON');
         }
       };
-      xhr.onerror = () => {
+      xhr.onerror = function() {
         // It's a failure, so let's reject the promise
         reject('Unable to load JSON');
       };
