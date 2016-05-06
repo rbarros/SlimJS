@@ -90,6 +90,7 @@ node_modules
 
 npm-debug.log
 
+app/libs
 
 ########################
 # misc / editors
