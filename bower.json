@@ -1,5 +1,5 @@
 {
-  "name": "SlimJS",
+  "name": "slim.js",
   "version": "1.0.0",
   "main": [
     "dist/js/slim.js"
@@ -10,15 +10,12 @@
   "authors": [
     "Ramon Barros <contato@ramon-barros.com>"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/rbarros/slim.js.git"
-  },
   "ignore": [
     "**/.*",
     "node_modules",
     "test",
-    "tests"
+    "tests",
+    "app"
   ],
   "dependencies": {
     "jquery": "2.1.3",
