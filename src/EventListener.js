@@ -34,7 +34,7 @@
 
   EventListener.prototype.onhashchange = function() {
     // exit if the browser implements that event
-    if ('onhashchange' in window.document.body ) { return; }
+    if (typeof window.onhashchange === 'object') { return; }
 
     var location = window.location,
       oldURL = location.href,
