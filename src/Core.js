@@ -211,7 +211,7 @@
   };
 
   Core.prototype.redirect = function(uri, params) {
-    var self = this;
+    var self = window.Core;
     if (self.routes.get.hasOwnProperty(uri)) {
       self.params = [];
       for (var param in params) {
@@ -222,9 +222,9 @@
   };
 
   Core.prototype.hook = function(name, callable) {
-    var self = this;
-    if (this.hooks.hasOwnProperty(name)) {
-      this.hooks[name] = callable;
+    var self = window.Core;
+    if (self.hooks.hasOwnProperty(name)) {
+      self.hooks[name] = callable;
       self.hooks['app.before'].apply(self);
     }
     return this;
@@ -277,7 +277,7 @@
    * @return {void}
    */
   Core.prototype.request = function(method, url, params, async) {
-    console.log('Core:request');
+    console.log('Core:request['+method+']['+url+']');
     var jqxhr,
         processData = !(params instanceof FormData), // default: true, application/x-www-form-urlencoded: false (Don't process the files)
         // Set content type to false as jQuery will tell the server its a query string request
