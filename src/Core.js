@@ -199,7 +199,7 @@
   };
 
   Core.prototype.baseUrl = function(url) {
-    return this.options.baseUrl + 'app/' + url;
+    return this.options.baseUrl + url;
   };
 
   Core.prototype.apiUrl = function(url) {
