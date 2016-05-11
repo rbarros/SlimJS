@@ -66,6 +66,7 @@ module.exports = function(grunt) {
         ]
       }
     },
+
     // Minifica os arquivos js
     uglify: {
       options: {
@@ -75,6 +76,21 @@ module.exports = function(grunt) {
         src: '.tmp/*.js',
         dest: '<%= config.dist %>/js/<%= pkg.name %>.min.js'
       }
+    },
+
+    // Testes
+    qunit: {
+      options: {
+        '--web-security': 'no',
+        coverage: {
+          src: ['src/**/*.js'],
+          instrumentedFiles: 'temp/',
+          htmlReport: 'report/coverage',
+          coberturaReport: 'report/',
+          linesThresholdPct: 85
+        }
+      },
+      all: ['test/**/*.html']
     }
   });
 

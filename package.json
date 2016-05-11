@@ -26,5 +26,8 @@
     "grunt-import-js": "^0.1.4",
     "jshint-stylish": "^1.0.0",
     "load-grunt-tasks": "^3.5.0"
+  },
+  "dependencies": {
+    "grunt-contrib-qunit": "^1.2.0"
   }
 }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Slim Js Test Suite</title>
+  <!-- Load local jQuery. This can be overridden with a ?jquery=___ param. -->
+  <script src="jquery-loader.js"></script>
+  <!-- Load local QUnit. -->
+  <link rel="stylesheet" href="qunit.css" media="screen">
+  <script src="qunit.js"></script>
+  <!-- Load local lib and tests. -->
+  <script src="../src/FormData.js"></script>
+  <script src="../src/Unserialize.js"></script>
+  <script src="../src/Url.js"></script>
+  <script src="../src/EventListener.js"></script>
+  <script src="../src/Exceptions.js"></script>
+  <script src="../src/Config.js"></script>
+  <script src="../src/View.js"></script>
+  <script src="../src/Router.js"></script>
+  <script src="../src/Core.js"></script>
+  <script src="../src/Slim.js"></script>
+  <script src="Slim.js_test.js"></script>
+  <!-- Removing access to jQuery and $. But it'll still be available as _$, if
+       you REALLY want to mess around with jQuery in the console. REMEMBER WE
+       ARE TESTING A PLUGIN HERE, THIS HELPS ENSURE BEST PRACTICES. REALLY. -->
+  <script>window._$ = jQuery.noConflict(true);</script>
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture">
+    <span>lame test markup</span>
+    <span>normal test markup</span>
+    <span>awesome test markup</span>
+  </div>
+</body>
+</html>
