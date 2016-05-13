@@ -40,6 +40,24 @@
   };
 
   /**
+   * Retorna a url base da aplicação
+   * @param  {string} url
+   * @return {string}
+   */
+  Slim.prototype.baseUrl = function(url) {
+    return Url.baseUrl(url);
+  };
+
+  /**
+   * Retorna a url base da api
+   * @param  {string} url
+   * @return {string}
+   */
+  Slim.prototype.apiUrl = function(url) {
+    return Url.apiUrl(url);
+  };
+
+  /**
    * Executa comandos para a api
    * @param  {String} command
    * @return {Slim}
@@ -52,11 +70,11 @@
     switch (command) {
       case 'check':
         method = 'OPTIONS';
-        url = this.apiUrl();
+        url = Url.apiUrl();
         break;
       default:
         method = 'OPTIONS';
-        url = this.apiUrl();
+        url = Url.apiUrl();
         break;
     }
     return this.request(method, url, params);
@@ -69,8 +87,7 @@
 
   Slim.prototype.flash = function(text, className, position) {
     console.log('Slim:flash');
-    var el = 'form';
-    $(el).notify(
+    $('form').notify(
       text,
       {
         className: className || 'warn',

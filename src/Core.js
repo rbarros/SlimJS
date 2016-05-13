@@ -71,12 +71,6 @@
     this.defaultRouter = uri;
   };
 
-  Core.prototype.cleanUri = function(uri) {
-    return uri.replace(/\/+/g, '/') // Remove redundant slashes
-              .replace(/^\/|\/($|\?)/, '') // Strip leading and trailing '/' (at end or before query string)
-              .replace(/#\/?/, ''); // Strip fragment identifiers
-  };
-
   Core.prototype.setHash = function(uri) {
     var hash,
         params,
@@ -85,7 +79,7 @@
     if (uri === '/') {
       hash = '#/';
     } else {
-      uri = this.cleanUri(uri);
+      uri = Url.cleanUri(uri);
       hash = '#/' + (uri.length > 0 ? uri : '');
     }
     if (window.location.hash !== hash) {
@@ -114,9 +108,9 @@
     var self = this;
     $(document).on('click', '[ui-sref]', function (e) {
       e.preventDefault();
-      console.log('Core:click[ui-sref]');
       var ref = $(this).attr('ui-sref');
-        self.setHash(ref);
+      console.log('Core:click[ui-sref]['+ref+']');
+      self.setHash(ref);
     });
     $(document).on('submit', 'form', function (e) {
       console.log('Core:form.submit');
@@ -146,7 +140,7 @@
       }
     });
     if (window.location.hash.length > 0) {
-      var route = self.cleanUri(window.location.hash);
+      var route = Url.cleanUri(window.location.hash);
       self.setHash(route);
     } else if (this.defaultRouter) {
       self.setHash(this.defaultRouter);
@@ -198,16 +192,8 @@
     return params;
   };
 
-  Core.prototype.baseUrl = function(url) {
-    return this.options.baseUrl + url;
-  };
-
-  Core.prototype.apiUrl = function(url) {
-    return this.options.apiUrl + url;
-  };
-
   Core.prototype.render = function(view, data, output) {
-    return this.view.render(this.baseUrl(view), data, output);
+    return this.view.render(Url.baseUrl(view), data, output);
   };
 
   Core.prototype.redirect = function(uri, params) {
@@ -266,7 +252,7 @@
    * @return {void}
    */
   Core.prototype.submit = function(params) {
-    this.request('POST', this.apiUrl(''), params);
+    this.request('POST', Url.apiUrl(''), params);
   };
 
   /**
@@ -285,7 +271,7 @@
         debug = false;
     jqxhr = $.ajax({
       method: method || 'GET',
-      url: url || this.options.baseUrl + 'api/sac',
+      url: url || Url.apiUrl(),
       data: params || {},
       processData: processData,
       contentType: contentType,
@@ -325,7 +311,7 @@
   });
   EventListener.addEvent(window, 'hashchange', function() {
     window.Core.hooks['app.before'].apply(window.Core);
-    var route = window.Core.cleanUri(window.location.hash);
+    var route = window.Url.cleanUri(window.location.hash);
     var urlSplit = route.split('?', 2);
     var pathParts = urlSplit[0].split('/', 50);
     var queryParts = urlSplit[1] ? urlSplit[1].split('&', 50) : [];

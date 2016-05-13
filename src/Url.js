@@ -16,9 +16,15 @@
      * @return {Url}
      */
     var Url = function() {
-        this.system = 'sac';
+        this.system = 'app';
+        this.protocol = window.document.location.protocol;
         this.host = window.document.location.host;
         this.hostname = window.document.location.hostname;
+        this.origin = window.document.location.origin;
+        this.port = window.document.location.port;
+        this.pathname = window.document.location.pathname;
+        this.baseurl =  null;
+        this.apiurl =  null;
         return this.__constructor();
     };
 
@@ -34,6 +40,53 @@
     };
 
     /**
+     * Seta a base url
+     * @param {string} url string
+     */
+    Url.prototype.setBase = function(url) {
+      this.baseurl = url;
+      return this;
+    };
+
+    /**
+     * Seta a url da api
+     * @param {string} url
+     */
+    Url.prototype.setApi = function(url) {
+      this.apiurl = url;
+      return this;
+    };
+
+    /**
+     * Limpa url
+     * @param  {string} uri
+     * @return {string}
+     */
+    Url.prototype.cleanUri = function(uri) {
+      return uri.replace(/\/+/g, '/') // Remove redundant slashes
+                .replace(/^\/|\/($|\?)/, '') // Strip leading and trailing '/' (at end or before query string)
+                .replace(/#\/?/, ''); // Strip fragment identifiers
+    };
+
+    /**
+     * Retorna a url base da aplicação
+     * @param  {string} url
+     * @return {string}
+     */
+    Url.prototype.baseUrl = function(url) {
+      return this.baseurl + (url || '');
+    };
+
+    /**
+     * Retorna a url base da api
+     * @param  {string} url
+     * @return {string}
+     */
+    Url.prototype.apiUrl = function(url) {
+      return this.apiurl + (url || '');
+    };
+
+    /**
      * Redireciona para a url especificada.
      * @author Ramon Barros <contato@ramon-barros.com>
      * @date      2016-04-11
@@ -46,6 +99,15 @@
     };
 
     /**
+     * Seta pathname da aplicação
+     * @param {string} system
+     */
+    Url.prototype.setSystem = function(system) {
+        this.system = system;
+        return this.system;
+    };
+
+    /**
      * Retorna os segmentos da url
      * @author Ramon Barros <contato@ramon-barros.com>
      * @date      2016-04-11
@@ -53,7 +115,7 @@
      * @return    {string}
      */
     Url.prototype.segments = function(key) {
-        var pathname = window.document.location.pathname.replace(/(^\/|\/$)/g, ''),
+        var pathname = this.pathname.replace(/(^\/|\/$)/g, ''),
             segments = String(pathname).split('/'),
             app = segments.indexOf(this.system) + 1;
             segments = segments.slice(app, segments.length);

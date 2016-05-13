@@ -49,25 +49,18 @@
     var self = this;
     self.options = self.load('app.options');
     if (!self.options) {
-      // if (window.Worker) {
-      //   var worker = new Worker('worker.js');
-      //   worker.onmessage = function(event) {
-      //     self.options = JSON.parse(event.data);
-      //     self.save('app.options', self.options, 1200);
-      //     callback(self.options);
-      //     $('div.modal-backdrop').fadeIn().remove();
-      //   };
-      //   worker.postMessage('package.json');
-      // } else {
-        self.getJsonAsync('app/config/'+self.env+'.json').then(function(json) {
-          self.options = JSON.parse(json);
-          self.save('app.options', self.options, 1200);
-          callback(self.options);
-        }).catch(function(error) {
-          throw error;
-        });
-      //}
+      self.getJsonAsync('config/'+self.env+'.json').then(function(json) {
+        self.options = JSON.parse(json);
+        self.save('app.options', self.options, 1200);
+        Url.setBase(self.options.baseUrl);
+        Url.setApi(self.options.apiUrl);
+        callback(self.options);
+      }).catch(function(error) {
+        throw error;
+      });
     } else {
+      Url.setBase(self.options.baseUrl);
+      Url.setApi(self.options.apiUrl);
       callback(self.options);
     }
     return this;
@@ -81,7 +74,7 @@
   Config.prototype.getJsonAsync = function(url) {
     console.log('Config:getJsonAsync');
     return new Promise(function (resolve, reject) {
-      console.log('Config:getJsonAsync()');
+      console.log('Config:getJsonAsync() > Promise()');
       var xhr = new XMLHttpRequest();
       xhr.open('GET', url);
       xhr.onload = function() {
