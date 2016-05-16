@@ -19,16 +19,30 @@
     $app.setDefaultRouter('/');
 
     $app.get('/', function() {
-      $app.redirect('login');
+      $app.redirect('home');
+    });
+
+    /**
+     * Página home
+     * @param  {string} ) rota
+     * @return {function}
+     */
+    $app.get('home', function() {
+      $app.render('views/home.twig', {
+        data: [
+          {id: 1, name: 'foo'},
+          {id: 2, name: 'bar'}
+        ]
+      });
     });
 
     /**
      * Formulário de login
-     * @param  {string} ) rota
-     * @return {function}
+     * @param  {string} rota
+     * @return {function} callback
      */
     $app.get('login', function() {
-      $app.render('views/signin.twig', {
+      $app.render('views/login.twig', {
       });
     });
 

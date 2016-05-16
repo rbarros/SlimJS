@@ -6,7 +6,7 @@
  * Copyright (c) 2016 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
-/* global window, FormData, EventListener, View, Router */
+/* global window, FormData,Url,EventListener, View, Router */
 // @import "AndLog.js";
 // @import "FormData.js";
 // @import "Url.js";

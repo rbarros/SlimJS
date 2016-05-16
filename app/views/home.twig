@@ -1,0 +1,7 @@
+<h1>Home</h1>
+<a ui-sref="login">Login</a>
+<ul>
+    {% for row in data %}
+        <li>#{{row.id}} - {{row.name}}</li>
+    {% endfor %}
+</ul>

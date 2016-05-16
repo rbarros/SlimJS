@@ -6,7 +6,7 @@
  * Copyright (c) 2016 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
-/* global Core, Config */
+/* global Url, Config, Core  */
 // @import "Core.js";
 (function (window) {
   'use strict';
