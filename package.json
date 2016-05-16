@@ -2,7 +2,7 @@
   "name": "slim",
   "title": "SlimJS",
   "description": "Slim JS is a frontend library for integration with the famous Slim Framework",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "http://rsb.cc/SlimJS/",
   "author": {
     "name": "Ramon Barros",
@@ -23,11 +23,9 @@
     "grunt-contrib-nodeunit": "~0.4.1",
     "grunt-contrib-uglify": "~0.5.0",
     "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-qunit": "^1.2.0",
     "grunt-import-js": "^0.1.4",
     "jshint-stylish": "^1.0.0",
     "load-grunt-tasks": "^3.5.0"
-  },
-  "dependencies": {
-    "grunt-contrib-qunit": "^1.2.0"
   }
 }
