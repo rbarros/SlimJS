@@ -35,7 +35,6 @@ module.exports = function(grunt) {
         files: [{
           dot: true,
           src: [
-            '.tmp',
             '<%= config.dist %>'
           ]
         }]
@@ -48,7 +47,7 @@ module.exports = function(grunt) {
         expand: true,
         cwd: 'src/',
         src: ['**/Slim.js'],
-        dest: '.tmp',
+        dest: '<%= config.dist %>/js',
         ext: '.js'
       }
     },
@@ -73,7 +72,7 @@ module.exports = function(grunt) {
         banner: '<%= banner %>'
       },
       build: {
-        src: '.tmp/*.js',
+        src: '<%= config.dist %>/js/Slim.js',
         dest: '<%= config.dist %>/js/<%= pkg.name %>.min.js'
       }
     },
