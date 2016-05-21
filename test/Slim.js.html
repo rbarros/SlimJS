@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="qunit.css" media="screen">
   <script src="qunit.js"></script>
   <!-- Load local lib and tests. -->
+  <script src="../libs/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="../libs/notifyjs/dist/notify.js"></script>
+  <script src="../libs/twig.js/twig.min.js"></script>
   <script src="../src/FormData.js"></script>
   <script src="../src/Unserialize.js"></script>
   <script src="../src/Url.js"></script>
@@ -19,7 +22,9 @@
   <script src="../src/Router.js"></script>
   <script src="../src/Core.js"></script>
   <script src="../src/Slim.js"></script>
-  <script src="Slim.js_test.js"></script>
+  <script src="Url.test.js"></script>
+  <script src="View.test.js"></script>
+  <script src="Slim.test.js"></script>
   <!-- Removing access to jQuery and $. But it'll still be available as _$, if
        you REALLY want to mess around with jQuery in the console. REMEMBER WE
        ARE TESTING A PLUGIN HERE, THIS HELPS ENSURE BEST PRACTICES. REALLY. -->

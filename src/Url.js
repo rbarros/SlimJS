@@ -115,7 +115,7 @@
      * @return    {string}
      */
     Url.prototype.segments = function(key) {
-        var pathname = this.pathname.replace(/(^\/|\/$)/g, ''),
+        var pathname = this.cleanUri(this.pathname),
             segments = String(pathname).split('/'),
             app = segments.indexOf(this.system) + 1;
             segments = segments.slice(app, segments.length);

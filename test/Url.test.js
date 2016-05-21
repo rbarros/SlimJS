@@ -32,7 +32,7 @@
     ok(this.slim, 'instance');
   })
 
-  module('Hooks');
+  module('Url');
 
   test('Set baseurl', function() {
     var baseurl = 'http://localhost/app';
@@ -96,6 +96,19 @@
       Url.redirect('bar/foo');
       equal(window.location.href, 'bar/foo');
     })(mock);
+  });
+  
+  test('Set system', function() {
+    expect(1);
+    equal(Url.setSystem('app'), Url.system);
+  });
+  
+  test('Ge Segments', function() {
+    expect(2);
+    Url.setSystem('app');
+    Url.pathname = 'app/#/foo/bar';
+    equal(Url.segments(0), 'foo');
+    equal(Url.segments(1), 'bar');
   });
   
 }(jQuery));
