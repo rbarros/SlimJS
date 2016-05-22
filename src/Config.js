@@ -21,9 +21,9 @@
     this.env = 'local';
 
     if (Url.host === 'localhost' || /192\.168\.1/.test(Url.host) || /.dev/.test(Url.host)) {
-        localStorage.debug = true;
+        window.localStorage.debug = true;
     } else {
-        delete localStorage.debug;
+        delete window.localStorage.debug;
         this.env = 'prod';
     }
     return this.__constructor();
@@ -108,7 +108,7 @@
     }
     //var expirationMS = expirationMin * 60 * 1000;
     var record = { value: JSON.stringify(jsonData), timestamp: new Date().getTime() + expirationMS };
-    localStorage.setItem(key, JSON.stringify(record));
+    window.localStorage.setItem(key, JSON.stringify(record));
     return jsonData;
   };
 
@@ -121,7 +121,7 @@
     if (typeof (Storage) === 'undefined') {
       return false;
     }
-    var record = JSON.parse(localStorage.getItem(key));
+    var record = JSON.parse(window.localStorage.getItem(key));
     if (!record) {
       return false;
     }
@@ -131,6 +131,6 @@
   window.Config = new Config();
   return Config;
 
-}(window));
+}(this));
 
 

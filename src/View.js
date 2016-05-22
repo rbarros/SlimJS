@@ -6,7 +6,7 @@
  * Copyright (c) 2016 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
-/* global twig */
+/* global jQuery, twig */
 (function (window, $) {
     'use strict';
 
@@ -64,6 +64,6 @@
     window.View = new View();
     return View;
 
-}(window, jQuery));
+}(this, jQuery));
 
 

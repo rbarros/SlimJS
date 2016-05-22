@@ -125,4 +125,4 @@
     window.Url = new Url();
     return Url;
 
-}(window));
+}(this));
