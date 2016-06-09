@@ -137,6 +137,6 @@
   window.Router = Router;
   return Router;
 
-}(window));
+}(this));
 
 

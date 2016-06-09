@@ -96,6 +96,6 @@
   window.EventListener = new EventListener();
   return EventListener;
 
-}(window));
+}(this));
 
 

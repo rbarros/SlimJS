@@ -27,4 +27,4 @@
     } else {
         window.console = out;
     }
-}(window));
+}(this));

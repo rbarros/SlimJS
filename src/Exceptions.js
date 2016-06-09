@@ -82,4 +82,4 @@
   window.Exceptions = new Exceptions();
   return Exceptions;
 
-}(window));
+}(this));

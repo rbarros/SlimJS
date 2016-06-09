@@ -100,6 +100,6 @@
   window.$app = new Slim();
   return window.$app;
 
-}(window));
+}(this));
 
 

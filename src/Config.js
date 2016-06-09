@@ -16,17 +16,28 @@
    * @date   2016-04-11
    */
   var Config = function() {
-    this.system = 'app';
     this.options = null;
     this.env = 'local';
+    this.file;
 
     if (Url.host === 'localhost' || /192\.168\.1/.test(Url.host) || /.dev/.test(Url.host)) {
-        localStorage.debug = true;
+        window.localStorage.debug = true;
     } else {
-        delete localStorage.debug;
+        delete window.localStorage.debug;
         this.env = 'prod';
     }
+    this.setFileOptions();
     return this.__constructor();
+  };
+  
+  /**
+   * Seta o arquivo de configuração da aplicação
+   * @author Ramon Barros [contato@ramon-barros.com]
+   * @data 2016-05-23
+   */
+  Config.prototype.setFileOptions = function(file) {
+    this.file = file || 'config/' + this.env + '.json';
+    return this;
   };
 
   /**
@@ -49,7 +60,7 @@
     var self = this;
     self.options = self.load('app.options');
     if (!self.options) {
-      self.getJsonAsync('config/'+self.env+'.json').then(function(json) {
+      self.getJsonAsync(self.file).then(function(json) {
         self.options = JSON.parse(json);
         self.save('app.options', self.options, 1200);
         Url.setBase(self.options.baseUrl);
@@ -108,7 +119,7 @@
     }
     //var expirationMS = expirationMin * 60 * 1000;
     var record = { value: JSON.stringify(jsonData), timestamp: new Date().getTime() + expirationMS };
-    localStorage.setItem(key, JSON.stringify(record));
+    window.localStorage.setItem(key, JSON.stringify(record));
     return jsonData;
   };
 
@@ -121,7 +132,7 @@
     if (typeof (Storage) === 'undefined') {
       return false;
     }
-    var record = JSON.parse(localStorage.getItem(key));
+    var record = JSON.parse(window.localStorage.getItem(key));
     if (!record) {
       return false;
     }
@@ -131,6 +142,6 @@
   window.Config = new Config();
   return Config;
 
-}(window));
+}(this));
 
 

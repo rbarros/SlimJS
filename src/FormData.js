@@ -37,4 +37,4 @@
         return body;
     };
     w.FormData = FormData;
-}(window));
+}(this));
