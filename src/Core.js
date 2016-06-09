@@ -116,11 +116,10 @@
       console.log('Core:form.submit');
       e.stopPropagation(); // Stop stuff happening
       e.preventDefault(); // Totally stop stuff happening
-      var elementOrigin = e.originalEvent.currentTarget.activeElement,
-          form = $(elementOrigin).closest('form'),
+      var //elementOrigin = e.originalEvent.currentTarget.activeElement,
           action = $(this).attr('action'),
           enctype = $(this).attr('enctype'),
-          method = (form.find('input[name=_METHOD]').val() || form.attr('method')).toLowerCase(),
+          method = ($(this).find('input[name="_METHOD"]').val() || $(this).attr('method') || 'get').toLowerCase(),
           data = $(this).serialize(); // Serialize the form data
       if (self.routes.hasOwnProperty(method)) {
         if (self.routes[method].hasOwnProperty(action)) {
