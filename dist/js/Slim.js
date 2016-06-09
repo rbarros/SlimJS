@@ -16,7 +16,7 @@
  * Copyright (c) 2016 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
-/* global window, FormData,Url,EventListener, View, Router */
+/* global jQuery, FormData,Url,EventListener, View, Router */
 
 // follow @HenrikJoreteg and @andyet if you like this ;)
 (function (window) {
@@ -47,7 +47,7 @@
     } else {
         window.console = out;
     }
-}(window));
+}(this));
 
 
 
@@ -90,7 +90,7 @@
         return body;
     };
     w.FormData = FormData;
-}(window));
+}(this));
 
 
 
@@ -211,7 +211,7 @@
      * @return    {string}
      */
     Url.prototype.segments = function(key) {
-        var pathname = this.pathname.replace(/(^\/|\/$)/g, ''),
+        var pathname = this.cleanUri(this.pathname),
             segments = String(pathname).split('/'),
             app = segments.indexOf(this.system) + 1;
             segments = segments.slice(app, segments.length);
@@ -221,7 +221,7 @@
     window.Url = new Url();
     return Url;
 
-}(window));
+}(this));
 
 
 
@@ -323,7 +323,7 @@
   window.EventListener = new EventListener();
   return EventListener;
 
-}(window));
+}(this));
 
 
 
@@ -413,7 +413,7 @@
   window.Exceptions = new Exceptions();
   return Exceptions;
 
-}(window));
+}(this));
 
 
 
@@ -425,7 +425,7 @@
  * Copyright (c) 2016 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
-/* global window,Url */
+/* global Url */
 (function (window) {
   'use strict';
 
@@ -435,17 +435,28 @@
    * @date   2016-04-11
    */
   var Config = function() {
-    this.system = 'app';
     this.options = null;
     this.env = 'local';
+    this.file = null;
 
     if (Url.host === 'localhost' || /192\.168\.1/.test(Url.host) || /.dev/.test(Url.host)) {
-        localStorage.debug = true;
+        window.localStorage.debug = true;
     } else {
-        delete localStorage.debug;
+        delete window.localStorage.debug;
         this.env = 'prod';
     }
+    this.setFileOptions();
     return this.__constructor();
+  };
+
+  /**
+   * Seta o arquivo de configuração da aplicação
+   * @author Ramon Barros [contato@ramon-barros.com]
+   * @data 2016-05-23
+   */
+  Config.prototype.setFileOptions = function(file) {
+    this.file = file || 'config/' + this.env + '.json';
+    return this;
   };
 
   /**
@@ -468,7 +479,7 @@
     var self = this;
     self.options = self.load('app.options');
     if (!self.options) {
-      self.getJsonAsync('config/'+self.env+'.json').then(function(json) {
+      self.getJsonAsync(self.file).then(function(json) {
         self.options = JSON.parse(json);
         self.save('app.options', self.options, 1200);
         Url.setBase(self.options.baseUrl);
@@ -527,7 +538,7 @@
     }
     //var expirationMS = expirationMin * 60 * 1000;
     var record = { value: JSON.stringify(jsonData), timestamp: new Date().getTime() + expirationMS };
-    localStorage.setItem(key, JSON.stringify(record));
+    window.localStorage.setItem(key, JSON.stringify(record));
     return jsonData;
   };
 
@@ -540,7 +551,7 @@
     if (typeof (Storage) === 'undefined') {
       return false;
     }
-    var record = JSON.parse(localStorage.getItem(key));
+    var record = JSON.parse(window.localStorage.getItem(key));
     if (!record) {
       return false;
     }
@@ -550,7 +561,7 @@
   window.Config = new Config();
   return Config;
 
-}(window));
+}(this));
 
 
 
@@ -564,8 +575,8 @@
  * Copyright (c) 2016 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
-/* global twig */
-(function (window) {
+/* global jQuery, twig */
+(function (window, $) {
     'use strict';
 
     /**
@@ -622,7 +633,7 @@
     window.View = new View();
     return View;
 
-}(window));
+}(this, jQuery));
 
 
 
@@ -637,7 +648,6 @@
  * http://krasimirtsonev.com/blog/article/A-modern-JavaScript-router-in-100-lines-history-api-pushState-hash-url
  */
 /* jslint devel: true, unparam: true, indent: 2 */
-/* global window */
 (function (window) {
   'use strict';
 
@@ -767,12 +777,12 @@
   window.Router = Router;
   return Router;
 
-}(window));
+}(this));
 
 
 
 
-(function (window) {
+(function (window, $) {
   'use strict';
 
   /**
@@ -874,10 +884,10 @@
       e.stopPropagation(); // Stop stuff happening
       e.preventDefault(); // Totally stop stuff happening
       var elementOrigin = e.originalEvent.currentTarget.activeElement,
-          $btn = $(elementOrigin),
+          form = $(elementOrigin).closest('form'),
           action = $(this).attr('action'),
           enctype = $(this).attr('enctype'),
-          method = ($('input[name=_METHOD]').val() || $('form').attr('method')).toLowerCase(),
+          method = (form.find('input[name=_METHOD]').val() || form.attr('method')).toLowerCase(),
           data = $(this).serialize(); // Serialize the form data
       if (self.routes.hasOwnProperty(method)) {
         if (self.routes[method].hasOwnProperty(action)) {
@@ -886,9 +896,7 @@
             data = new FormData(e.target);
           }
           self.params.push(data);
-          $btn.button('loading');
           (self.routes[method][action]).apply(self, self.params);
-          $btn.button('reset');
         } else {
           throw 'Rota não encontrada ['+method+':'+action+']!';
         }
@@ -1097,7 +1105,7 @@
 
   return Core;
 
-}(window));
+}(this, jQuery));
 
 
 
@@ -1194,6 +1202,6 @@
   window.$app = new Slim();
   return window.$app;
 
-}(window));
+}(this));
 
 

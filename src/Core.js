@@ -6,7 +6,7 @@
  * Copyright (c) 2016 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
-/* global window, jQuery, FormData,Url,EventListener, View, Router */
+/* global jQuery, FormData,Url,EventListener, View, Router */
 // @import "AndLog.js";
 // @import "FormData.js";
 // @import "Url.js";
@@ -117,9 +117,10 @@
       e.stopPropagation(); // Stop stuff happening
       e.preventDefault(); // Totally stop stuff happening
       var elementOrigin = e.originalEvent.currentTarget.activeElement,
+          form = $(elementOrigin).closest('form'),
           action = $(this).attr('action'),
           enctype = $(this).attr('enctype'),
-          method = ($('input[name=_METHOD]').val() || $('form').attr('method')).toLowerCase(),
+          method = (form.find('input[name=_METHOD]').val() || form.attr('method')).toLowerCase(),
           data = $(this).serialize(); // Serialize the form data
       if (self.routes.hasOwnProperty(method)) {
         if (self.routes[method].hasOwnProperty(action)) {

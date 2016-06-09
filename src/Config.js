@@ -6,7 +6,7 @@
  * Copyright (c) 2016 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
-/* global window,Url */
+/* global Url */
 (function (window) {
   'use strict';
 
@@ -18,7 +18,7 @@
   var Config = function() {
     this.options = null;
     this.env = 'local';
-    this.file;
+    this.file = null;
 
     if (Url.host === 'localhost' || /192\.168\.1/.test(Url.host) || /.dev/.test(Url.host)) {
         window.localStorage.debug = true;
@@ -29,7 +29,7 @@
     this.setFileOptions();
     return this.__constructor();
   };
-  
+
   /**
    * Seta o arquivo de configuração da aplicação
    * @author Ramon Barros [contato@ramon-barros.com]

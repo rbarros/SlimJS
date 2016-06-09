@@ -8,7 +8,8 @@
  * Copyright (c) 2014 Forbes Lindesay
  */
 (function (root) {
-  
+  'use strict';
+
   if (root.Promise) {
     return;
   }
@@ -39,8 +40,12 @@
   }
 
   function Promise(fn) {
-    if (typeof this !== 'object') throw new TypeError('Promises must be constructed via new');
-    if (typeof fn !== 'function') throw new TypeError('not a function');
+    if (typeof this !== 'object') {
+      throw new TypeError('Promises must be constructed via new');
+    }
+    if (typeof fn !== 'function') {
+      throw new TypeError('not a function');
+    }
     this._state = 0;
     this._handled = false;
     this._value = undefined;
@@ -78,7 +83,9 @@
   function resolve(self, newValue) {
     try {
       // Promise Resolution Procedure: https://github.com/promises-aplus/promises-spec#the-promise-resolution-procedure
-      if (newValue === self) throw new TypeError('A promise cannot be resolved with itself.');
+      if (newValue === self) {
+        throw new TypeError('A promise cannot be resolved with itself.');
+      }
       if (newValue && (typeof newValue === 'object' || typeof newValue === 'function')) {
         var then = newValue.then;
         if (newValue instanceof Promise) {
@@ -136,16 +143,22 @@
     var done = false;
     try {
       fn(function (value) {
-        if (done) return;
+        if (done) {
+          return;
+        }
         done = true;
         resolve(self, value);
       }, function (reason) {
-        if (done) return;
+        if (done) {
+          return;
+        }
         done = true;
         reject(self, reason);
       });
     } catch (ex) {
-      if (done) return;
+      if (done) {
+        return;
+      }
       done = true;
       reject(self, ex);
     }
@@ -166,7 +179,9 @@
     var args = Array.prototype.slice.call(arr);
 
     return new Promise(function (resolve, reject) {
-      if (args.length === 0) return resolve([]);
+      if (args.length === 0) {
+        return resolve([]);
+      }
       var remaining = args.length;
 
       function res(i, val) {

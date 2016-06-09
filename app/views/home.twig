@@ -5,3 +5,13 @@
         <li>#{{row.id}} - {{row.name}}</li>
     {% endfor %}
 </ul>
+<form method="post" action="login">
+    Post submit
+    <button type="submit">Submit</button>
+</form>
+
+<form method="post" action="login">
+    Put submit
+    <input type="hidden" name="_METHOD" value="PUT" />
+    <button type="submit">Submit</button>
+</form>

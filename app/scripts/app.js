@@ -46,6 +46,14 @@
       });
     });
 
+    $app.post('login', function() {
+      alert('post');
+    });
+
+    $app.put('login', function() {
+      alert('put');
+    });
+
     // Sistema em manutenção
     // $('body').append('<div class="modal-backdrop fade in white" />');
     // $app.api()
