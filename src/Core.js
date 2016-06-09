@@ -117,7 +117,6 @@
       e.stopPropagation(); // Stop stuff happening
       e.preventDefault(); // Totally stop stuff happening
       var elementOrigin = e.originalEvent.currentTarget.activeElement,
-          $btn = $(elementOrigin),
           action = $(this).attr('action'),
           enctype = $(this).attr('enctype'),
           method = ($('input[name=_METHOD]').val() || $('form').attr('method')).toLowerCase(),
@@ -129,9 +128,7 @@
             data = new FormData(e.target);
           }
           self.params.push(data);
-          $btn.button('loading');
           (self.routes[method][action]).apply(self, self.params);
-          $btn.button('reset');
         } else {
           throw 'Rota não encontrada ['+method+':'+action+']!';
         }
