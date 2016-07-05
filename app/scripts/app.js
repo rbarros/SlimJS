@@ -41,8 +41,10 @@
      * @param  {string} rota
      * @return {function} callback
      */
-    $app.get('login', function() {
+    $app.get('login', function(params) {
+      console.log(params);
       $app.render('views/login.twig', {
+        params: params
       });
     });
 
