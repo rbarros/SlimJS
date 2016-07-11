@@ -117,7 +117,7 @@
       e.stopPropagation(); // Stop stuff happening
       e.preventDefault(); // Totally stop stuff happening
       var //elementOrigin = e.originalEvent.currentTarget.activeElement,
-          action = $(this).attr('action'),
+          action = $(this).attr('action') || Url.cleanUri(window.location.hash),
           enctype = $(this).attr('enctype'),
           method = ($(this).find('input[name="_METHOD"]').val() || $(this).attr('method') || 'get').toLowerCase(),
           data = $(this).serialize(); // Serialize the form data
