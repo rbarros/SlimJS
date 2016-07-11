@@ -1,0 +1,23 @@
+{
+    "name":"SlimJS API",
+    "description":"Demo SlimJS API",
+    "authors":[
+        {
+            "name":"Ramon Barros",
+            "email":"contato@ramon-barros.com"
+        }
+    ],
+    "require":{
+        "php":">=5.3.0",
+        "slim/slim":"2.*",
+        "slim/views":"0.1.*"
+    },
+    "autoload":{
+        "psr-0":{
+            "": ""
+        }
+    },
+    "config": {
+        "bin-dir": "bin/"
+    }
+}

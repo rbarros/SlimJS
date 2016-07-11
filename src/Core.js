@@ -32,6 +32,8 @@
     this.routes.get = {};
     this.routes.post = {};
     this.routes.put = {};
+    this.routes.patch = {};
+    this.routes.delete = {};
     this.hooks = {
       'app.before': function() {
         console.log('Core:hook.before');
@@ -117,6 +119,7 @@
       e.stopPropagation(); // Stop stuff happening
       e.preventDefault(); // Totally stop stuff happening
       var //elementOrigin = e.originalEvent.currentTarget.activeElement,
+          request = ($(this).data('request') || 'enabled') === 'enabled' ? true : false,
           action = $(this).attr('action') || Url.cleanUri(window.location.hash),
           enctype = $(this).attr('enctype'),
           method = ($(this).find('input[name="_METHOD"]').val() || $(this).attr('method') || 'get').toLowerCase(),
@@ -127,8 +130,16 @@
           if (enctype === 'multipart/form-data') {
             data = new FormData(e.target);
           }
-          self.params.push(data);
-          (self.routes[method][action]).apply(self, self.params);
+          if (request) {
+            var urlSplit = action.split('?', 2);
+            var pathParts = urlSplit[0].split('/', 50);
+            var queryParts = data.split('&', 50);
+            var params = self.getParamsFromRouter(action, pathParts, queryParts);
+            self.request(method, Url.apiUrl(action), params).done(self.routes[method][action]);
+          } else {
+            self.params.push(data);
+            (self.routes[method][action]).apply(self, self.params);
+          }
         } else {
           throw 'Rota não encontrada ['+method+':'+action+']!';
         }
@@ -241,6 +252,26 @@
    */
   Core.prototype.put = function(uri, callback) {
     this.routes.put[uri.replace(/^\//, '')] = callback;
+  };
+
+  /**
+   * Registra as rotas PATCH
+   * @param  {String}   uri
+   * @param  {Function} callback
+   * @return {void}
+   */
+  Core.prototype.patch = function(uri, callback) {
+    this.routes.patch[uri.replace(/^\//, '')] = callback;
+  };
+
+  /**
+   * Registra as rotas DELETE
+   * @param  {String}   uri
+   * @param  {Function} callback
+   * @return {void}
+   */
+  Core.prototype.delete = function(uri, callback) {
+    this.routes.delete[uri.replace(/^\//, '')] = callback;
   };
 
   /**

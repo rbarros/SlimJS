@@ -1,5 +1,5 @@
 {
   "logo": "images/logo.png",
   "baseUrl": "http://localhost/SlimJS/app/",
-  "apiUrl": "http://slimjs.dev/api"
+  "apiUrl": "http://localhost/SlimJS/app/api/"
 }
