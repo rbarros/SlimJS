@@ -113,6 +113,22 @@
       alert('delete');
     });
 
+    $app.get('user/:id', function(id) {
+      console.log(id);
+      $app.render('views/login.twig', {
+        params: id
+      });
+    }).name('user.edit');
+
+    $app.get('router/:id/param1/:foo/param2/:bar', function(id, foo, bar) {
+      console.log(id);
+      $app.render('views/params.twig', {
+        id: id,
+        foo: foo,
+        bar: bar
+      });
+    }).name('router.params');
+
     // Sistema em manutenção
     // $('body').append('<div class="modal-backdrop fade in white" />');
     // $app.api()

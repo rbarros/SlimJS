@@ -20,9 +20,20 @@
     this.extensions = {
       router: function() {
         var $app = this;
-        Twig.extendFunction('route', function(name) {
+        Twig.extendFunction('route', function(name, params) {
           if ($app.routes.namespaces.hasOwnProperty(name)) {
             var uri = Url.cleanUri($app.routes.namespaces[name].uri);
+            var urlSplit = uri.split('?', 2);
+            var pathParts = urlSplit[0].split('/', 50);
+            var queryParts = urlSplit[1] ? urlSplit[1].split('&', 50) : [];
+            var rules = $app.getParamsFromRouter(uri, pathParts, queryParts);
+            if (Object.getOwnPropertyNames(rules).length > 0 && Object.getOwnPropertyNames(params).length > 0) {
+              $.each(params, function(k, v) {
+                if (rules.hasOwnProperty(k)) {
+                  uri = uri.replace(new RegExp('('+rules[k]+')', 'g'), v);
+                }
+              });
+            }
             var hash = '#/' + (uri.length > 0 ? uri : '');
             return hash;
           } else {

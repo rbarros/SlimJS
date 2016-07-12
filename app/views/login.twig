@@ -1,4 +1,18 @@
 <h1>Login</h1>
-<a ui-sref="home">Home {{ route('route.login')}}</a>
+<a ui-sref="home">
+    Home - {{ route('route.login')}}
+</a>
+<br/>
+<a ui-sref="user/1">
+    Home - {{ route('user.edit', { id: 1 }) }}
+</a>
 
-{{params}}
+<br/>
+
+<a sm-ref="{{ route('router.params', { id: 1, foo: 'foo', bar: 'bar' }) }}">
+Router Params - {{ route('router.params', { id: 1, foo: 'foo', bar: 'bar' }) }}
+</a>
+
+<br/>
+
+Parametros: {{params}}
