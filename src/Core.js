@@ -111,10 +111,10 @@
   Core.prototype.routers = function() {
     console.log('Core:routers()');
     var self = this;
-    $(document).on('click', '[ui-sref]', function (e) {
+    $(document).on('click', '[ui-sref], [sm-ref]', function (e) {
       e.preventDefault();
-      var ref = $(this).attr('ui-sref');
-      console.log('Core:click[ui-sref]['+ref+']');
+      var ref = $(this).attr('ui-sref') || $(this).attr('sm-ref');
+      console.log('Core:click[ui-sref, sm-ref]['+ref+']');
       self.setHash(ref);
     });
     $(document).on('submit', 'form', function (e) {
