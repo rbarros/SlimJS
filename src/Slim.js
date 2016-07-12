@@ -6,7 +6,7 @@
  * Copyright (c) 2016 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
-/* global Url, Config, Core  */
+/* global Url, Config, Core, SlimExtensions  */
 // @import "Core.js";
 (function (window) {
   'use strict';
@@ -82,6 +82,7 @@
 
   Slim.prototype.run = function(callback) {
     console.log('Slim:run');
+    SlimExtensions.run(this);
     return Config.loadOptions(callback);
   };
 

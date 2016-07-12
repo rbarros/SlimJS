@@ -7,6 +7,10 @@
  */
 (function ($) {
   'use strict';
+  SlimExtensions.addExtension('name', function() {
+    console.log('foo');
+  });
+
   $app.run(function(options) {
 
     /**
@@ -51,7 +55,7 @@
           {id: 2, name: 'bar'}
         ]
       });
-    });
+    }).name('route.home');
 
     /**
      * Formulário de login

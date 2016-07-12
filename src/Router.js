@@ -30,7 +30,7 @@
    */
   Router.prototype.__constructor = function() {
     console.log('Router:__constructor()');
-    this.config({ mode: 'history'});
+    this.config({ mode: 'hash'});
     // returning the user to the initial state
     // this.navigate('/sac');
     return this;
@@ -54,7 +54,7 @@
         fragment = fragment.replace(/\?(.*)$/, '');
         fragment = this.root !== '/' ? fragment.replace(this.root, '') : fragment;
     } else {
-        var match = window.location.href.match(/#(.*)$/);
+        var match = window.location.href.match(/#\/(.*)$/);
         fragment = match ? match[1] : '';
     }
     return this.clearSlashes(fragment);
@@ -133,7 +133,7 @@
     this.add(uri, callback);
   };
 
-  window.Router = Router;
+  window.Router = new Router();
   return Router;
 
 }(this));

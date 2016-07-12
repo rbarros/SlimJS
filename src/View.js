@@ -18,6 +18,7 @@
      */
     var View = function() {
         this.data = {};
+        this.namespaces = {};
         return this.__constructor();
     };
 
@@ -32,6 +33,11 @@
         return this;
     };
 
+    /**
+     * Seta a variável que será passada para a view
+     * @param {String} key
+     * @param {mixed} value
+     */
     View.prototype.setData = function(key, value) {
         this.data[key] = value;
         return this;
@@ -65,5 +71,3 @@
     return View;
 
 }(this, jQuery));
-
-

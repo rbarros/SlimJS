@@ -15,6 +15,7 @@
 // @import "Config.js";
 // @import "View.js";
 // @import "Router.js";
+// @import "Extensions.js";
 (function (window, $) {
   'use strict';
 
@@ -34,6 +35,8 @@
     this.routes.put = {};
     this.routes.patch = {};
     this.routes.delete = {};
+    this.routes.namespaces = {};
+    this.tmp = {};
     this.hooks = {
       'app.before': function() {
         console.log('Core:hook.before');
@@ -231,7 +234,10 @@
    * @return {void}
    */
   Core.prototype.get = function(uri, callback) {
+    this.tmp.method = 'get';
+    this.tmp.uri = uri;
     this.routes.get[uri.replace(/^\//, '')] = callback;
+    return this;
   };
 
   /**
@@ -241,7 +247,10 @@
    * @return {void}
    */
   Core.prototype.post = function(uri, callback) {
+    this.tmp.method = 'post';
+    this.tmp.uri = uri;
     this.routes.post[uri.replace(/^\//, '')] = callback;
+    return this;
   };
 
   /**
@@ -251,7 +260,10 @@
    * @return {void}
    */
   Core.prototype.put = function(uri, callback) {
+    this.tmp.method = 'put';
+    this.tmp.uri = uri;
     this.routes.put[uri.replace(/^\//, '')] = callback;
+    return this;
   };
 
   /**
@@ -261,7 +273,10 @@
    * @return {void}
    */
   Core.prototype.patch = function(uri, callback) {
+    this.tmp.method = 'patch';
+    this.tmp.uri = uri;
     this.routes.patch[uri.replace(/^\//, '')] = callback;
+    return this;
   };
 
   /**
@@ -271,7 +286,10 @@
    * @return {void}
    */
   Core.prototype.delete = function(uri, callback) {
+    this.tmp.method = 'delete';
+    this.tmp.uri = uri;
     this.routes.delete[uri.replace(/^\//, '')] = callback;
+    return this;
   };
 
   /**
@@ -281,6 +299,21 @@
    */
   Core.prototype.submit = function(params) {
     this.request('POST', Url.apiUrl(''), params);
+  };
+
+  /**
+   * Seta o nome da rota
+   * @param  {String} name
+   * @return {void}
+   */
+  Core.prototype.name = function(name) {
+    this.routes.namespaces[name] = {
+      name: name,
+      method: this.tmp.method,
+      uri: this.tmp.uri
+    };
+    this.tmp.method = undefined;
+    this.tmp.uri = undefined;
   };
 
   /**

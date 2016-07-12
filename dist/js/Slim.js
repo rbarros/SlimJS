@@ -6,7 +6,7 @@
  * Copyright (c) 2016 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
-/* global Url, Config, Core  */
+/* global Url, Config, Core, SlimExtensions  */
 
 /*!
  * Classe Core
@@ -587,6 +587,7 @@
      */
     var View = function() {
         this.data = {};
+        this.namespaces = {};
         return this.__constructor();
     };
 
@@ -601,6 +602,11 @@
         return this;
     };
 
+    /**
+     * Seta a variável que será passada para a view
+     * @param {String} key
+     * @param {mixed} value
+     */
     View.prototype.setData = function(key, value) {
         this.data[key] = value;
         return this;
@@ -637,8 +643,6 @@
 
 
 
-
-
 /*!
  * Classe Router
  *
@@ -671,7 +675,7 @@
    */
   Router.prototype.__constructor = function() {
     console.log('Router:__constructor()');
-    this.config({ mode: 'history'});
+    this.config({ mode: 'hash'});
     // returning the user to the initial state
     // this.navigate('/sac');
     return this;
@@ -695,7 +699,7 @@
         fragment = fragment.replace(/\?(.*)$/, '');
         fragment = this.root !== '/' ? fragment.replace(this.root, '') : fragment;
     } else {
-        var match = window.location.href.match(/#(.*)$/);
+        var match = window.location.href.match(/#\/(.*)$/);
         fragment = match ? match[1] : '';
     }
     return this.clearSlashes(fragment);
@@ -774,8 +778,100 @@
     this.add(uri, callback);
   };
 
-  window.Router = Router;
+  window.Router = new Router();
   return Router;
+
+}(this));
+
+
+
+
+
+/*!
+ * Classe Extensions
+ *
+ * @author Ramon Barros [contato@ramon-barros.com]
+ * @date   2016-07-12
+ * Copyright (c) 2016 Ramon Barros
+ */
+/* jslint devel: true, unparam: true, indent: 2 */
+/* global Url, Twig  */
+(function (window) {
+  'use strict';
+
+  /**
+   * Inicia propriedades da classe
+   * @author Ramon Barros [contato@ramon-barros.com]
+   * @date   2016-07-12
+   * @return {Extensions}
+   */
+  var Extensions = function() {
+    this.extensions = {
+      router: function() {
+        var $app = this;
+        Twig.extendFunction('route', function(name) {
+          if ($app.routes.namespaces.hasOwnProperty(name)) {
+            var uri = Url.cleanUri($app.routes.namespaces[name].uri);
+            var hash = '#/' + (uri.length > 0 ? uri : '');
+            return hash;
+          } else {
+            return '#';
+          }
+        });
+      }
+    };
+    return this.__constructor();
+  };
+
+  /**
+   * Construtor da classe
+   * @author Ramon Barros [contato@ramon-barros.com]
+   * @date   2016-07-12
+   * @return {Extensions}
+   */
+  Extensions.prototype.__constructor = function() {
+    console.log('Extensions:__constructor()');
+    return this;
+  };
+
+  /**
+   * Adiciona uma nova extensão ao SlimJs
+   * @param {String} name
+   * @param {Function} extension
+   */
+  Extensions.prototype.addExtension = function(name, extension) {
+    console.log('Extensions:addExtension()');
+    this.extensions[name] = extension;
+    return this;
+  };
+
+  /**
+   * Recupera as extensões do SlimJS
+   * @param  {String} name
+   * @return {object}
+   */
+  Extensions.prototype.getExtensions = function(name) {
+    console.log('Extensions:getExtensions()');
+    return name && this.extensions[name] ? this.extensions[name] : this.extensions;
+  };
+
+  /**
+   * Executa as extensões
+   * @return {void}
+   */
+  Extensions.prototype.run = function($app) {
+    console.log('Extensions:run()');
+    var extensions = this.getExtensions(),
+        extension;
+    for (extension in extensions) {
+      if (extensions.hasOwnProperty(extension)) {
+        (extensions[extension]).apply($app);
+      }
+    }
+  };
+
+  window.SlimExtensions = new Extensions();
+  return window.SlimExtensions;
 
 }(this));
 
@@ -801,6 +897,8 @@
     this.routes.put = {};
     this.routes.patch = {};
     this.routes.delete = {};
+    this.routes.namespaces = {};
+    this.tmp = {};
     this.hooks = {
       'app.before': function() {
         console.log('Core:hook.before');
@@ -998,7 +1096,10 @@
    * @return {void}
    */
   Core.prototype.get = function(uri, callback) {
+    this.tmp.method = 'get';
+    this.tmp.uri = uri;
     this.routes.get[uri.replace(/^\//, '')] = callback;
+    return this;
   };
 
   /**
@@ -1008,7 +1109,10 @@
    * @return {void}
    */
   Core.prototype.post = function(uri, callback) {
+    this.tmp.method = 'post';
+    this.tmp.uri = uri;
     this.routes.post[uri.replace(/^\//, '')] = callback;
+    return this;
   };
 
   /**
@@ -1018,7 +1122,10 @@
    * @return {void}
    */
   Core.prototype.put = function(uri, callback) {
+    this.tmp.method = 'put';
+    this.tmp.uri = uri;
     this.routes.put[uri.replace(/^\//, '')] = callback;
+    return this;
   };
 
   /**
@@ -1028,7 +1135,10 @@
    * @return {void}
    */
   Core.prototype.patch = function(uri, callback) {
+    this.tmp.method = 'patch';
+    this.tmp.uri = uri;
     this.routes.patch[uri.replace(/^\//, '')] = callback;
+    return this;
   };
 
   /**
@@ -1038,7 +1148,10 @@
    * @return {void}
    */
   Core.prototype.delete = function(uri, callback) {
+    this.tmp.method = 'delete';
+    this.tmp.uri = uri;
     this.routes.delete[uri.replace(/^\//, '')] = callback;
+    return this;
   };
 
   /**
@@ -1048,6 +1161,21 @@
    */
   Core.prototype.submit = function(params) {
     this.request('POST', Url.apiUrl(''), params);
+  };
+
+  /**
+   * Seta o nome da rota
+   * @param  {String} name
+   * @return {void}
+   */
+  Core.prototype.name = function(name) {
+    this.routes.namespaces[name] = {
+      name: name,
+      method: this.tmp.method,
+      uri: this.tmp.uri
+    };
+    this.tmp.method = undefined;
+    this.tmp.uri = undefined;
   };
 
   /**
@@ -1214,6 +1342,7 @@
 
   Slim.prototype.run = function(callback) {
     console.log('Slim:run');
+    SlimExtensions.run(this);
     return Config.loadOptions(callback);
   };
 
