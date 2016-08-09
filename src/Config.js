@@ -63,6 +63,7 @@
       self.getJsonAsync(self.file).then(function(json) {
         self.options = JSON.parse(json);
         self.save('app.options', self.options, 1200);
+        Url.setOrigin(self.options.originUrl);
         Url.setBase(self.options.baseUrl);
         Url.setApi(self.options.apiUrl);
         callback(self.options);

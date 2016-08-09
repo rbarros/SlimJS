@@ -136,6 +136,15 @@
     };
 
     /**
+     * Seta a origin url
+     * @param {string} url string
+     */
+    Url.prototype.setOrigin = function(url) {
+      this.origin = url || this.origin;
+      return this;
+    };
+
+    /**
      * Seta a base url
      * @param {string} url string
      */
@@ -170,7 +179,7 @@
      * @return {string}
      */
     Url.prototype.baseUrl = function(url) {
-      return this.baseurl + (url || '');
+      return this.origin + this.baseurl + (url || '');
     };
 
     /**
@@ -179,7 +188,7 @@
      * @return {string}
      */
     Url.prototype.apiUrl = function(url) {
-      return this.apiurl + (url || '');
+      return this.origin + this.apiurl + (url || '');
     };
 
     /**
@@ -482,6 +491,7 @@
       self.getJsonAsync(self.file).then(function(json) {
         self.options = JSON.parse(json);
         self.save('app.options', self.options, 1200);
+        Url.setOrigin(self.options.originUrl);
         Url.setBase(self.options.baseUrl);
         Url.setApi(self.options.apiUrl);
         callback(self.options);
@@ -811,7 +821,6 @@
         var $app = this;
         Twig.extendFunction('route', function(name, params) {
           if ($app.routes.namespaces.hasOwnProperty(name)) {
-            console.log(name, params);
             var uri = Url.cleanUri($app.routes.namespaces[name].uri);
             var urlSplit = uri.split('?', 2);
             var pathParts = urlSplit[0].split('/', 50);
@@ -819,9 +828,7 @@
             var rules = $app.getParamsFromRouter(uri, pathParts, queryParts);
             if (Object.getOwnPropertyNames(rules).length > 0 && Object.getOwnPropertyNames(params).length > 0) {
               $.each(params, function(k, v) {
-                console.log(k, v);
                 if (rules.hasOwnProperty(k)) {
-                  console.log(rules[k]);
                   uri = uri.replace(new RegExp('('+rules[k]+')', 'g'), v);
                 }
               });

@@ -40,6 +40,15 @@
     };
 
     /**
+     * Seta a origin url
+     * @param {string} url string
+     */
+    Url.prototype.setOrigin = function(url) {
+      this.origin = url || this.origin;
+      return this;
+    };
+
+    /**
      * Seta a base url
      * @param {string} url string
      */
@@ -74,7 +83,7 @@
      * @return {string}
      */
     Url.prototype.baseUrl = function(url) {
-      return this.baseurl + (url || '');
+      return this.origin + this.baseurl + (url || '');
     };
 
     /**
@@ -83,7 +92,7 @@
      * @return {string}
      */
     Url.prototype.apiUrl = function(url) {
-      return this.apiurl + (url || '');
+      return this.origin + this.apiurl + (url || '');
     };
 
     /**
