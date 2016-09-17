@@ -20,7 +20,7 @@
     this.env = 'local';
     this.file = null;
 
-    if (Url.host === 'localhost' || /192\.168\.1/.test(Url.host) || /.dev/.test(Url.host)) {
+    if (/localhost/.test(Url.host) || /192\.168\.1/.test(Url.host) || /.dev/.test(Url.host)) {
         window.localStorage.debug = true;
     } else {
         delete window.localStorage.debug;
