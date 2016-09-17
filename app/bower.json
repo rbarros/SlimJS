@@ -9,6 +9,6 @@
     "url": "https://github.com/rbarros/slim.js.git"
   },
   "dependencies": {
-    "slim.js": "1.*"
+    "slim.js": "0.1.*"
   }
 }

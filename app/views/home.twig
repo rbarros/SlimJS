@@ -1,26 +1,28 @@
-<h1>Home</h1>
-<a ui-sref="login">Login {{ route('route.home') }}</a>
-<ul>
-    {% for row in data %}
-        <li>#{{row.id}} - {{row.name}}</li>
-    {% endfor %}
-</ul>
-<form action="login">
-    Get submit
-    <input type="text" name="text" />
-    <button type="submit">Submit</button>
-</form>
+<div>
+    <h1>Home</h1>
+    <a ui-sref="login">Login {{ route('route.home') }}</a>
+    <ul>
+        {% for row in data %}
+            <li>#{{row.id}} - {{row.name}}</li>
+        {% endfor %}
+    </ul>
+    <form action="login">
+        Get submit
+        <input type="text" name="text" />
+        <button type="submit">Submit</button>
+    </form>
 
-<form method="post" action="login">
-    Post submit
-    <input type="text" name="user">
-    <input type="password" name="password">
-    <button type="submit">Submit</button>
-</form>
+    <form method="post" action="login">
+        Post submit
+        <input type="text" name="user" />
+        <input type="password" name="password" />
+        <button type="submit">Submit</button>
+    </form>
 
-<form method="post" action="login">
-    Put submit
-    <input type="hidden" name="_METHOD" value="PUT" />
-    <input type="text" name="name">
-    <button type="submit">Submit</button>
-</form>
+    <form method="post" action="login">
+        Put submit
+        <input type="hidden" name="_METHOD" value="PUT" />
+        <input type="text" name="name" />
+        <button type="submit">Submit</button>
+    </form>
+</div>
