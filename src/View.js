@@ -53,17 +53,21 @@
         var self = this,
             output;
         self.data = $.extend({}, self.data, data);
-        twig({
-            href: view,
-            async: !outputReturn,
-            load: function(template) {
-                output = template.render(self.data);
-                if (!outputReturn) {
-                    $('.app').html(output)
-                             .fadeIn();
+        try {
+            twig({
+                href: view,
+                async: !outputReturn,
+                load: function(template) {
+                    output = template.render(self.data);
+                    if (!outputReturn) {
+                        $('.app').html(output)
+                                 .fadeIn();
+                    }
                 }
-            }
-        });
+            });
+        } catch(e) {
+            console.log(e);
+        }
         return output;
     };
 
