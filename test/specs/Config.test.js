@@ -23,17 +23,19 @@
   module('Config');
 
   test('instance', function() {
-    expect(2);
+    expect(3);
     ok(Config, 'instance');
     equal(Config.options, null);
-    Config.setFileOptions('tests/local.json');
+    Config.setFileOptions('local.json');
+    equal('local.json', Config.file);
     Config.loadOptions(function(options) {
       equal(options, {
         "logo": "images/logo.png",
-        "baseUrl": "http://localhost/SlimJS/app/",
-        "apiUrl": "http://slimjs.dev/api"
+        "originUrl": null,
+        "baseUrl": "/slim.js/app/",
+        "apiUrl": "/slim.js/app/api/"
       });
     });
   })
-  
+
 }(jQuery));

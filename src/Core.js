@@ -9,6 +9,7 @@
 /* global jQuery, FormData,Url,EventListener, View, Router */
 // @import "AndLog.js";
 // @import "FormData.js";
+// @import "Debug.js";
 // @import "Url.js";
 // @import "EventListener.js";
 // @import "Exceptions.js";

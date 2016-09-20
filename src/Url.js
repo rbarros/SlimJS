@@ -17,14 +17,16 @@
      */
     var Url = function() {
         this.system = 'app';
-        this.protocol = window.document.location.protocol;
+        this.hash = window.document.location.hash;
         this.host = window.document.location.host;
         this.hostname = window.document.location.hostname;
         this.origin = window.document.location.origin;
         this.port = window.document.location.port;
+        this.protocol = window.document.location.protocol;
         this.pathname = window.document.location.pathname;
-        this.baseurl =  null;
-        this.apiurl =  null;
+        this.search = window.document.location.search;
+        this.baseurl =  '';
+        this.apiurl =  '';
         return this.__constructor();
     };
 

@@ -2,36 +2,36 @@
 
   module('Url');
 
+  test('Set origin', function() {
+    expect(1);
+    Url.setOrigin('http://localhost');
+    equal('http://localhost', Url.baseUrl());
+  });
+
   test('Set baseurl', function() {
-    var baseurl = 'http://localhost/app';
     expect(1);
-    Url.setBase(baseurl);
-    equal(baseurl, Url.baseurl);
+    Url.setBase('/slim.js');
+    equal('http://localhost/slim.js', Url.baseUrl());
   });
-  
-  test('Get basurl', function() {
-    var baseurl = 'http://localhost/app';
-    expect(2);
-    Url.setBase(baseurl);
-    equal(baseurl, Url.baseUrl());
-    equal(baseurl + '/foo/bar', Url.baseUrl('/foo/bar'));
+
+  test('Get baseurl', function() {
+    expect(1);
+    Url.setBase('/slim.js');
+    equal('http://localhost/slim.js/foo/bar', Url.baseUrl('/foo/bar'));
   });
-  
+
   test('Set apiurl', function() {
-    var apiurl = 'http://localhost/api';
     expect(1);
-    Url.setApi(apiurl);
-    equal(apiurl, Url.apiurl);
+    Url.setApi('/slim.js/api');
+    equal('http://localhost/slim.js/api', Url.apiUrl());
   });
-  
+
   test('Get apiurl', function() {
-    var apiurl = 'http://localhost/api';
-    expect(2);
-    Url.setApi(apiurl);
-    equal(apiurl, Url.apiUrl());
-    equal(apiurl + '/foo/bar', Url.apiUrl('/foo/bar'));
+    expect(1);
+    Url.setApi('/slim.js/api');
+    equal('http://localhost/slim.js/api/foo/bar', Url.apiUrl('/foo/bar'));
   });
-  
+
   test('Set clean uri', function() {
     expect(5);
     equal(Url.cleanUri('#/foo/bar'), 'foo/bar');
@@ -40,7 +40,7 @@
     equal(Url.cleanUri('#/foo/bar?a=1&b=2'), 'foo/bar?a=1&b=2');
     equal(Url.cleanUri('//foo//bar?a=1&b[]=1&b[]=2'), 'foo/bar?a=1&b[]=1&b[]=2');
   });
-  
+
   test('Redirect', function() {
     expect(1);
     var mock = {
@@ -65,12 +65,12 @@
       equal(window.location.href, 'bar/foo');
     })(mock);
   });
-  
+
   test('Set system', function() {
     expect(1);
     equal(Url.setSystem('app'), Url.system);
   });
-  
+
   test('Ge Segments', function() {
     expect(2);
     Url.setSystem('app');
@@ -78,5 +78,5 @@
     equal(Url.segments(0), 'foo');
     equal(Url.segments(1), 'bar');
   });
-  
+
 }(jQuery));
