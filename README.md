@@ -2,7 +2,7 @@
 
 ## Slim JS is a frontend library for integration with the famous Slim Framework
 
-[MIT](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)
+![MIT](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)
 ![JS](https://img.shields.io/badge/language-JS-yellow.svg)
 [![Build Status](https://travis-ci.org/rbarros/slim.js.svg?branch=master)](https://travis-ci.org/rbarros/slim.js)
 [![Code Climate](https://codeclimate.com/github/rbarros/slim.js/badges/gpa.svg)](https://codeclimate.com/github/rbarros/slim.js)
