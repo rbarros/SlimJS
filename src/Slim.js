@@ -6,7 +6,7 @@
  * Copyright (c) 2016 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
-/* global Url, Config, Core, SlimExtensions  */
+/* global SlimUrl, SlimConfig, SlimCore, SlimExtensions  */
 // @import "Core.js";
 (function (window) {
   'use strict';
@@ -45,7 +45,7 @@
    * @return {string}
    */
   Slim.prototype.baseUrl = function(url) {
-    return Url.baseUrl(url);
+    return SlimUrl.baseUrl(url);
   };
 
   /**
@@ -54,7 +54,7 @@
    * @return {string}
    */
   Slim.prototype.apiUrl = function(url) {
-    return Url.apiUrl(url);
+    return SlimUrl.apiUrl(url);
   };
 
   /**
@@ -98,8 +98,8 @@
     return this;
   };
 
-  window.$app = new Slim();
-  return window.$app;
+  window.Slim = new Slim();
+  return window.Slim;
 
 }(this));
 

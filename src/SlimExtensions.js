@@ -1,12 +1,12 @@
 /*!
- * Classe Extensions
+ * Classe SlimExtensions
  *
  * @author Ramon Barros [contato@ramon-barros.com]
  * @date   2016-07-12
  * Copyright (c) 2016 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
-/* global Url, Twig  */
+/* global SlimUrl, Twig  */
 (function (window) {
   'use strict';
 
@@ -14,9 +14,9 @@
    * Inicia propriedades da classe
    * @author Ramon Barros [contato@ramon-barros.com]
    * @date   2016-07-12
-   * @return {Extensions}
+   * @return {SlimExtensions}
    */
-  var Extensions = function() {
+  var SlimExtensions = function() {
     this.extensions = {
       router: function() {
         var $app = this;
@@ -49,10 +49,10 @@
    * Construtor da classe
    * @author Ramon Barros [contato@ramon-barros.com]
    * @date   2016-07-12
-   * @return {Extensions}
+   * @return {SlimExtensions}
    */
-  Extensions.prototype.__constructor = function() {
-    console.log('Extensions:__constructor()');
+  SlimExtensions.prototype.__constructor = function() {
+    console.log('SlimExtensions:__constructor()');
     return this;
   };
 
@@ -61,8 +61,8 @@
    * @param {String} name
    * @param {Function} extension
    */
-  Extensions.prototype.addExtension = function(name, extension) {
-    console.log('Extensions:addExtension()');
+  SlimExtensions.prototype.addExtension = function(name, extension) {
+    console.log('SlimExtensions:addExtension()');
     this.extensions[name] = extension;
     return this;
   };
@@ -72,8 +72,8 @@
    * @param  {String} name
    * @return {object}
    */
-  Extensions.prototype.getExtensions = function(name) {
-    console.log('Extensions:getExtensions()');
+  SlimExtensions.prototype.getExtensions = function(name) {
+    console.log('SlimExtensions:getExtensions()');
     return name && this.extensions[name] ? this.extensions[name] : this.extensions;
   };
 
@@ -81,8 +81,8 @@
    * Executa as extensões
    * @return {void}
    */
-  Extensions.prototype.run = function($app) {
-    console.log('Extensions:run()');
+  SlimExtensions.prototype.run = function($app) {
+    console.log('SlimExtensions:run()');
     var extensions = this.getExtensions(),
         extension;
     for (extension in extensions) {
@@ -92,7 +92,7 @@
     }
   };
 
-  window.SlimExtensions = new Extensions();
+  window.SlimExtensions = new SlimExtensions();
   return window.SlimExtensions;
 
 }(this));

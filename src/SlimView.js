@@ -1,5 +1,5 @@
 /*!
- * Classe View
+ * Classe SlimView
  *
  * @author Ramon Barros [contato@ramon-barros.com]
  * @date   2016-04-11
@@ -14,9 +14,9 @@
      * Inicia propriedades da classe
      * @author Ramon Barros [contato@ramon-barros.com]
      * @date   2016-04-11
-     * @return {View}
+     * @return {SlimView}
      */
-    var View = function() {
+    var SlimView = function() {
         this.data = {};
         this.namespaces = {};
         return this.__constructor();
@@ -26,10 +26,10 @@
      * Construtor da classe
      * @author Ramon Barros [contato@ramon-barros.com]
      * @date   2016-04-11
-     * @return {View}
+     * @return {SlimView}
      */
-    View.prototype.__constructor = function() {
-        console.log('View:__constructor()');
+    SlimView.prototype.__constructor = function() {
+        console.log('SlimView:__constructor()');
         return this;
     };
 
@@ -38,7 +38,7 @@
      * @param {String} key
      * @param {mixed} value
      */
-    View.prototype.setData = function(key, value) {
+    SlimView.prototype.setData = function(key, value) {
         this.data[key] = value;
         return this;
     };
@@ -49,7 +49,7 @@
      * @param  {Object} data
      * @return {Twig}
      */
-    View.prototype.render = function(view, data, outputReturn) {
+    SlimView.prototype.render = function(view, data, outputReturn) {
         var self = this,
             output;
         self.data = $.extend({}, self.data, data);
@@ -71,7 +71,7 @@
         return output;
     };
 
-    window.View = new View();
-    return View;
+    window.SlimView = new SlimView();
+    return SlimView;
 
 }(this, jQuery));

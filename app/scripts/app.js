@@ -7,6 +7,13 @@
  */
 (function ($) {
   'use strict';
+
+  $app = new Slim();
+  // $app->get('/hello/:name', function ($name) {
+  //     echo "Hello, " . $name;
+  // });
+  // $app->run();
+
   SlimExtensions.addExtension('name', function() {
     console.log('foo');
   });

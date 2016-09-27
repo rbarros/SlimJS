@@ -1,5 +1,5 @@
 /*!
- * Classe Router
+ * Classe SlimRouter
  *
  * @author Ramon Barros [contato@ramon-barros.com]
  * @date   2016-04-11
@@ -15,7 +15,7 @@
    * @author Ramon Barros [contato@ramon-barros.com]
    * @date   2016-04-11
    */
-  var Router = function() {
+  var SlimRouter = function() {
     this.routes = [];
     this.mode = null;
     this.root = null;
@@ -26,10 +26,10 @@
    * Construtor da classe
    * @author Ramon Barros [contato@ramon-barros.com]
    * @date   2016-04-11
-   * @return {Router}
+   * @return {SlimRouter}
    */
-  Router.prototype.__constructor = function() {
-    console.log('Router:__constructor()');
+  SlimRouter.prototype.__constructor = function() {
+    console.log('SlimRouter:__constructor()');
     this.config({ mode: 'hash'});
     // returning the user to the initial state
     // this.navigate('/sac');
@@ -39,15 +39,15 @@
   /**
    * Configuração das rotas
    * @param  {Object} options
-   * @return {Router}
+   * @return {SlimRouter}
    */
-  Router.prototype.config = function(options) {
+  SlimRouter.prototype.config = function(options) {
     this.mode = options && options.mode && options.mode === 'history' && !!(history.pushState) ? 'history' : 'hash';
     this.root = options && options.root ? '/' + this.clearSlashes(options.root) + '/' : '/';
     return this;
   };
 
-  Router.prototype.getFragment = function() {
+  SlimRouter.prototype.getFragment = function() {
     var fragment = '';
     if(this.mode === 'history') {
         fragment = this.clearSlashes(decodeURI(location.pathname + location.search));
@@ -60,11 +60,11 @@
     return this.clearSlashes(fragment);
   };
 
-  Router.prototype.clearSlashes = function(path) {
+  SlimRouter.prototype.clearSlashes = function(path) {
     return path.toString().replace(/\/$/, '').replace(/^\//, '');
   };
 
-  Router.prototype.add = function(re, handler) {
+  SlimRouter.prototype.add = function(re, handler) {
     if(typeof re === 'function') {
       handler = re;
       re = '';
@@ -73,7 +73,7 @@
     return this;
   };
 
-  Router.prototype.remove = function(param) {
+  SlimRouter.prototype.remove = function(param) {
     var r;
     for (var i=0; i < this.routes.length; i++) {
       r = this.routes[i];
@@ -85,14 +85,14 @@
     return this;
   };
 
-  Router.prototype.flush = function() {
+  SlimRouter.prototype.flush = function() {
     this.routes = [];
     this.mode = null;
     this.root = '/';
     return this;
   };
 
-  Router.prototype.check = function(f) {
+  SlimRouter.prototype.check = function(f) {
     var fragment = f || this.getFragment();
     for (var i = 0; i < this.routes.length; i++) {
       var match = fragment.match(this.routes[i].re);
@@ -105,7 +105,7 @@
     return this;
   };
 
-  Router.prototype.listen = function() {
+  SlimRouter.prototype.listen = function() {
     var self = this;
     var current = self.getFragment();
     var fn = function() {
@@ -119,7 +119,7 @@
     return this;
   };
 
-  Router.prototype.navigate = function(path) {
+  SlimRouter.prototype.navigate = function(path) {
     path = path ? path : '';
     if (this.mode === 'history') {
         history.pushState(null, null, this.root + this.clearSlashes(path));
@@ -129,12 +129,12 @@
     return this;
   };
 
-  Router.prototype.get = function(uri, callback) {
+  SlimRouter.prototype.get = function(uri, callback) {
     this.add(uri, callback);
   };
 
-  window.Router = new Router();
-  return Router;
+  window.SlimRouter = new SlimRouter();
+  return SlimRouter;
 
 }(this));
 

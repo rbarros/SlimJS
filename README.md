@@ -20,7 +20,6 @@ via Bower: <br>
 ## Use
 
 ```js
-
 (function ($) {
   'use strict';
 

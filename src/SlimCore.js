@@ -1,5 +1,5 @@
 /*!
- * Classe Core
+ * Classe SlimCore
  *
  * @author Ramon Barros [contato@ramon-barros.com]
  * @date   2016-04-11
@@ -9,14 +9,14 @@
 /* global jQuery, FormData,Url,EventListener, View, Router */
 // @import "AndLog.js";
 // @import "FormData.js";
-// @import "Debug.js";
-// @import "Url.js";
+// @import "SlimDebug.js";
+// @import "SlimUrl.js";
 // @import "EventListener.js";
-// @import "Exceptions.js";
-// @import "Config.js";
-// @import "View.js";
-// @import "Router.js";
-// @import "Extensions.js";
+// @import "SlimExceptions.js";
+// @import "SlimConfig.js";
+// @import "SlimView.js";
+// @import "SlimRouter.js";
+// @import "SlimExtensions.js";
 (function (window, $) {
   'use strict';
 
@@ -25,7 +25,7 @@
    * @author Ramon Barros [contato@ramon-barros.com]
    * @date   2016-04-11
    */
-  var Core = function() {
+  var SlimCore = function() {
     this.view = null;
     this.router = null;
     this.options = null;
@@ -40,10 +40,10 @@
     this.tmp = {};
     this.hooks = {
       'app.before': function() {
-        console.log('Core:hook.before');
+        console.log('SlimCore:hook.before');
       },
       'app.after': function() {
-        console.log('Core:hook.after');
+        console.log('SlimCore:hook.after');
       }
     };
     return this.__constructor();
@@ -53,16 +53,16 @@
    * Construtor da classe
    * @author Ramon Barros [contato@ramon-barros.com]
    * @date   2016-04-11
-   * @return {Core}
+   * @return {SlimCore}
    */
-  Core.prototype.__constructor = function() {
-    console.log('Core:__constructor()');
-    this.view = View;
-    this.router = Router;
+  SlimCore.prototype.__constructor = function() {
+    console.log('SlimCore:__constructor()');
+    this.view = SlimView;
+    this.router = SlimRouter;
     return this;
   };
 
-  // Core.prototype.run = function(functionName, context /*, args */) {
+  // SlimCore.prototype.run = function(functionName, context /*, args */) {
   //   var args = [].slice.call(arguments).splice(2);
   //   var namespaces = functionName.split('.');
   //   var func = namespaces.pop();
@@ -73,11 +73,11 @@
   //   return (context[func]).apply(context, args);
   // };
 
-  Core.prototype.setDefaultRouter = function(uri) {
+  SlimCore.prototype.setDefaultRouter = function(uri) {
     this.defaultRouter = uri;
   };
 
-  Core.prototype.setHash = function(uri) {
+  SlimCore.prototype.setHash = function(uri) {
     var hash,
         params,
         first,
@@ -85,7 +85,7 @@
     if (uri === '/') {
       hash = '#/';
     } else {
-      uri = Url.cleanUri(uri);
+      uri = SlimUrl.cleanUri(uri);
       hash = '#/' + (uri.length > 0 ? uri : '');
     }
     if (window.location.hash !== hash) {
@@ -109,22 +109,22 @@
    * @param  {Object} options
    * @return {void}
    */
-  Core.prototype.routers = function() {
-    console.log('Core:routers()');
+  SlimCore.prototype.routers = function() {
+    console.log('SlimCore:routers()');
     var self = this;
     $(document).on('click', '[ui-sref], [sm-ref]', function (e) {
       e.preventDefault();
       var ref = $(this).attr('ui-sref') || $(this).attr('sm-ref');
-      console.log('Core:click[ui-sref, sm-ref]['+ref+']');
+      console.log('SlimCore:click[ui-sref, sm-ref]['+ref+']');
       self.setHash(ref);
     });
     $(document).on('submit', 'form', function (e) {
-      console.log('Core:form.submit');
+      console.log('SlimCore:form.submit');
       e.stopPropagation(); // Stop stuff happening
       e.preventDefault(); // Totally stop stuff happening
       var //elementOrigin = e.originalEvent.currentTarget.activeElement,
           request = ($(this).data('request') || 'enabled') === 'enabled' ? true : false,
-          action = $(this).attr('action') || Url.cleanUri(window.location.hash),
+          action = $(this).attr('action') || SlimUrl.cleanUri(window.location.hash),
           enctype = $(this).attr('enctype'),
           method = ($(this).find('input[name="_METHOD"]').val() || $(this).attr('method') || 'get').toLowerCase(),
           data = $(this).serialize(); // Serialize the form data
@@ -139,7 +139,7 @@
             var pathParts = urlSplit[0].split('/', 50);
             var queryParts = data.split('&', 50);
             var params = self.getParamsFromRouter(action, pathParts, queryParts);
-            self.request(method, Url.apiUrl(action), params).done(self.routes[method][action]);
+            self.request(method, SlimUrl.apiUrl(action), params).done(self.routes[method][action]);
           } else {
             self.params.push(data);
             (self.routes[method][action]).apply(self, self.params);
@@ -152,14 +152,14 @@
       }
     });
     if (window.location.hash.length > 0) {
-      var route = Url.cleanUri(window.location.hash);
+      var route = SlimUrl.cleanUri(window.location.hash);
       self.setHash(route);
     } else if (this.defaultRouter) {
       self.setHash(this.defaultRouter);
     }
   };
 
-  Core.prototype.getParamsFromRouter = function(rule, pathParts, queryParts) {
+  SlimCore.prototype.getParamsFromRouter = function(rule, pathParts, queryParts) {
     var params = {},
         missingParams = {},
         parts = rule.split('/', 50);
@@ -204,12 +204,12 @@
     return params;
   };
 
-  Core.prototype.render = function(view, data, output) {
-    return this.view.render(Url.baseUrl(view), data, output);
+  SlimCore.prototype.render = function(view, data, output) {
+    return this.view.render(SlimUrl.baseUrl(view), data, output);
   };
 
-  Core.prototype.redirect = function(uri, params) {
-    var self = window.Core;
+  SlimCore.prototype.redirect = function(uri, params) {
+    var self = window.SlimCore;
     if (self.routes.get.hasOwnProperty(uri)) {
       self.params = [];
       for (var param in params) {
@@ -219,8 +219,8 @@
     }
   };
 
-  Core.prototype.hook = function(name, callable) {
-    var self = window.Core;
+  SlimCore.prototype.hook = function(name, callable) {
+    var self = window.SlimCore;
     if (self.hooks.hasOwnProperty(name)) {
       self.hooks[name] = callable;
       self.hooks['app.before'].apply(self);
@@ -234,7 +234,7 @@
    * @param  {Function} callback
    * @return {void}
    */
-  Core.prototype.get = function(uri, callback) {
+  SlimCore.prototype.get = function(uri, callback) {
     this.tmp.method = 'get';
     this.tmp.uri = uri;
     this.routes.get[uri.replace(/^\//, '')] = callback;
@@ -247,7 +247,7 @@
    * @param  {Function} callback
    * @return {void}
    */
-  Core.prototype.post = function(uri, callback) {
+  SlimCore.prototype.post = function(uri, callback) {
     this.tmp.method = 'post';
     this.tmp.uri = uri;
     this.routes.post[uri.replace(/^\//, '')] = callback;
@@ -260,7 +260,7 @@
    * @param  {Function} callback
    * @return {void}
    */
-  Core.prototype.put = function(uri, callback) {
+  SlimCore.prototype.put = function(uri, callback) {
     this.tmp.method = 'put';
     this.tmp.uri = uri;
     this.routes.put[uri.replace(/^\//, '')] = callback;
@@ -273,7 +273,7 @@
    * @param  {Function} callback
    * @return {void}
    */
-  Core.prototype.patch = function(uri, callback) {
+  SlimCore.prototype.patch = function(uri, callback) {
     this.tmp.method = 'patch';
     this.tmp.uri = uri;
     this.routes.patch[uri.replace(/^\//, '')] = callback;
@@ -286,7 +286,7 @@
    * @param  {Function} callback
    * @return {void}
    */
-  Core.prototype.delete = function(uri, callback) {
+  SlimCore.prototype.delete = function(uri, callback) {
     this.tmp.method = 'delete';
     this.tmp.uri = uri;
     this.routes.delete[uri.replace(/^\//, '')] = callback;
@@ -298,8 +298,8 @@
    * @param  {Object} params
    * @return {void}
    */
-  Core.prototype.submit = function(params) {
-    this.request('POST', Url.apiUrl(''), params);
+  SlimCore.prototype.submit = function(params) {
+    this.request('POST', SlimUrl.apiUrl(''), params);
   };
 
   /**
@@ -307,7 +307,7 @@
    * @param  {String} name
    * @return {void}
    */
-  Core.prototype.name = function(name) {
+  SlimCore.prototype.name = function(name) {
     this.routes.namespaces[name] = {
       name: name,
       method: this.tmp.method,
@@ -324,8 +324,8 @@
    * @param  {Object} params
    * @return {void}
    */
-  Core.prototype.request = function(method, url, params, async) {
-    console.log('Core:request['+method+']['+url+']');
+  SlimCore.prototype.request = function(method, url, params, async) {
+    console.log('SlimCore:request['+method+']['+url+']');
     var jqxhr,
         processData = !(params instanceof FormData), // default: true, application/x-www-form-urlencoded: false (Don't process the files)
         // Set content type to false as jQuery will tell the server its a query string request
@@ -333,7 +333,7 @@
         debug = false;
     jqxhr = $.ajax({
       method: method || 'GET',
-      url: url || Url.apiUrl(),
+      url: url || SlimUrl.apiUrl(),
       data: params || {},
       processData: processData,
       contentType: contentType,
@@ -365,33 +365,33 @@
    * Extende o Objeto
    * @type {View}
    */
-  window.Core = new Core();
+  window.SlimCore = new SlimCore();
 
-  window.Core.hooks['app.before'].apply(window.Core);
+  window.SlimCore.hooks['app.before'].apply(window.SlimCore);
   EventListener.addEvent(window, 'load', function() {
-    window.Core.hooks['app.after'].apply(window.Core);
+    window.SlimCore.hooks['app.after'].apply(window.SlimCore);
   });
   EventListener.addEvent(window, 'hashchange', function() {
-    window.Core.hooks['app.before'].apply(window.Core);
-    var route = window.Url.cleanUri(window.location.hash);
+    window.SlimCore.hooks['app.before'].apply(window.SlimCore);
+    var route = window.SlimUrl.cleanUri(window.location.hash);
     var urlSplit = route.split('?', 2);
     var pathParts = urlSplit[0].split('/', 50);
     var queryParts = urlSplit[1] ? urlSplit[1].split('&', 50) : [];
-    if (window.Core.routes.get.hasOwnProperty(route)) {
-      (window.Core.routes.get[route]).apply(window.Core, window.Core.params);
+    if (window.SlimCore.routes.get.hasOwnProperty(route)) {
+      (window.SlimCore.routes.get[route]).apply(window.SlimCore, window.SlimCore.params);
     } else {
       var call = false;
-      $.each(window.Core.routes.get, function(url, handler) {
-        var params = window.Core.getParamsFromRouter(url, pathParts, queryParts);
+      $.each(window.SlimCore.routes.get, function(url, handler) {
+        var params = window.SlimCore.getParamsFromRouter(url, pathParts, queryParts);
         if (params) {
           // Automatic parameter assignment
-          window.Core.params = [];
+          window.SlimCore.params = [];
           for (var param in params) {
-              window.Core.params.push(params[param]);
+              window.SlimCore.params.push(params[param]);
           }
           //handler.call(params);
           call = true;
-          handler.apply(window.Core, window.Core.params);
+          handler.apply(window.SlimCore, window.SlimCore.params);
         }
       });
       if (!call) {
@@ -400,7 +400,7 @@
     }
   });
 
-  return Core;
+  return SlimCore;
 
 }(this, jQuery));
 

@@ -1,12 +1,12 @@
 /*!
- * Classe Config
+ * Classe SlimConfig
  *
  * @author Ramon Barros [contato@ramon-barros.com]
  * @date   2016-04-11
  * Copyright (c) 2016 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
-/* global Url */
+/* global SlimUrl */
 (function (window) {
   'use strict';
 
@@ -15,12 +15,12 @@
    * @author Ramon Barros [contato@ramon-barros.com]
    * @date   2016-04-11
    */
-  var Config = function() {
+  var SlimConfig = function() {
     this.options = null;
     this.env = 'local';
     this.file = null;
 
-    if (/localhost/.test(Url.host) || /192\.168\.1/.test(Url.host) || /.dev/.test(Url.host)) {
+    if (/localhost/.test(SlimUrl.host) || /192\.168\.1/.test(SlimUrl.host) || /.dev/.test(SlimUrl.host)) {
         window.localStorage.debug = true;
     } else {
         delete window.localStorage.debug;
@@ -35,7 +35,7 @@
    * @author Ramon Barros [contato@ramon-barros.com]
    * @data 2016-05-23
    */
-  Config.prototype.setFileOptions = function(file) {
+  SlimConfig.prototype.setFileOptions = function(file) {
     this.file = file || 'config/' + this.env + '.json';
     return this;
   };
@@ -44,35 +44,35 @@
    * Construtor da classe
    * @author Ramon Barros [contato@ramon-barros.com]
    * @date   2016-04-11
-   * @return {Config}
+   * @return {SlimConfig}
    */
-  Config.prototype.__constructor = function() {
-    console.log('Config:__constructor()');
+  SlimConfig.prototype.__constructor = function() {
+    console.log('SlimConfig:__constructor()');
     return this;
   };
 
   /**
    * Carrega as opções da aplicação
-   * @return {Config}
+   * @return {SlimConfig}
    */
-  Config.prototype.loadOptions = function(callback) {
-    console.log('Config:loadOptions');
+  SlimConfig.prototype.loadOptions = function(callback) {
+    console.log('SlimConfig:loadOptions');
     var self = this;
     self.options = self.load('app.options');
     if (!self.options) {
       self.getJsonAsync(self.file).then(function(json) {
         self.options = JSON.parse(json);
         self.save('app.options', self.options, 1200);
-        Url.setOrigin(self.options.originUrl);
-        Url.setBase(self.options.baseUrl);
-        Url.setApi(self.options.apiUrl);
+        SlimUrl.setOrigin(self.options.originUrl);
+        SlimUrl.setBase(self.options.baseUrl);
+        SlimUrl.setApi(self.options.apiUrl);
         callback(self.options);
       }).catch(function(error) {
         throw error;
       });
     } else {
-      Url.setBase(self.options.baseUrl);
-      Url.setApi(self.options.apiUrl);
+      SlimUrl.setBase(self.options.baseUrl);
+      SlimUrl.setApi(self.options.apiUrl);
       callback(self.options);
     }
     return this;
@@ -81,12 +81,12 @@
   /**
   * Carrega o arquivo de opções.
   * @param  {Function} callback
-  * @return {Config}
+  * @return {SlimConfig}
   */
-  Config.prototype.getJsonAsync = function(url) {
-    console.log('Config:getJsonAsync');
+  SlimConfig.prototype.getJsonAsync = function(url) {
+    console.log('SlimConfig:getJsonAsync');
     return new Promise(function (resolve, reject) {
-      console.log('Config:getJsonAsync() > Promise()');
+      console.log('SlimConfig:getJsonAsync() > Promise()');
       var xhr = new XMLHttpRequest();
       xhr.open('GET', url);
       xhr.onload = function() {
@@ -114,7 +114,7 @@
    * @param  {Integer} expirationMS
    * @return {Object}
    */
-  Config.prototype.save = function(key, jsonData, expirationMS) {
+  SlimConfig.prototype.save = function(key, jsonData, expirationMS) {
     if (typeof (Storage) === 'undefined') {
       return false;
     }
@@ -129,7 +129,7 @@
    * @param  {String} key
    * @return {Object}
    */
-  Config.prototype.load = function(key) {
+  SlimConfig.prototype.load = function(key) {
     if (typeof (Storage) === 'undefined') {
       return false;
     }
@@ -140,8 +140,8 @@
     return (new Date().getTime() < record.timestamp && JSON.parse(record.value));
   };
 
-  window.Config = new Config();
-  return Config;
+  window.SlimConfig = new SlimConfig();
+  return SlimConfig;
 
 }(this));
 

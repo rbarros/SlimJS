@@ -1,5 +1,5 @@
 /*!
- * Classe Exceptions
+ * Classe SlimExceptions
  *
  * @author Ramon Barros [contato@ramon-barros.com]
  * @date   2016-04-11
@@ -14,7 +14,7 @@
    * @author Ramon Barros [contato@ramon-barros.com]
    * @date   2016-04-11
    */
-  var Exceptions = function() {
+  var SlimExceptions = function() {
     return this.__constructor();
   };
 
@@ -22,10 +22,10 @@
    * Construtor da classe
    * @author Ramon Barros [contato@ramon-barros.com]
    * @date   2016-04-11
-   * @return {Exceptions}
+   * @return {SlimExceptions}
    */
-  Exceptions.prototype.__constructor = function() {
-    console.log('Exceptions:__constructor()');
+  SlimExceptions.prototype.__constructor = function() {
+    console.log('SlimExceptions:__constructor()');
     this.ajax();
     return this;
   };
@@ -35,7 +35,7 @@
    * @param  {Integer} code
    * @return {String}
    */
-  Exceptions.prototype.jsonResponse = function(code) {
+  SlimExceptions.prototype.jsonResponse = function(code) {
     var jsonCodes = [];
     jsonCodes[400] = 'Unrecognized command';
     jsonCodes[401] = 'Permission denied';
@@ -53,9 +53,9 @@
    * Mensagem de retorno do ajax amigável para o usuário
    * @author Ramon Barros [contato@ramon-barros.com]
    * @date   2016-04-11
-   * @return {Exceptions}
+   * @return {SlimExceptions}
    */
-  Exceptions.prototype.ajax = function() {
+  SlimExceptions.prototype.ajax = function() {
     var self = this;
     // Set up a global AJAX error handler to handle the 401
     // unauthorized responses. If a 401 status code comes back,
@@ -79,7 +79,7 @@
     return this;
   };
 
-  window.Exceptions = new Exceptions();
-  return Exceptions;
+  window.SlimExceptions = new SlimExceptions();
+  return SlimExceptions;
 
 }(this));

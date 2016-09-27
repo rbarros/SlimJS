@@ -1,5 +1,5 @@
 /*!
- * Classe Url
+ * Classe SlimUrl
  *
  * @author Ramon Barros [contato@ramon-barros.com]
  * @date   2016-04-11
@@ -13,9 +13,9 @@
      * Inicia propriedades da classe
      * @author Ramon Barros [contato@ramon-barros.com]
      * @date   2016-04-11
-     * @return {Url}
+     * @return {SlimUrl}
      */
-    var Url = function() {
+    var SlimUrl = function() {
         this.system = 'app';
         this.hash = window.document.location.hash;
         this.host = window.document.location.host;
@@ -34,10 +34,10 @@
      * Construtor da classe
      * @author Ramon Barros [contato@ramon-barros.com]
      * @date   2016-04-11
-     * @return {Url}
+     * @return {SlimUrl}
      */
-    Url.prototype.__constructor = function() {
-        console.log('Url:__constructor()');
+    SlimUrl.prototype.__constructor = function() {
+        console.log('SlimUrl:__constructor()');
         return this;
     };
 
@@ -45,7 +45,7 @@
      * Seta a origin url
      * @param {string} url string
      */
-    Url.prototype.setOrigin = function(url) {
+    SlimUrl.prototype.setOrigin = function(url) {
       this.origin = url || this.origin;
       return this;
     };
@@ -54,7 +54,7 @@
      * Seta a base url
      * @param {string} url string
      */
-    Url.prototype.setBase = function(url) {
+    SlimUrl.prototype.setBase = function(url) {
       this.baseurl = url;
       return this;
     };
@@ -63,7 +63,7 @@
      * Seta a url da api
      * @param {string} url
      */
-    Url.prototype.setApi = function(url) {
+    SlimUrl.prototype.setApi = function(url) {
       this.apiurl = url;
       return this;
     };
@@ -73,7 +73,7 @@
      * @param  {string} uri
      * @return {string}
      */
-    Url.prototype.cleanUri = function(uri) {
+    SlimUrl.prototype.cleanUri = function(uri) {
       return uri.replace(/\/+/g, '/') // Remove redundant slashes
                 .replace(/^\/|\/($|\?)/, '') // Strip leading and trailing '/' (at end or before query string)
                 .replace(/#\/?/, ''); // Strip fragment identifiers
@@ -84,7 +84,7 @@
      * @param  {string} url
      * @return {string}
      */
-    Url.prototype.baseUrl = function(url) {
+    SlimUrl.prototype.baseUrl = function(url) {
       return this.origin + this.baseurl + (url || '');
     };
 
@@ -93,7 +93,7 @@
      * @param  {string} url
      * @return {string}
      */
-    Url.prototype.apiUrl = function(url) {
+    SlimUrl.prototype.apiUrl = function(url) {
       return this.origin + this.apiurl + (url || '');
     };
 
@@ -105,7 +105,7 @@
      * @param     {string}   url
      * @return    {void}
      */
-    Url.prototype.redirect = function(url) {
+    SlimUrl.prototype.redirect = function(url) {
         window.location.href = url;
     };
 
@@ -113,7 +113,7 @@
      * Seta pathname da aplicação
      * @param {string} system
      */
-    Url.prototype.setSystem = function(system) {
+    SlimUrl.prototype.setSystem = function(system) {
         this.system = system;
         return this.system;
     };
@@ -125,7 +125,7 @@
      * @copyright Copyright (c) 2016 Ramon Barros
      * @return    {string}
      */
-    Url.prototype.segments = function(key) {
+    SlimUrl.prototype.segments = function(key) {
         var pathname = this.cleanUri(this.pathname),
             segments = String(pathname).split('/'),
             app = segments.indexOf(this.system) + 1;
@@ -133,7 +133,7 @@
         return typeof key !== undefined ? segments[key] : segments;
     };
 
-    window.Url = new Url();
-    return Url;
+    window.SlimUrl = new SlimUrl();
+    return SlimUrl;
 
 }(this));
