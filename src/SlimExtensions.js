@@ -22,7 +22,7 @@
         var $app = this;
         Twig.extendFunction('route', function(name, params) {
           if ($app.routes.namespaces.hasOwnProperty(name)) {
-            var uri = Url.cleanUri($app.routes.namespaces[name].uri);
+            var uri = SlimUrl.cleanUri($app.routes.namespaces[name].uri);
             var urlSplit = uri.split('?', 2);
             var pathParts = urlSplit[0].split('/', 50);
             var queryParts = urlSplit[1] ? urlSplit[1].split('&', 50) : [];

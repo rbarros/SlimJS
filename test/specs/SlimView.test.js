@@ -1,13 +1,13 @@
 (function($) {
-    
-  module('View');
+
+  module('SlimView');
 
   test('Set data view', function() {
     expect(2);
-    equal(View.setData('foo', 'bar'), View);
-    equal(JSON.stringify(View.data), '{"foo":"bar"}');
+    equal(SlimView.setData('foo', 'bar'), SlimView);
+    equal(JSON.stringify(SlimView.data), '{"foo":"bar"}');
   });
-  
+
   /*
   test('Render view', function() {
     expect(1);

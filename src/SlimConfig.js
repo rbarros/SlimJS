@@ -31,16 +31,6 @@
   };
 
   /**
-   * Seta o arquivo de configuração da aplicação
-   * @author Ramon Barros [contato@ramon-barros.com]
-   * @data 2016-05-23
-   */
-  SlimConfig.prototype.setFileOptions = function(file) {
-    this.file = file || 'config/' + this.env + '.json';
-    return this;
-  };
-
-  /**
    * Construtor da classe
    * @author Ramon Barros [contato@ramon-barros.com]
    * @date   2016-04-11
@@ -48,6 +38,16 @@
    */
   SlimConfig.prototype.__constructor = function() {
     console.log('SlimConfig:__constructor()');
+    return this;
+  };
+
+  /**
+   * Seta o arquivo de configuração da aplicação
+   * @author Ramon Barros [contato@ramon-barros.com]
+   * @data 2016-05-23
+   */
+  SlimConfig.prototype.setFileOptions = function(file) {
+    this.file = file || 'config/' + this.env + '.json';
     return this;
   };
 

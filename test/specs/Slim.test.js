@@ -23,13 +23,13 @@
   module('SlimJS', {
     setup: function() {
       this.elems = $('#qunit-fixture').children();
-      this.slim = window.$app;
+      this.slim = window.Slim;
     }
   });
 
   test('instance', function() {
     expect(1);
     ok(this.slim, 'instance');
-  })
-  
+  });
+
 }(jQuery));

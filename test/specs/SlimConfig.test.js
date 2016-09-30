@@ -20,15 +20,15 @@
       throws(block, [expected], [message])
   */
 
-  module('Config');
+  module('SlimConfig');
 
   test('instance', function() {
     expect(3);
-    ok(Config, 'instance');
-    equal(Config.options, null);
-    Config.setFileOptions('local.json');
-    equal('local.json', Config.file);
-    Config.loadOptions(function(options) {
+    ok(SlimConfig, 'instance');
+    equal(SlimConfig.options, null);
+    SlimConfig.setFileOptions('local.json');
+    equal('local.json', SlimConfig.file);
+    SlimConfig.loadOptions(function(options) {
       equal(options, {
         "logo": "images/logo.png",
         "originUrl": null,

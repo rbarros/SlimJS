@@ -6,7 +6,7 @@
  * Copyright (c) 2016 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
-/* global jQuery, FormData,Url,EventListener, View, Router */
+/* global jQuery, FormData, SlimUrl, EventListener, SlimView, SlimRouter */
 // @import "AndLog.js";
 // @import "FormData.js";
 // @import "SlimDebug.js";
@@ -223,7 +223,7 @@
     var self = window.SlimCore;
     if (self.hooks.hasOwnProperty(name)) {
       self.hooks[name] = callable;
-      self.hooks['app.before'].apply(self);
+      //self.hooks['app.before'].apply(self);
     }
     return this;
   };
@@ -367,10 +367,6 @@
    */
   window.SlimCore = new SlimCore();
 
-  window.SlimCore.hooks['app.before'].apply(window.SlimCore);
-  EventListener.addEvent(window, 'load', function() {
-    window.SlimCore.hooks['app.after'].apply(window.SlimCore);
-  });
   EventListener.addEvent(window, 'hashchange', function() {
     window.SlimCore.hooks['app.before'].apply(window.SlimCore);
     var route = window.SlimUrl.cleanUri(window.location.hash);

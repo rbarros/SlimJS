@@ -7,7 +7,7 @@
  */
 /* jslint devel: true, unparam: true, indent: 2 */
 /* global SlimUrl, SlimConfig, SlimCore, SlimExtensions  */
-// @import "Core.js";
+// @import "SlimCore.js";
 (function (window) {
   'use strict';
 
@@ -25,7 +25,7 @@
    * Extende o Objeto
    * @type {Slim}
    */
-  Slim.prototype = Core;
+  Slim.prototype = SlimCore;
   Slim.prototype.constructor = Slim;
 
   /**
@@ -70,20 +70,46 @@
     switch (command) {
       case 'check':
         method = 'OPTIONS';
-        url = Url.apiUrl();
+        url = SlimUrl.apiUrl();
         break;
       default:
         method = 'OPTIONS';
-        url = Url.apiUrl();
+        url = SlimUrl.apiUrl();
         break;
     }
     return this.request(method, url, params);
   };
 
-  Slim.prototype.run = function(callback) {
+  Slim.prototype.run = function() {
     console.log('Slim:run');
     SlimExtensions.run(this);
-    return Config.loadOptions(callback);
+    var self = this;
+    SlimConfig.loadOptions(function(options) {
+      /**
+       * Recupera as opções do arquivo config/<env>.json
+       * @type {Object}
+       */
+      self.options = options;
+
+      /**
+       * Hooks Before
+       * @param  {SlimCore}
+       * @return {void}
+       */
+      self.hooks['app.before'].apply(SlimCore);
+
+      /**
+       * Carregamento das rotas
+       */
+      self.routers();
+
+      /**
+       * Hooks After
+       * @param  {SlimCore}
+       * @return {void}
+       */
+      self.hooks['app.after'].apply(SlimCore);
+    });
   };
 
   Slim.prototype.flash = function(text, className, position) {
@@ -98,7 +124,7 @@
     return this;
   };
 
-  window.Slim = new Slim();
+  window.Slim = Slim;
   return window.Slim;
 
 }(this));

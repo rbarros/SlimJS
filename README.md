@@ -23,24 +23,25 @@ via Bower: <br>
 (function ($) {
   'use strict';
 
-  $app.run(function(options) {
+  var $app = new Slim();
+
+  /**
+   * Cria rota para hello/:name
+   * @param  {string} name
+   * @return {void}
+   */
+  $app.get('/hello/:name', function(name) {
     /**
      * Recupera as opções do arquivo config/<env>.json
      * @type {Object}
      */
     $app.options = options;
-
-    $app.get('/hello/:name', function(name) {
-        $app.render('views/hello.twig', {
-            name: name
-        });
+    $app.render('views/hello.twig', {
+      name: name,
+      logo: $app.options.logo
     });
-
-    /**
-     * Carregamento das rotas
-     */
-    $app.routers();
   });
+  $app.run();
 
 }(jQuery));
 ```
