@@ -20,7 +20,7 @@ via Bower: <br>
 ## Use
 
 ```js
-(function ($) {
+(function (window) {
   'use strict';
 
   var $app = new Slim();
@@ -43,7 +43,7 @@ via Bower: <br>
   });
   $app.run();
 
-}(jQuery));
+}(this));
 ```
 
 ## License
