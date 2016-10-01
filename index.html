@@ -23,7 +23,7 @@
 <a id="slimjs" class="anchor" href="#slimjs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Slim.js</h1>
 
 <h2>
-<a id="slim-js-is-a-frontend-library-for-integration-with-the-famous-slim-framework" class="anchor" href="#slim-js-is-a-frontend-library-for-integration-with-the-famous-slim-framework" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Slim JS is a frontend library for integration with the famous Slim Framework</h2>
+<a id="slim-js-is-a-frontend-library-for-integration-with-the-famous-slim-framework-v2" class="anchor" href="#slim-js-is-a-frontend-library-for-integration-with-the-famous-slim-framework-v2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Slim JS is a frontend library for integration with the famous Slim Framework v2</h2>
 
 <p><img src="https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000" alt="MIT">
 <img src="https://img.shields.io/badge/language-JS-yellow.svg" alt="JS">
@@ -38,7 +38,7 @@
 
 <p>Download the latest release <a href="https://github.com/rbarros/slim.js/archive/master.zip">here</a> and use the files within <code>dist</code> folder.</p>
 
-<p>via Bower: <br>
+<p>Bower: <br>
 <code>$ bower install rbarros/slim.js</code> <br></p>
 
 <p>Download the <a href="https://raw.github.com/rbarros/slim.js/master/dist/slim.min.js">production version</a> or the <a href="https://raw.github.com/rbarros/slim.js/master/src/Slim.js">development version</a>.</p>
@@ -52,13 +52,13 @@
   <span class="pl-k">var</span> $app <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Slim</span>();
 
   <span class="pl-c">/**</span>
-<span class="pl-c">   * Cria rota para hello/:name</span>
+<span class="pl-c">   * Create route hello/:name</span>
 <span class="pl-c">   * <span class="pl-k">@param</span>  <span class="pl-en">{string}</span> <span class="pl-smi">name</span></span>
 <span class="pl-c">   * <span class="pl-k">@return</span> <span class="pl-en">{void}</span></span>
 <span class="pl-c">   */</span>
   <span class="pl-smi">$app</span>.<span class="pl-c1">get</span>(<span class="pl-s"><span class="pl-pds">'</span>/hello/:name<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">name</span>) {
     <span class="pl-c">/**</span>
-<span class="pl-c">     * Recupera as opções do arquivo config/&lt;env&gt;.json</span>
+<span class="pl-c">     * Retrieve options config/&lt;env&gt;.json</span>
 <span class="pl-c">     * <span class="pl-k">@type</span> <span class="pl-en">{Object}</span></span>
 <span class="pl-c">     */</span>
     <span class="pl-smi">$app</span>.<span class="pl-c1">options</span> <span class="pl-k">=</span> options;
