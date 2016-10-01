@@ -26,13 +26,13 @@ via Bower: <br>
   var $app = new Slim();
 
   /**
-   * Cria rota para hello/:name
+   * Create route hello/:name
    * @param  {string} name
    * @return {void}
    */
   $app.get('/hello/:name', function(name) {
     /**
-     * Recupera as opções do arquivo config/<env>.json
+     * Retrieve options config/<env>.json
      * @type {Object}
      */
     $app.options = options;
