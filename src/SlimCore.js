@@ -204,8 +204,15 @@
     return params;
   };
 
+  /**
+   * Compila a view informada
+   * @param  {string} view   arquivo html/twig
+   * @param  {array}  data   varriáveis passadas para a view
+   * @param  {bolean} output true para retornar a view compilada
+   * @return {mixed}         retorna a view
+   */
   SlimCore.prototype.render = function(view, data, output) {
-    return this.view.render(SlimUrl.baseUrl(view), data, output);
+    return this.view.render(SlimUrl.baseUrl(/* this.settings['templates.path'] */view), data, output);
   };
 
   SlimCore.prototype.redirect = function(uri, params) {

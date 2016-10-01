@@ -51,7 +51,6 @@
    * @return {function}
    */
   $app.get('home', function() {
-    console.log($app.options);
     $app.render('views/home.twig', {
       data: [
         {id: 1, name: 'foo'},

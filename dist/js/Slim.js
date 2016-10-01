@@ -1218,8 +1218,15 @@
     return params;
   };
 
+  /**
+   * Compila a view informada
+   * @param  {string} view   arquivo html/twig
+   * @param  {array}  data   varriáveis passadas para a view
+   * @param  {bolean} output true para retornar a view compilada
+   * @return {mixed}         retorna a view
+   */
   SlimCore.prototype.render = function(view, data, output) {
-    return this.view.render(SlimUrl.baseUrl(view), data, output);
+    return this.view.render(SlimUrl.baseUrl(/* this.settings['templates.path'] */view), data, output);
   };
 
   SlimCore.prototype.redirect = function(uri, params) {
@@ -1426,7 +1433,23 @@
    * @date   2016-04-11
    * @return {Slim}
    */
-  var Slim = function() {
+  var Slim = function(settings) {
+    var defaultSettings = {
+      // Application
+      // 'mode': 'development',
+      // Debugging
+      'debug': true,
+      // View
+      'templates.path': './views',
+      // Cookies
+      // 'cookies.encrypt': false,
+      // 'cookies.lifetime': '20 minutes',
+      // 'cookies.path': '/',
+      // 'cookies.domain': null,
+      // 'cookies.secure': false,
+      // 'cookies.httponly': false,
+    };
+    this.settings = $.extend({}, defaultSettings, settings);
     return this.__constructor();
   };
 
@@ -1489,11 +1512,19 @@
     return this.request(method, url, params);
   };
 
+  /**
+   * Inicia a aplicação
+   * @return {void}
+   */
   Slim.prototype.run = function() {
     console.log('Slim:run');
     SlimExtensions.run(this);
     var self = this;
     SlimConfig.loadOptions(function(options) {
+      if (self.settings.debug !== true) {
+        delete window.localStorage.debug;
+      }
+
       /**
        * Recupera as opções do arquivo config/<env>.json
        * @type {Object}
