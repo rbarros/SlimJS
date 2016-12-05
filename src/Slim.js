@@ -33,6 +33,7 @@
       // 'cookies.secure': false,
       // 'cookies.httponly': false,
     };
+    this.version = '1.0.1';
     this.settings = $.extend({}, defaultSettings, settings);
     return this.__constructor();
   };

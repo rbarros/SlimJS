@@ -19,6 +19,14 @@
     var SlimView = function() {
         this.data = {};
         this.namespaces = {};
+        this.hooks = {
+          'render.before': function() {
+            console.log('SlimCore:hook.render.before');
+          },
+          'render.after': function() {
+            console.log('SlimCore:hook.render.after');
+          }
+        };
         return this.__constructor();
     };
 
@@ -44,6 +52,16 @@
     };
 
     /**
+     * Seta os hooks para execução antes e depois do render
+     * @param {SlimView} hooks
+     */
+    SlimView.prototype.setHook = function(hooks) {
+        this.hooks['render.before'] = hooks['render.before'];
+        this.hooks['render.after'] = hooks['render.after'];
+        return this;
+    };
+
+    /**
      * Compila o twig para html
      * @param  {String} view
      * @param  {Object} data
@@ -54,6 +72,13 @@
             output;
         self.data = $.extend({}, self.data, data);
         try {
+            /**
+             * Hooks Before
+             * @param  {SlimCore}
+             * @return {void}
+             */
+            self.hooks['render.before'].apply(self);
+
             twig({
                 href: view,
                 async: !outputReturn,
@@ -65,6 +90,14 @@
                     }
                 }
             });
+
+            /**
+             * Hooks After
+             * @param  {SlimCore}
+             * @return {void}
+             */
+            self.hooks['render.after'].apply(self);
+
         } catch(e) {
             console.log(e);
         }

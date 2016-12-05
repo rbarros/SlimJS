@@ -40,10 +40,16 @@
     this.tmp = {};
     this.hooks = {
       'app.before': function() {
-        console.log('SlimCore:hook.before');
+        console.log('SlimCore:hook.app.before');
       },
       'app.after': function() {
-        console.log('SlimCore:hook.after');
+        console.log('SlimCore:hook.app.after');
+      },
+      'render.before': function() {
+        console.log('SlimCore:hook.render.before');
+      },
+      'render.after': function() {
+        console.log('SlimCore:hook.render.after');
       }
     };
     return this.__constructor();
@@ -212,7 +218,7 @@
    * @return {mixed}         retorna a view
    */
   SlimCore.prototype.render = function(view, data, output) {
-    return this.view.render(SlimUrl.baseUrl(/* this.settings['templates.path'] */view), data, output);
+    return this.view.setHook(this.hooks).render(SlimUrl.baseUrl(/* this.settings['templates.path'] */view), data, output);
   };
 
   SlimCore.prototype.redirect = function(uri, params) {

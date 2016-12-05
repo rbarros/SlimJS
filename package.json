@@ -1,9 +1,9 @@
 {
   "name": "slim",
-  "title": "SlimJS",
-  "description": "Slim JS is a frontend library for integration with the famous Slim Framework",
-  "version": "1.0.0",
-  "homepage": "http://rsb.cc/SlimJS/",
+  "title": "Slim.js",
+  "description": "Slim.js is a front-end Framework inspired by the famous Slim Framework",
+  "version": "1.0.1",
+  "homepage": "http://ramon-barros.com/slim.js",
   "author": {
     "name": "Ramon Barros",
     "email": "contato@ramon-barros.com"

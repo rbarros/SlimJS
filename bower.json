@@ -1,12 +1,12 @@
 {
-  "name": "slim.js",
-  "version": "1.0.0",
+  "name": "slim",
+  "version": "1.0.1",
   "main": [
     "dist/js/slim.js"
   ],
-  "homepage": "http://rsb.cc/SlimJS/",
+  "homepage": "http://ramon-barros.com/slim.js",
   "license": "MIT",
-  "description": "Slim JS is a frontend library for integration with the famous Slim Framework",
+  "description": "Slim.js is a front-end Framework inspired by the famous Slim Framework",
   "authors": [
     "Ramon Barros <contato@ramon-barros.com>"
   ],
@@ -15,7 +15,8 @@
     "node_modules",
     "test",
     "tests",
-    "app"
+    "app",
+    "src"
   ],
   "dependencies": {
     "jquery": "2.1.3",

@@ -1,6 +1,6 @@
 # Slim.js
 
-## Slim JS is a frontend library for integration with the famous Slim Framework
+## Slim.js is a front-end Framework inspired by the famous Slim Framework
 
 ![MIT](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)
 ![JS](https://img.shields.io/badge/language-JS-yellow.svg)

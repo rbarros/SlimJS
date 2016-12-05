@@ -380,7 +380,6 @@
   * @return {EventListener}
   */
   var EventListener = function() {
-    this.version = '1.0.0';
     return this.__constructor();
   };
 
@@ -726,6 +725,14 @@
     var SlimView = function() {
         this.data = {};
         this.namespaces = {};
+        this.hooks = {
+          'render.before': function() {
+            console.log('SlimCore:hook.render.before');
+          },
+          'render.after': function() {
+            console.log('SlimCore:hook.render.after');
+          }
+        };
         return this.__constructor();
     };
 
@@ -751,6 +758,16 @@
     };
 
     /**
+     * Seta os hooks para execução antes e depois do render
+     * @param {SlimView} hooks
+     */
+    SlimView.prototype.setHook = function(hooks) {
+        this.hooks['render.before'] = hooks['render.before'];
+        this.hooks['render.after'] = hooks['render.after'];
+        return this;
+    };
+
+    /**
      * Compila o twig para html
      * @param  {String} view
      * @param  {Object} data
@@ -761,6 +778,13 @@
             output;
         self.data = $.extend({}, self.data, data);
         try {
+            /**
+             * Hooks Before
+             * @param  {SlimCore}
+             * @return {void}
+             */
+            self.hooks['render.before'].apply(self);
+
             twig({
                 href: view,
                 async: !outputReturn,
@@ -772,6 +796,14 @@
                     }
                 }
             });
+
+            /**
+             * Hooks After
+             * @param  {SlimCore}
+             * @return {void}
+             */
+            self.hooks['render.after'].apply(self);
+
         } catch(e) {
             console.log(e);
         }
@@ -1054,10 +1086,16 @@
     this.tmp = {};
     this.hooks = {
       'app.before': function() {
-        console.log('SlimCore:hook.before');
+        console.log('SlimCore:hook.app.before');
       },
       'app.after': function() {
-        console.log('SlimCore:hook.after');
+        console.log('SlimCore:hook.app.after');
+      },
+      'render.before': function() {
+        console.log('SlimCore:hook.render.before');
+      },
+      'render.after': function() {
+        console.log('SlimCore:hook.render.after');
       }
     };
     return this.__constructor();
@@ -1226,7 +1264,7 @@
    * @return {mixed}         retorna a view
    */
   SlimCore.prototype.render = function(view, data, output) {
-    return this.view.render(SlimUrl.baseUrl(/* this.settings['templates.path'] */view), data, output);
+    return this.view.setHook(this.hooks).render(SlimUrl.baseUrl(/* this.settings['templates.path'] */view), data, output);
   };
 
   SlimCore.prototype.redirect = function(uri, params) {
@@ -1449,6 +1487,7 @@
       // 'cookies.secure': false,
       // 'cookies.httponly': false,
     };
+    this.version = '1.0.1';
     this.settings = $.extend({}, defaultSettings, settings);
     return this.__constructor();
   };

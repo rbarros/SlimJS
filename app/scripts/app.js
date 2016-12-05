@@ -16,7 +16,8 @@
    * @return {void}
    */
   $app.hook('app.before', function() {
-    console.log('SlimCore:hook.before');
+    //$app.options.version = '1.0.0';
+    console.log('SlimCore:hook.app.before');
     $app.view.setData('logo', $app.baseUrl($app.options.logo));
     $app.view.setData('siteKey', '6LcCOx0TAAAAAJmQ2a04SlFJgFQiqQxasRudhRVH');
   });
@@ -27,8 +28,27 @@
    * @return {void}
    */
   $app.hook('app.after', function() {
-    console.log('SlimCore:hook.after');
+    console.log('SlimCore:hook.app.after');
     $app.view.setData('siteKey', 'akakakakakaka');
+  });
+
+  /**
+   * Hooks Render Before
+   * @param  {String}
+   * @return {void}
+   */
+  $app.hook('render.before', function() {
+    console.log('SlimCore:hook.render.before');
+  });
+
+  /**
+   * Hooks Render After
+   * @param  {String}
+   * @return {void}
+   */
+  $app.hook('render.after', function() {
+    console.log('SlimCore:hook.render.after');
+    $('title').text('Slim.js ' + $app.options.version);
   });
 
   /**
