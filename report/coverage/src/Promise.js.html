@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/Promise.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> Promise.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">34.31% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>47/137</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>14/70</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25.81% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>8/31</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">34.31% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>47/137</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * Lightweight ES6 Promise polyfill for the browser and node. Adheres closely to the spec.
+ * It is a perfect polyfill IE, Firefox or any other browser that does not support native promises.
+ * For API information about Promises, please check out this article HTML5Rocks article.
+ * It is extremely lightweight. &lt; 1kb Gzipped
+ * https://github.com/taylorhakes/promise-polyfill
+ * Copyright (c) 2014 Taylor Hakes
+ * Copyright (c) 2014 Forbes Lindesay
+ */
+(function (root) {
+  'use strict';
+&nbsp;
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (root.Promise) {
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+  // Store setTimeout reference so promise-polyfill will be unaffected by
+  // other code modifying setTimeout (like sinon.useFakeTimers())
+  var setTimeoutFunc = setTimeout;
+&nbsp;
+  function noop() {
+  }
+&nbsp;
+  // Use polyfill for setImmediate for performance gains
+  var asap = (typeof setImmediate === 'function' &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >setImmediate)</span> ||
+<span class="fstat-no" title="function not covered" >    function (fn) {</span>
+<span class="cstat-no" title="statement not covered" >      setTimeoutFunc(fn, 0);</span>
+    };
+&nbsp;
+  var onUnhandledRejection = <span class="fstat-no" title="function not covered" >function onUnhandledRejection(err) {</span>
+<span class="cstat-no" title="statement not covered" >    if (typeof console !== 'undefined' &amp;&amp; console) {</span>
+<span class="cstat-no" title="statement not covered" >      console.warn('Possible Unhandled Promise Rejection:', err); </span>// eslint-disable-line no-console
+    }
+  };
+&nbsp;
+  // Polyfill for Function.prototype.bind
+<span class="fstat-no" title="function not covered" >  function bind(fn, thisArg) {</span>
+<span class="cstat-no" title="statement not covered" >    return <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >      fn.apply(thisArg, arguments);</span>
+    };
+  }
+&nbsp;
+  function Promise(fn) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof this !== 'object') {
+<span class="cstat-no" title="statement not covered" >      throw new TypeError('Promises must be constructed via new');</span>
+    }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof fn !== 'function') {
+<span class="cstat-no" title="statement not covered" >      throw new TypeError('not a function');</span>
+    }
+    this._state = 0;
+    this._handled = false;
+    this._value = undefined;
+    this._deferreds = [];
+&nbsp;
+    doResolve(fn, this);
+  }
+&nbsp;
+  function handle(self, deferred) {
+    while (self._state === 3) {
+<span class="cstat-no" title="statement not covered" >      self = self._value;</span>
+    }
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (self._state === 0) {
+      self._deferreds.push(deferred);
+      return;
+    }
+<span class="cstat-no" title="statement not covered" >    self._handled = true;</span>
+<span class="cstat-no" title="statement not covered" >    asap(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >      var cb = self._state === 1 ? deferred.onFulfilled : deferred.onRejected;</span>
+<span class="cstat-no" title="statement not covered" >      if (cb === null) {</span>
+<span class="cstat-no" title="statement not covered" >        (self._state === 1 ? resolve : reject)(deferred.promise, self._value);</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      var ret;</span>
+<span class="cstat-no" title="statement not covered" >      try {</span>
+<span class="cstat-no" title="statement not covered" >        ret = cb(self._value);</span>
+      } catch (e) {
+<span class="cstat-no" title="statement not covered" >        reject(deferred.promise, e);</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      resolve(deferred.promise, ret);</span>
+    });
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function resolve(self, newValue) {</span>
+<span class="cstat-no" title="statement not covered" >    try {</span>
+      // Promise Resolution Procedure: https://github.com/promises-aplus/promises-spec#the-promise-resolution-procedure
+<span class="cstat-no" title="statement not covered" >      if (newValue === self) {</span>
+<span class="cstat-no" title="statement not covered" >        throw new TypeError('A promise cannot be resolved with itself.');</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if (newValue &amp;&amp; (typeof newValue === 'object' || typeof newValue === 'function')) {</span>
+<span class="cstat-no" title="statement not covered" >        var then = newValue.then;</span>
+<span class="cstat-no" title="statement not covered" >        if (newValue instanceof Promise) {</span>
+<span class="cstat-no" title="statement not covered" >          self._state = 3;</span>
+<span class="cstat-no" title="statement not covered" >          self._value = newValue;</span>
+<span class="cstat-no" title="statement not covered" >          finale(self);</span>
+<span class="cstat-no" title="statement not covered" >          return;</span>
+        } else <span class="cstat-no" title="statement not covered" >if (typeof then === 'function') {</span>
+<span class="cstat-no" title="statement not covered" >          doResolve(bind(then, newValue), self);</span>
+<span class="cstat-no" title="statement not covered" >          return;</span>
+        }
+      }
+<span class="cstat-no" title="statement not covered" >      self._state = 1;</span>
+<span class="cstat-no" title="statement not covered" >      self._value = newValue;</span>
+<span class="cstat-no" title="statement not covered" >      finale(self);</span>
+    } catch (e) {
+<span class="cstat-no" title="statement not covered" >      reject(self, e);</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function reject(self, newValue) {</span>
+<span class="cstat-no" title="statement not covered" >    self._state = 2;</span>
+<span class="cstat-no" title="statement not covered" >    self._value = newValue;</span>
+<span class="cstat-no" title="statement not covered" >    finale(self);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function finale(self) {</span>
+<span class="cstat-no" title="statement not covered" >    if (self._state === 2 &amp;&amp; self._deferreds.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >      asap(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (!self._handled) {</span>
+<span class="cstat-no" title="statement not covered" >          onUnhandledRejection(self._value);</span>
+        }
+      });
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (var i = 0, len = self._deferreds.length; i &lt; len; i++) {</span>
+<span class="cstat-no" title="statement not covered" >      handle(self, self._deferreds[i]);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    self._deferreds = null;</span>
+  }
+&nbsp;
+  function Handler(onFulfilled, onRejected, promise) {
+    this.onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : null;
+    this.onRejected = typeof onRejected === 'function' ? onRejected : null;
+    this.promise = promise;
+  }
+&nbsp;
+  /**
+   * Take a potentially misbehaving resolver function and make sure
+   * onFulfilled and onRejected are only called once.
+   *
+   * Makes no guarantees about asynchrony.
+   */
+  function doResolve(fn, self) {
+    var done = false;
+    try {
+      fn(<span class="fstat-no" title="function not covered" >function (value) {</span>
+<span class="cstat-no" title="statement not covered" >        if (done) {</span>
+<span class="cstat-no" title="statement not covered" >          return;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        done = true;</span>
+<span class="cstat-no" title="statement not covered" >        resolve(self, value);</span>
+      }, <span class="fstat-no" title="function not covered" >function (reason) {</span>
+<span class="cstat-no" title="statement not covered" >        if (done) {</span>
+<span class="cstat-no" title="statement not covered" >          return;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        done = true;</span>
+<span class="cstat-no" title="statement not covered" >        reject(self, reason);</span>
+      });
+    } catch (ex) {
+<span class="cstat-no" title="statement not covered" >      if (done) {</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      done = true;</span>
+<span class="cstat-no" title="statement not covered" >      reject(self, ex);</span>
+    }
+  }
+&nbsp;
+  Promise.prototype['catch'] = function (onRejected) {
+    return this.then(null, onRejected);
+  };
+&nbsp;
+  Promise.prototype.then = function (onFulfilled, onRejected) {
+    var prom = new (this.constructor)(noop);
+&nbsp;
+    handle(this, new Handler(onFulfilled, onRejected, prom));
+    return prom;
+  };
+&nbsp;
+  Promise.all = <span class="fstat-no" title="function not covered" >function (arr) {</span>
+<span class="cstat-no" title="statement not covered" >    var args = Array.prototype.slice.call(arr);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (args.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >        return resolve([]);</span>
+      }
+<span class="cstat-no" title="statement not covered" >      var remaining = args.length;</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >      function res(i, val) {</span>
+<span class="cstat-no" title="statement not covered" >        try {</span>
+<span class="cstat-no" title="statement not covered" >          if (val &amp;&amp; (typeof val === 'object' || typeof val === 'function')) {</span>
+<span class="cstat-no" title="statement not covered" >            var then = val.then;</span>
+<span class="cstat-no" title="statement not covered" >            if (typeof then === 'function') {</span>
+<span class="cstat-no" title="statement not covered" >              then.call(val, <span class="fstat-no" title="function not covered" >function (val) {</span></span>
+<span class="cstat-no" title="statement not covered" >                res(i, val);</span>
+              }, reject);
+<span class="cstat-no" title="statement not covered" >              return;</span>
+            }
+          }
+<span class="cstat-no" title="statement not covered" >          args[i] = val;</span>
+<span class="cstat-no" title="statement not covered" >          if (--remaining === 0) {</span>
+<span class="cstat-no" title="statement not covered" >            resolve(args);</span>
+          }
+        } catch (ex) {
+<span class="cstat-no" title="statement not covered" >          reject(ex);</span>
+        }
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      for (var i = 0; i &lt; args.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >        res(i, args[i]);</span>
+      }
+    });
+  };
+&nbsp;
+  Promise.resolve = <span class="fstat-no" title="function not covered" >function (value) {</span>
+<span class="cstat-no" title="statement not covered" >    if (value &amp;&amp; typeof value === 'object' &amp;&amp; value.constructor === Promise) {</span>
+<span class="cstat-no" title="statement not covered" >      return value;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve) {</span></span>
+<span class="cstat-no" title="statement not covered" >      resolve(value);</span>
+    });
+  };
+&nbsp;
+  Promise.reject = <span class="fstat-no" title="function not covered" >function (value) {</span>
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >      reject(value);</span>
+    });
+  };
+&nbsp;
+  Promise.race = <span class="fstat-no" title="function not covered" >function (values) {</span>
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >      for (var i = 0, len = values.length; i &lt; len; i++) {</span>
+<span class="cstat-no" title="statement not covered" >        values[i].then(resolve, reject);</span>
+      }
+    });
+  };
+&nbsp;
+  /**
+   * Set the immediate function to execute callbacks
+   * @param fn {function} Function to execute
+   * @private
+   */
+  Promise._setImmediateFn = <span class="fstat-no" title="function not covered" >function _setImmediateFn(fn) {</span>
+<span class="cstat-no" title="statement not covered" >    asap = fn;</span>
+  };
+&nbsp;
+  Promise._setUnhandledRejectionFn = <span class="fstat-no" title="function not covered" >function _setUnhandledRejectionFn(fn) {</span>
+<span class="cstat-no" title="statement not covered" >    onUnhandledRejection = fn;</span>
+  };
+&nbsp;
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof module !== 'undefined' &amp;&amp; module.exports) {
+<span class="cstat-no" title="statement not covered" >    module.exports = Promise;</span>
+  } else <span class="missing-if-branch" title="else path not taken" >E</span>if (!root.Promise) {
+    root.Promise = Promise;
+  }
+&nbsp;
+})(this);
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Dec 05 2016 15:27:11 GMT-0200 (BRST)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
