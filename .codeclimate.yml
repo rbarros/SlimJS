@@ -7,8 +7,6 @@ engines:
       - javascript
   fixme:
     enabled: true
-  phpmd:
-    enabled: true
 ratings:
   paths:
   - "**.js"
@@ -16,4 +14,5 @@ exclude_paths:
 - app/
 - dist/
 - report/coverage/
-- test
+- report/lcov-report/
+- test/
