@@ -3,5 +3,14 @@ node_js:
   - "0.10"
 before_script:
   - npm install -g grunt-cli
-  - npm install
+  - npm install grunt@~0.4.5
+  - npm install grunt-contrib-clean@^1.0.0
+  - npm install grunt-contrib-copy@^1.0.0
+  - npm install grunt-contrib-jshint@~0.10.0
+  - npm install grunt-contrib-nodeunit@~0.4.1
+  - npm install grunt-contrib-qunit@^1.2.0
+  - npm install grunt-contrib-uglify@~0.5.0
+  - npm install grunt-import-js@^0.1.4
+  - npm install jshint-stylish@^1.0.0
+  - npm install load-grunt-tasks@^3.5.0
 script: grunt qunit
