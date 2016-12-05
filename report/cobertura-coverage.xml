@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage lines-valid="667"  lines-covered="258"  line-rate="0.3868"  branches-valid="251"  branches-covered="43"  branch-rate="0.17129999999999998"  timestamp="1480958831745" complexity="0" version="0.1">
+<coverage lines-valid="667"  lines-covered="258"  line-rate="0.3868"  branches-valid="251"  branches-covered="43"  branch-rate="0.17129999999999998"  timestamp="1480960945814" complexity="0" version="0.1">
 <sources>
 	<source>/var/www/slim.js</source>
 </sources>

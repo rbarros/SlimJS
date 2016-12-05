@@ -85,6 +85,8 @@ module.exports = function(grunt) {
           src: ['src/**/*.js'],
           instrumentedFiles: 'temp/',
           htmlReport: 'report/coverage',
+          lcovReport: 'report',
+          cloverReport: 'report',
           coberturaReport: 'report/',
           linesThresholdPct: 85
         }

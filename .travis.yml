@@ -5,6 +5,3 @@ before_script:
   - npm install -g grunt-cli
   - npm install
 script: grunt qunit
-addons:
-    code_climate:
-        repo_token: 00404f764e24665f8bca41049d9be70c788b67f36dd16534ad6eae20338f06a6
