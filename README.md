@@ -46,6 +46,20 @@ via Bower: <br>
 }(this));
 ```
 
+## Tests
+
+### Tests coverage
+```
+$ grunt qunit
+```
+
+### Coverage codeclimate
+```
+$ npm install -g codeclimate-test-reporter
+$ npm install grunt-qunit-istanbul
+$ CODECLIMATE_REPO_TOKEN=<key> codeclimate-test-reporter < report/lcov.info
+```
+
 ## License
 
 The Slim.js is licensed under the MIT license. See [License File](LICENSE) for more information.
