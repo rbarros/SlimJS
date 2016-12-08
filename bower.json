@@ -1,5 +1,5 @@
 {
-  "name": "slim",
+  "name": "slim.js",
   "version": "1.0.1",
   "main": [
     "dist/js/slim.js"
