@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">22.03% </span>
+        <span class="strong">22.29% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>39/177</span>
+        <span class='fraction'>39/175</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/78</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">10.34% </span>
+        <span class="strong">9.68% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/29</span>
+        <span class='fraction'>3/31</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">22.16% </span>
+        <span class="strong">22.41% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>39/176</span>
+        <span class='fraction'>39/174</span>
       </div>
     </div>
   </div>
@@ -459,7 +459,33 @@
 414
 415
 416
-417</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -501,13 +527,39 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -843,10 +895,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -916,17 +968,43 @@
     this.routes.namespaces = {};
     this.tmp = {};
     this.hooks = {
-      'app.before': <span class="fstat-no" title="function not covered" >function() {</span>
-<span class="cstat-no" title="statement not covered" >        console.log('SlimCore:hook.app.before');</span>
+      /**
+       * Esse hook é chamado antes que o aplicativo Slim seja executado e é invocado uma vez durante o ciclo de vida da aplicação.
+       */
+      'before': <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >        console.log('SlimCore:hook.before');</span>
       },
-      'app.after': <span class="fstat-no" title="function not covered" >function() {</span>
-<span class="cstat-no" title="statement not covered" >        console.log('SlimCore:hook.app.after');</span>
+      /**
+       * Esse hook é invocado antes do roteador ser disparado e é invocado uma vez durante o ciclo de vida da aplicação.
+       */
+      'before.router': <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >        console.log('SlimCore:hook.before.router');</span>
       },
-      'render.before': <span class="fstat-no" title="function not covered" >function() {</span>
-<span class="cstat-no" title="statement not covered" >        console.log('SlimCore:hook.render.before');</span>
+      /**
+       * Este hook é invocado antes que a rota correspondente atual seja disparada.
+       * Normalmente, este hook é invocado apenas uma vez durante o ciclo de vida da aplicação, no entanto, este hook pode ser invocado várias vezes.
+       */
+      'before.dispatch': <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >        console.log('SlimCore:hook.before.dispatch');</span>
       },
-      'render.after': <span class="fstat-no" title="function not covered" >function() {</span>
-<span class="cstat-no" title="statement not covered" >        console.log('SlimCore:hook.render.after');</span>
+      /**
+       * Este hook é invocado após a rota correspondente atual ser disparada.
+       * Normalmente, este gancho é invocado apenas uma vez durante o ciclo de vida da aplicação, no entanto, este gancho pode ser invocado várias vezes.
+       */
+      'after.dispatch': <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >        console.log('SlimCore:hook.after.dispatch');</span>
+      },
+      /**
+       * Este hook é invocado após o roteador ser disparado, antes que a resposta seja enviada para o cliente e é invocado uma vez durante o ciclo de vida da aplicação.
+       */
+      'after.router': <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >        console.log('SlimCore:hook.after.router');</span>
+      },
+      /**
+       * Este hook é invocado após a resposta ser enviada para o cliente e é invocado uma vez durante o ciclo de vida da aplicação.
+       */
+      'after': <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >        console.log('SlimCore:hook.after');</span>
       }
     };
     return this.__constructor();
@@ -1113,7 +1191,7 @@
 <span class="cstat-no" title="statement not covered" >    var self = window.SlimCore;</span>
 <span class="cstat-no" title="statement not covered" >    if (self.hooks.hasOwnProperty(name)) {</span>
 <span class="cstat-no" title="statement not covered" >      self.hooks[name] = callable;</span>
-      //self.hooks['app.before'].apply(self);
+      //self.hooks['before'].apply(self);
     }
 <span class="cstat-no" title="statement not covered" >    return this;</span>
   };
@@ -1258,15 +1336,15 @@
   window.SlimCore = new SlimCore();
 &nbsp;
   EventListener.addEvent(window, 'hashchange', <span class="fstat-no" title="function not covered" >function() {</span>
-<span class="cstat-no" title="statement not covered" >    window.SlimCore.hooks['app.before'].apply(window.SlimCore);</span>
-<span class="cstat-no" title="statement not covered" >    var route = window.SlimUrl.cleanUri(window.location.hash);</span>
-<span class="cstat-no" title="statement not covered" >    var urlSplit = route.split('?', 2);</span>
-<span class="cstat-no" title="statement not covered" >    var pathParts = urlSplit[0].split('/', 50);</span>
-<span class="cstat-no" title="statement not covered" >    var queryParts = urlSplit[1] ? urlSplit[1].split('&amp;', 50) : [];</span>
+<span class="cstat-no" title="statement not covered" >    var route = window.SlimUrl.cleanUri(window.location.hash),</span>
+        urlSplit = route.split('?', 2),
+        pathParts = urlSplit[0].split('/', 50),
+        queryParts = urlSplit[1] ? urlSplit[1].split('&amp;', 50) : [],
+        call;
 <span class="cstat-no" title="statement not covered" >    if (window.SlimCore.routes.get.hasOwnProperty(route)) {</span>
 <span class="cstat-no" title="statement not covered" >      (window.SlimCore.routes.get[route]).apply(window.SlimCore, window.SlimCore.params);</span>
     } else {
-<span class="cstat-no" title="statement not covered" >      var call = false;</span>
+<span class="cstat-no" title="statement not covered" >      call = false;</span>
 <span class="cstat-no" title="statement not covered" >      $.each(window.SlimCore.routes.get, <span class="fstat-no" title="function not covered" >function(url, handler) {</span></span>
 <span class="cstat-no" title="statement not covered" >        var params = window.SlimCore.getParamsFromRouter(url, pathParts, queryParts);</span>
 <span class="cstat-no" title="statement not covered" >        if (params) {</span>
@@ -1297,7 +1375,7 @@
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Dec 05 2016 16:02:25 GMT-0200 (BRST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Dec 13 2016 16:04:19 GMT-0200 (BRST)
 </div>
 </div>
 <script src="../prettify.js"></script>

@@ -7,6 +7,7 @@
  * Copyright (c) 2014 Taylor Hakes
  * Copyright (c) 2014 Forbes Lindesay
  */
+/* jslint devel: true, unparam: true, indent: 2, latedef: false */
 (function (root) {
   'use strict';
 

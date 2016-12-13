@@ -27,7 +27,7 @@ module.exports = function(grunt) {
       '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
       '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-      ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
+      ' Licensed <%= _.map(pkg.licenses, "type").join(", ") %> */\n',
 
     // Limpa pastas para começar novamente
     clean: {
@@ -80,16 +80,14 @@ module.exports = function(grunt) {
     // Testes
     qunit: {
       options: {
-        '--web-security': 'no',
-        coverage: {
-          src: ['src/**/*.js'],
-          instrumentedFiles: 'temp/',
-          htmlReport: 'report/coverage',
-          lcovReport: 'report',
-          cloverReport: 'report',
-          coberturaReport: 'report/',
-          linesThresholdPct: 85
-        }
+          '--web-security': 'no',
+          coverage: {
+            src: ['src/**/*.js'],
+            instrumentedFiles: 'temp/',
+            htmlReport: 'report/coverage',
+            coberturaReport: 'report/',
+            linesThresholdPct: 85
+          }
       },
       all: ['test/**/*.html']
     }
