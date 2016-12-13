@@ -3,6 +3,7 @@
  *
  * @author Ramon Barros [contato@ramon-barros.com]
  * @date   2016-04-11
+ * @version 1.0.2
  * Copyright (c) 2016 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
@@ -33,7 +34,7 @@
       // 'cookies.secure': false,
       // 'cookies.httponly': false,
     };
-    this.version = '1.0.1';
+    this.version = '1.0.2';
     this.settings = $.extend({}, defaultSettings, settings);
     return this.__constructor();
   };
@@ -105,7 +106,15 @@
     console.log('Slim:run');
     SlimExtensions.run(this);
     var self = this;
-    SlimConfig.loadOptions(function(options) {
+
+    /**
+     * Hooks Before
+     * @param  {SlimCore}
+     * @return {void}
+     */
+    self.hooks.before.apply(SlimCore);
+
+    SlimConfig.loadOptions(SlimCore, function(options) {
       if (self.settings.debug !== true) {
         delete window.localStorage.debug;
       }
@@ -117,11 +126,11 @@
       self.options = options;
 
       /**
-       * Hooks Before
+       * Hooks Before Router
        * @param  {SlimCore}
        * @return {void}
        */
-      self.hooks['app.before'].apply(SlimCore);
+      self.hooks['before.router'].apply(SlimCore);
 
       /**
        * Carregamento das rotas
@@ -129,11 +138,11 @@
       self.routers();
 
       /**
-       * Hooks After
+       * Hooks After Router
        * @param  {SlimCore}
        * @return {void}
        */
-      self.hooks['app.after'].apply(SlimCore);
+      self.hooks['after.router'].apply(SlimCore);
     });
   };
 

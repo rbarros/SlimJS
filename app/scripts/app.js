@@ -15,11 +15,52 @@
    * @param  {String}
    * @return {void}
    */
-  $app.hook('app.before', function() {
+  $app.hook('before', function() {
     //$app.options.version = '1.0.0';
-    console.log('SlimCore:hook.app.before');
+    console.log('SlimCore:hook.before');
+  });
+
+  /**
+   * Hooks Before Router
+   * @param  {String}
+   * @return {void}
+   */
+  $app.hook('before.router', function() {
+    //$app.options.version = '1.0.0';
+    console.log('SlimCore:hook.before.router');
     $app.view.setData('logo', $app.baseUrl($app.options.logo));
-    $app.view.setData('siteKey', '6LcCOx0TAAAAAJmQ2a04SlFJgFQiqQxasRudhRVH');
+    $app.options.siteKey = '6LcCOx0TAAAAAJmQ2a04SlFJgFQiqQxasRudhRVH';
+  });
+
+  /**
+   * Hooks Before Dispatch
+   * @param  {String}
+   * @return {void}
+   */
+  $app.hook('before.dispatch', function() {
+    console.log('SlimCore:hook.before.dispatch');
+    $app.options.dispatch = 1;
+  });
+
+  /**
+   * Hooks After Dispatch
+   * @param  {String}
+   * @return {void}
+   */
+  $app.hook('after.dispatch', function() {
+    console.log('SlimCore:hook.after.dispatch');
+    $app.view.setData('dispatch', $app.options.dispatch);
+    $('title').text('Slim.js ' + $app.options.version);
+  });
+
+  /**
+   * Hooks After Router
+   * @param  {String}
+   * @return {void}
+   */
+  $app.hook('after.router', function() {
+    console.log('SlimCore:hook.after.router');
+    $app.view.setData('siteKey', $app.options.siteKey);
   });
 
   /**
@@ -27,28 +68,8 @@
    * @param  {String}
    * @return {void}
    */
-  $app.hook('app.after', function() {
-    console.log('SlimCore:hook.app.after');
-    $app.view.setData('siteKey', 'akakakakakaka');
-  });
-
-  /**
-   * Hooks Render Before
-   * @param  {String}
-   * @return {void}
-   */
-  $app.hook('render.before', function() {
-    console.log('SlimCore:hook.render.before');
-  });
-
-  /**
-   * Hooks Render After
-   * @param  {String}
-   * @return {void}
-   */
-  $app.hook('render.after', function() {
-    console.log('SlimCore:hook.render.after');
-    $('title').text('Slim.js ' + $app.options.version);
+  $app.hook('after', function() {
+    console.log('SlimCore:hook.after');
   });
 
   /**

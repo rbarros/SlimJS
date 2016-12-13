@@ -39,17 +39,43 @@
     this.routes.namespaces = {};
     this.tmp = {};
     this.hooks = {
-      'app.before': function() {
-        console.log('SlimCore:hook.app.before');
+      /**
+       * Esse hook é chamado antes que o aplicativo Slim seja executado e é invocado uma vez durante o ciclo de vida da aplicação.
+       */
+      'before': function() {
+        console.log('SlimCore:hook.before');
       },
-      'app.after': function() {
-        console.log('SlimCore:hook.app.after');
+      /**
+       * Esse hook é invocado antes do roteador ser disparado e é invocado uma vez durante o ciclo de vida da aplicação.
+       */
+      'before.router': function() {
+        console.log('SlimCore:hook.before.router');
       },
-      'render.before': function() {
-        console.log('SlimCore:hook.render.before');
+      /**
+       * Este hook é invocado antes que a rota correspondente atual seja disparada.
+       * Normalmente, este hook é invocado apenas uma vez durante o ciclo de vida da aplicação, no entanto, este hook pode ser invocado várias vezes.
+       */
+      'before.dispatch': function() {
+        console.log('SlimCore:hook.before.dispatch');
       },
-      'render.after': function() {
-        console.log('SlimCore:hook.render.after');
+      /**
+       * Este hook é invocado após a rota correspondente atual ser disparada.
+       * Normalmente, este gancho é invocado apenas uma vez durante o ciclo de vida da aplicação, no entanto, este gancho pode ser invocado várias vezes.
+       */
+      'after.dispatch': function() {
+        console.log('SlimCore:hook.after.dispatch');
+      },
+      /**
+       * Este hook é invocado após o roteador ser disparado, antes que a resposta seja enviada para o cliente e é invocado uma vez durante o ciclo de vida da aplicação.
+       */
+      'after.router': function() {
+        console.log('SlimCore:hook.after.router');
+      },
+      /**
+       * Este hook é invocado após a resposta ser enviada para o cliente e é invocado uma vez durante o ciclo de vida da aplicação.
+       */
+      'after': function() {
+        console.log('SlimCore:hook.after');
       }
     };
     return this.__constructor();
@@ -236,7 +262,7 @@
     var self = window.SlimCore;
     if (self.hooks.hasOwnProperty(name)) {
       self.hooks[name] = callable;
-      //self.hooks['app.before'].apply(self);
+      //self.hooks['before'].apply(self);
     }
     return this;
   };
@@ -381,15 +407,15 @@
   window.SlimCore = new SlimCore();
 
   EventListener.addEvent(window, 'hashchange', function() {
-    window.SlimCore.hooks['app.before'].apply(window.SlimCore);
-    var route = window.SlimUrl.cleanUri(window.location.hash);
-    var urlSplit = route.split('?', 2);
-    var pathParts = urlSplit[0].split('/', 50);
-    var queryParts = urlSplit[1] ? urlSplit[1].split('&', 50) : [];
+    var route = window.SlimUrl.cleanUri(window.location.hash),
+        urlSplit = route.split('?', 2),
+        pathParts = urlSplit[0].split('/', 50),
+        queryParts = urlSplit[1] ? urlSplit[1].split('&', 50) : [],
+        call;
     if (window.SlimCore.routes.get.hasOwnProperty(route)) {
       (window.SlimCore.routes.get[route]).apply(window.SlimCore, window.SlimCore.params);
     } else {
-      var call = false;
+      call = false;
       $.each(window.SlimCore.routes.get, function(url, handler) {
         var params = window.SlimCore.getParamsFromRouter(url, pathParts, queryParts);
         if (params) {

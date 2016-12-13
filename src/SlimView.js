@@ -20,11 +20,11 @@
         this.data = {};
         this.namespaces = {};
         this.hooks = {
-          'render.before': function() {
-            console.log('SlimCore:hook.render.before');
+          'before.dispatch': function() {
+            console.log('SlimCore:hook.before.dispatch');
           },
-          'render.after': function() {
-            console.log('SlimCore:hook.render.after');
+          'after.dispatch': function() {
+            console.log('SlimCore:hook.after.dispatch');
           }
         };
         return this.__constructor();
@@ -56,8 +56,8 @@
      * @param {SlimView} hooks
      */
     SlimView.prototype.setHook = function(hooks) {
-        this.hooks['render.before'] = hooks['render.before'];
-        this.hooks['render.after'] = hooks['render.after'];
+        this.hooks['before.dispatch'] = hooks['before.dispatch'];
+        this.hooks['after.dispatch'] = hooks['after.dispatch'];
         return this;
     };
 
@@ -73,11 +73,11 @@
         self.data = $.extend({}, self.data, data);
         try {
             /**
-             * Hooks Before
+             * Hooks Before Dispatch
              * @param  {SlimCore}
              * @return {void}
              */
-            self.hooks['render.before'].apply(self);
+            self.hooks['before.dispatch'].apply(self);
 
             twig({
                 href: view,
@@ -92,11 +92,11 @@
             });
 
             /**
-             * Hooks After
+             * Hooks After Dispatch
              * @param  {SlimCore}
              * @return {void}
              */
-            self.hooks['render.after'].apply(self);
+            self.hooks['after.dispatch'].apply(self);
 
         } catch(e) {
             console.log(e);

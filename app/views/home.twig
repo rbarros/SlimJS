@@ -2,6 +2,7 @@
     <h1>Home</h1>
     <a ui-sref="login">Login {{ route('route.home') }}</a>
     key: {{siteKey}}
+    dispatch: {{dispatch}}
     <ul>
         {% for row in data %}
             <li>#{{row.id}} - {{row.name}}</li>

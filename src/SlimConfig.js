@@ -55,7 +55,7 @@
    * Carrega as opções da aplicação
    * @return {SlimConfig}
    */
-  SlimConfig.prototype.loadOptions = function(callback) {
+  SlimConfig.prototype.loadOptions = function(core, callback) {
     console.log('SlimConfig:loadOptions');
     var self = this;
     self.options = self.load('app.options');
@@ -67,6 +67,12 @@
         SlimUrl.setBase(self.options.baseUrl);
         SlimUrl.setApi(self.options.apiUrl);
         callback(self.options);
+        /**
+         * Hooks After
+         * @param  {SlimCore}
+         * @return {void}
+         */
+        core.hooks.after.apply(core);
       }).catch(function(error) {
         throw error;
       });

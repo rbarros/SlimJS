@@ -3,6 +3,7 @@
  *
  * @author Ramon Barros [contato@ramon-barros.com]
  * @date   2016-04-11
+ * @version 1.0.2
  * Copyright (c) 2016 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
@@ -610,7 +611,7 @@
    * Carrega as opções da aplicação
    * @return {SlimConfig}
    */
-  SlimConfig.prototype.loadOptions = function(callback) {
+  SlimConfig.prototype.loadOptions = function(core, callback) {
     console.log('SlimConfig:loadOptions');
     var self = this;
     self.options = self.load('app.options');
@@ -622,6 +623,12 @@
         SlimUrl.setBase(self.options.baseUrl);
         SlimUrl.setApi(self.options.apiUrl);
         callback(self.options);
+        /**
+         * Hooks After
+         * @param  {SlimCore}
+         * @return {void}
+         */
+        core.hooks.after.apply(core);
       }).catch(function(error) {
         throw error;
       });
@@ -726,11 +733,11 @@
         this.data = {};
         this.namespaces = {};
         this.hooks = {
-          'render.before': function() {
-            console.log('SlimCore:hook.render.before');
+          'before.dispatch': function() {
+            console.log('SlimCore:hook.before.dispatch');
           },
-          'render.after': function() {
-            console.log('SlimCore:hook.render.after');
+          'after.dispatch': function() {
+            console.log('SlimCore:hook.after.dispatch');
           }
         };
         return this.__constructor();
@@ -762,8 +769,8 @@
      * @param {SlimView} hooks
      */
     SlimView.prototype.setHook = function(hooks) {
-        this.hooks['render.before'] = hooks['render.before'];
-        this.hooks['render.after'] = hooks['render.after'];
+        this.hooks['before.dispatch'] = hooks['before.dispatch'];
+        this.hooks['after.dispatch'] = hooks['after.dispatch'];
         return this;
     };
 
@@ -779,11 +786,11 @@
         self.data = $.extend({}, self.data, data);
         try {
             /**
-             * Hooks Before
+             * Hooks Before Dispatch
              * @param  {SlimCore}
              * @return {void}
              */
-            self.hooks['render.before'].apply(self);
+            self.hooks['before.dispatch'].apply(self);
 
             twig({
                 href: view,
@@ -798,11 +805,11 @@
             });
 
             /**
-             * Hooks After
+             * Hooks After Dispatch
              * @param  {SlimCore}
              * @return {void}
              */
-            self.hooks['render.after'].apply(self);
+            self.hooks['after.dispatch'].apply(self);
 
         } catch(e) {
             console.log(e);
@@ -1085,17 +1092,43 @@
     this.routes.namespaces = {};
     this.tmp = {};
     this.hooks = {
-      'app.before': function() {
-        console.log('SlimCore:hook.app.before');
+      /**
+       * Esse hook é chamado antes que o aplicativo Slim seja executado e é invocado uma vez durante o ciclo de vida da aplicação.
+       */
+      'before': function() {
+        console.log('SlimCore:hook.before');
       },
-      'app.after': function() {
-        console.log('SlimCore:hook.app.after');
+      /**
+       * Esse hook é invocado antes do roteador ser disparado e é invocado uma vez durante o ciclo de vida da aplicação.
+       */
+      'before.router': function() {
+        console.log('SlimCore:hook.before.router');
       },
-      'render.before': function() {
-        console.log('SlimCore:hook.render.before');
+      /**
+       * Este hook é invocado antes que a rota correspondente atual seja disparada.
+       * Normalmente, este hook é invocado apenas uma vez durante o ciclo de vida da aplicação, no entanto, este hook pode ser invocado várias vezes.
+       */
+      'before.dispatch': function() {
+        console.log('SlimCore:hook.before.dispatch');
       },
-      'render.after': function() {
-        console.log('SlimCore:hook.render.after');
+      /**
+       * Este hook é invocado após a rota correspondente atual ser disparada.
+       * Normalmente, este gancho é invocado apenas uma vez durante o ciclo de vida da aplicação, no entanto, este gancho pode ser invocado várias vezes.
+       */
+      'after.dispatch': function() {
+        console.log('SlimCore:hook.after.dispatch');
+      },
+      /**
+       * Este hook é invocado após o roteador ser disparado, antes que a resposta seja enviada para o cliente e é invocado uma vez durante o ciclo de vida da aplicação.
+       */
+      'after.router': function() {
+        console.log('SlimCore:hook.after.router');
+      },
+      /**
+       * Este hook é invocado após a resposta ser enviada para o cliente e é invocado uma vez durante o ciclo de vida da aplicação.
+       */
+      'after': function() {
+        console.log('SlimCore:hook.after');
       }
     };
     return this.__constructor();
@@ -1282,7 +1315,7 @@
     var self = window.SlimCore;
     if (self.hooks.hasOwnProperty(name)) {
       self.hooks[name] = callable;
-      //self.hooks['app.before'].apply(self);
+      //self.hooks['before'].apply(self);
     }
     return this;
   };
@@ -1427,15 +1460,15 @@
   window.SlimCore = new SlimCore();
 
   EventListener.addEvent(window, 'hashchange', function() {
-    window.SlimCore.hooks['app.before'].apply(window.SlimCore);
-    var route = window.SlimUrl.cleanUri(window.location.hash);
-    var urlSplit = route.split('?', 2);
-    var pathParts = urlSplit[0].split('/', 50);
-    var queryParts = urlSplit[1] ? urlSplit[1].split('&', 50) : [];
+    var route = window.SlimUrl.cleanUri(window.location.hash),
+        urlSplit = route.split('?', 2),
+        pathParts = urlSplit[0].split('/', 50),
+        queryParts = urlSplit[1] ? urlSplit[1].split('&', 50) : [],
+        call;
     if (window.SlimCore.routes.get.hasOwnProperty(route)) {
       (window.SlimCore.routes.get[route]).apply(window.SlimCore, window.SlimCore.params);
     } else {
-      var call = false;
+      call = false;
       $.each(window.SlimCore.routes.get, function(url, handler) {
         var params = window.SlimCore.getParamsFromRouter(url, pathParts, queryParts);
         if (params) {
@@ -1487,7 +1520,7 @@
       // 'cookies.secure': false,
       // 'cookies.httponly': false,
     };
-    this.version = '1.0.1';
+    this.version = '1.0.2';
     this.settings = $.extend({}, defaultSettings, settings);
     return this.__constructor();
   };
@@ -1559,7 +1592,15 @@
     console.log('Slim:run');
     SlimExtensions.run(this);
     var self = this;
-    SlimConfig.loadOptions(function(options) {
+
+    /**
+     * Hooks Before
+     * @param  {SlimCore}
+     * @return {void}
+     */
+    self.hooks.before.apply(SlimCore);
+
+    SlimConfig.loadOptions(SlimCore, function(options) {
       if (self.settings.debug !== true) {
         delete window.localStorage.debug;
       }
@@ -1571,11 +1612,11 @@
       self.options = options;
 
       /**
-       * Hooks Before
+       * Hooks Before Router
        * @param  {SlimCore}
        * @return {void}
        */
-      self.hooks['app.before'].apply(SlimCore);
+      self.hooks['before.router'].apply(SlimCore);
 
       /**
        * Carregamento das rotas
@@ -1583,11 +1624,11 @@
       self.routers();
 
       /**
-       * Hooks After
+       * Hooks After Router
        * @param  {SlimCore}
        * @return {void}
        */
-      self.hooks['app.after'].apply(SlimCore);
+      self.hooks['after.router'].apply(SlimCore);
     });
   };
 
