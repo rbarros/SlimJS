@@ -37,6 +37,7 @@
     this.routes.patch = {};
     this.routes.delete = {};
     this.routes.namespaces = {};
+    this.defaultRouter = '/';
     this.tmp = {};
     this.hooks = {
       /**
@@ -107,8 +108,14 @@
 
   SlimCore.prototype.setDefaultRouter = function(uri) {
     this.defaultRouter = uri;
+    return this;
   };
 
+  /**
+   * Seta o hash da url
+   * @param {string} uri
+   * @return {SlimCore}
+   */
   SlimCore.prototype.setHash = function(uri) {
     var hash,
         params,
@@ -191,6 +198,13 @@
     }
   };
 
+  /**
+   * Recupera os parametros para a rota
+   * @param  {string} rule
+   * @param  {array} pathParts
+   * @param  {array} queryParts
+   * @return {array}
+   */
   SlimCore.prototype.getParamsFromRouter = function(rule, pathParts, queryParts) {
     var params = {},
         missingParams = {},
@@ -247,6 +261,12 @@
     return this.view.setHook(this.hooks).render(SlimUrl.baseUrl(/* this.settings['templates.path'] */view), data, output);
   };
 
+  /**
+   * Redirect url
+   * @param  {string} uri    url para redirecionamento
+   * @param  {array} params parametros
+   * @return {void}
+   */
   SlimCore.prototype.redirect = function(uri, params) {
     var self = window.SlimCore;
     if (self.routes.get.hasOwnProperty(uri)) {
@@ -258,11 +278,16 @@
     }
   };
 
+  /**
+   * Altera o hook padrão
+   * @param  {string} name
+   * @param  {function} callable
+   * @return {SlimCore}
+   */
   SlimCore.prototype.hook = function(name, callable) {
     var self = window.SlimCore;
     if (self.hooks.hasOwnProperty(name)) {
       self.hooks[name] = callable;
-      //self.hooks['before'].apply(self);
     }
     return this;
   };

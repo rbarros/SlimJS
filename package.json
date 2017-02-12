@@ -10,6 +10,7 @@
   },
   "repository": {},
   "bugs": "https://github.com/rbarros/slim.js.git/issues",
+  "license": "MIT",
   "licenses": [
     {
       "type": "MIT",
@@ -17,17 +18,17 @@
     }
   ],
   "devDependencies": {
-    "grunt": "~0.4.5",
-    "grunt-contrib-clean": "^1.0.0",
+    "grunt": "~0.4.0",
+    "grunt-contrib-clean": "^0.7.0",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-nodeunit": "~0.4.1",
-    "grunt-contrib-qunit": "^1.2.0",
-    "grunt-contrib-uglify": "~0.5.0",
+    "grunt-contrib-jshint": "~1.1.0",
+    "grunt-contrib-nodeunit": "~1.0.0",
+    "grunt-contrib-qunit": "^1.3.0",
+    "grunt-contrib-uglify": "~2.1.0",
     "grunt-import-js": "^0.1.4",
-    "jshint-stylish": "^1.0.0",
-    "load-grunt-tasks": "^3.5.0",
-    "grunt-qunit-istanbul": "~0.3.0"
+    "jshint-stylish": "^2.2.1",
+    "load-grunt-tasks": "^3.5.2",
+    "grunt-qunit-istanbul": "~0.4.5"
   },
   "scripts": {
     "test": "grunt qunit"

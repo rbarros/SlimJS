@@ -9,7 +9,7 @@
 /* jslint devel: true, unparam: true, indent: 2 */
 /* global SlimUrl, SlimConfig, SlimCore, SlimExtensions  */
 // @import "SlimCore.js";
-(function (window) {
+(function (window, $) {
   'use strict';
 
   /**
@@ -161,6 +161,6 @@
   window.Slim = Slim;
   return window.Slim;
 
-}(this));
+}(this, jQuery));
 
 
