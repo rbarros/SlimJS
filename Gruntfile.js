@@ -82,7 +82,20 @@ module.exports = function(grunt) {
       options: {
           '--web-security': 'no',
           coverage: {
-            src: ['src/**/*.js'],
+            src: [
+              //'src/**/*.js'
+              'src/Promise.js',
+              'src/FormData.js',
+              'src/Unserialize.js',
+              'src/SlimUrl.js',
+              'src/EventListener.js',
+              'src/SlimExceptions.js',
+              'src/SlimConfig.js',
+              'src/SlimView.js',
+              'src/SlimRouter.js',
+              'src/SlimCore.js',
+              'src/Slim.js'
+            ],
             instrumentedFiles: 'temp/',
             htmlReport: 'report/coverage',
             coberturaReport: 'report/',
