@@ -93,3 +93,42 @@ test('Redirect', function() {
     equal(window.location.hash, '#/foo/bar/1');
   })(mock);
 });
+
+test('Set hook', function() {
+  expect(6);
+  SlimCore.hook('before', function() {});
+  propEqual(SlimCore.hook.before, function() {});
+  SlimCore.hook('before.router', function() {});
+  propEqual(SlimCore.hook['before.router'], function() {});
+  SlimCore.hook('before.dispatch', function() {});
+  propEqual(SlimCore.hook['before.dispatch'], function() {});
+  SlimCore.hook('after.dispatch', function() {});
+  propEqual(SlimCore.hook['after.dispatch'], function() {});
+  SlimCore.hook('after.router', function() {});
+  propEqual(SlimCore.hook['after.router'], function() {});
+  SlimCore.hook('after', function() {});
+  propEqual(SlimCore.hook.after, function() {});
+});
+
+test('Set routers', function() {
+  expect(6);
+  SlimCore.get('foo/bar', function(params) {});
+  propEqual(SlimCore.routes.get['foo/bar'], function(params) {});
+
+  SlimCore.post('foo/bar', function(params) {});
+  propEqual(SlimCore.routes.post['foo/bar'], function(params) {});
+
+  SlimCore.put('foo/bar', function(params) {});
+  propEqual(SlimCore.routes.put['foo/bar'], function(params) {});
+
+  SlimCore.patch('foo/bar', function(params) {});
+  propEqual(SlimCore.routes.patch['foo/bar'], function(params) {});
+
+  SlimCore.delete('foo/bar', function(params) {}).name('foo_bar');
+  propEqual(SlimCore.routes.delete['foo/bar'], function(params) {});
+  propEqual(SlimCore.routes.namespaces['foo_bar'], {
+    name: 'foo_bar',
+    method: 'delete',
+    uri: 'foo/bar'
+  });
+});

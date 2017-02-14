@@ -49,8 +49,15 @@ test('Get apiUrl', function() {
 //   });
 // });
 
-// test('Run app', function() {
-//   expect(1);
-//   this.slim.run();
-//   // ok(this.slim, 'instance');
-// });
+test('Run app', function() {
+  expect(1);
+  this.slim.hook('before.router', function() {});
+  this.slim.hook('alfter.router', function() {});
+  this.slim.run();
+  ok(this.slim, 'instance');
+});
+
+test('Flash', function() {
+  expect(1);
+  ok(this.slim.flash('foo', 'warn', 'top center'), 'instance');
+});

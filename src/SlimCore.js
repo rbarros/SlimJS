@@ -15,7 +15,7 @@
 // @import "SlimExceptions.js";
 // @import "SlimConfig.js";
 // @import "SlimView.js";
-// @import "SlimRouter.js";
+// import "SlimRouter.js";
 // @import "SlimExtensions.js";
 (function (window, $) {
   'use strict';
@@ -91,7 +91,7 @@
   SlimCore.prototype.__constructor = function() {
     console.log('SlimCore:__constructor()');
     this.view = SlimView;
-    this.router = SlimRouter;
+    //this.router = SlimRouter;
     return this;
   };
 
