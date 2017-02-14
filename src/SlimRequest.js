@@ -96,12 +96,12 @@
   SlimRequest.prototype.xhrConnection = function(type, url, data, options) {
     var returnMethods = ['then', 'catch', 'always'],
         promiseMethods = returnMethods.reduce(function (promise, method) {
-        promise[method] = function (callback) {
-        promise[method] = callback;
+          promise[method] = function (callback) {
+            promise[method] = callback;
+            return promise;
+          };
           return promise;
-        };
-      return promise;
-    }, {});
+        }, {});
     var xhr = new XMLHttpRequest();
     xhr.open(type, url, true);
     xhr.withCredentials = options.hasOwnProperty('withCredentials');

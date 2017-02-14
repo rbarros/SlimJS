@@ -3,31 +3,31 @@ module('SlimUrl');
 test('Set origin', function() {
   expect(1);
   SlimUrl.setOrigin('http://localhost');
-  equal('http://localhost', SlimUrl.baseUrl());
+  equal(SlimUrl.baseUrl(), 'http://localhost');
 });
 
 test('Set baseurl', function() {
   expect(1);
   SlimUrl.setBase('/slim.js');
-  equal('http://localhost/slim.js', SlimUrl.baseUrl());
+  equal(SlimUrl.baseUrl(), 'http://localhost/slim.js');
 });
 
 test('Get baseurl', function() {
   expect(1);
   SlimUrl.setBase('/slim.js');
-  equal('http://localhost/slim.js/foo/bar', SlimUrl.baseUrl('/foo/bar'));
+  equal(SlimUrl.baseUrl('/foo/bar'), 'http://localhost/slim.js/foo/bar');
 });
 
 test('Set apiurl', function() {
   expect(1);
-  SlimUrl.setApi('/slim.js/api');
-  equal('http://localhost/slim.js/api', SlimUrl.apiUrl());
+  SlimUrl.setApi('/slim.js/app/api');
+  equal(SlimUrl.apiUrl(), 'http://localhost/slim.js/app/api');
 });
 
 test('Get apiurl', function() {
   expect(1);
-  SlimUrl.setApi('/slim.js/api');
-  equal('http://localhost/slim.js/api/foo/bar', SlimUrl.apiUrl('/foo/bar'));
+  SlimUrl.setApi('/slim.js/app/api');
+  equal(SlimUrl.apiUrl('/foo/bar'), 'http://localhost/slim.js/app/api/foo/bar');
 });
 
 test('Set clean uri', function() {

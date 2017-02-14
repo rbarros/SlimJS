@@ -92,4 +92,15 @@ $app->put('/login', function() use($app) {
     )));
 });
 
+$app->options('/', function() use($app) {
+
+    $response = $app->response();
+    $body = $response->body();
+    $response['Content-Type'] = 'application/json';
+    $response->body(json_encode(array(
+        'router' => '/',
+        'method' => 'options',
+    )));
+});
+
 $app->run();
