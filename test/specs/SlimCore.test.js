@@ -61,3 +61,35 @@ test('Set hash', function() {
     propEqual(params, {"foo":"bar","bar":"foo","id":":id"});
   })(mock);
 });
+
+test('Render view', function() {
+  expect(1);
+  SlimCore.render('test.twig', {foo: "bar"}, true);
+  equal(JSON.stringify(SlimView.data), '{"foo":"bar"}');
+});
+
+test('Redirect', function() {
+  expect(1);
+  var mock = {
+    location: {
+        hash:"#/foo/bar/1",
+        host:"localhost",
+        hostname:"localhost",
+        href:"http://localhost/#/foo/bar/1",
+        origin:"http://localhost",
+        pathname:"#/foo/bar/1",
+        port:"",
+        protocol:"http:",
+        search: ""
+    }
+  };
+
+  (function(window) {
+    SlimCore.get('foo/bar/:id', function(params) {
+      ok(true);
+      equal(params, undefined);
+    });
+    SlimCore.redirect('foo/bar/:id', {id:1});
+    equal(window.location.hash, '#/foo/bar/1');
+  })(mock);
+});
