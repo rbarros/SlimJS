@@ -1,11 +1,11 @@
 <?xml version="1.0" ?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage lines-valid="581"  lines-covered="382"  line-rate="0.6575"  branches-valid="218"  branches-covered="83"  branch-rate="0.3807"  timestamp="1487114950185" complexity="0" version="0.1">
+<coverage lines-valid="557"  lines-covered="378"  line-rate="0.6786"  branches-valid="214"  branches-covered="82"  branch-rate="0.3832"  timestamp="1487541907077" complexity="0" version="0.1">
 <sources>
 	<source>/var/www/html/slim.js</source>
 </sources>
 <packages>
-	<package name="src"  line-rate="0.6575"  branch-rate="0.3807" >
+	<package name="src"  line-rate="0.6786"  branch-rate="0.3832" >
 	<classes>
 		<class name="EventListener.js"  filename="src/EventListener.js"  line-rate="0.5"  branch-rate="0.23079999999999998" >
 		<methods>
@@ -64,51 +64,6 @@
 			<line number="89"  hits="0"  branch="false" />
 			<line number="95"  hits="1"  branch="false" />
 			<line number="96"  hits="1"  branch="false" />
-		</lines>
-		</class>
-		<class name="FormData.js"  filename="src/FormData.js"  line-rate="0.16670000000000001"  branch-rate="0.25" >
-		<methods>
-			<method name="(anonymous_1)"  hits="1"  signature="()V" >
-				<lines><line number="7"  hits="1" /></lines>
-			</method>
-			<method name="FormData"  hits="0"  signature="()V" >
-				<lines><line number="12"  hits="0" /></lines>
-			</method>
-			<method name="(anonymous_3)"  hits="0"  signature="()V" >
-				<lines><line number="17"  hits="0" /></lines>
-			</method>
-			<method name="(anonymous_4)"  hits="0"  signature="()V" >
-				<lines><line number="20"  hits="0" /></lines>
-			</method>
-			<method name="(anonymous_5)"  hits="0"  signature="()V" >
-				<lines><line number="23"  hits="0" /></lines>
-			</method>
-		</methods>
-		<lines>
-			<line number="7"  hits="1"  branch="false" />
-			<line number="9"  hits="1"  branch="true"  condition-coverage="50% (1/2)" />
-			<line number="10"  hits="1"  branch="false" />
-			<line number="12"  hits="1"  branch="false" />
-			<line number="13"  hits="0"  branch="false" />
-			<line number="14"  hits="0"  branch="false" />
-			<line number="15"  hits="0"  branch="false" />
-			<line number="17"  hits="0"  branch="false" />
-			<line number="18"  hits="0"  branch="false" />
-			<line number="20"  hits="0"  branch="false" />
-			<line number="21"  hits="0"  branch="false" />
-			<line number="22"  hits="0"  branch="false" />
-			<line number="23"  hits="0"  branch="false" />
-			<line number="24"  hits="0"  branch="false" />
-			<line number="26"  hits="0"  branch="true"  condition-coverage="0% (0/2)" />
-			<line number="27"  hits="0"  branch="false" />
-			<line number="28"  hits="0"  branch="false" />
-			<line number="29"  hits="0"  branch="false" />
-			<line number="30"  hits="0"  branch="false" />
-			<line number="32"  hits="0"  branch="false" />
-			<line number="33"  hits="0"  branch="false" />
-			<line number="36"  hits="0"  branch="false" />
-			<line number="37"  hits="0"  branch="false" />
-			<line number="39"  hits="0"  branch="false" />
 		</lines>
 		</class>
 		<class name="Promise.js"  filename="src/Promise.js"  line-rate="0.5182"  branch-rate="0.3857" >
