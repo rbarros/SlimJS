@@ -2,8 +2,8 @@
  * Classe SlimView
  *
  * @author Ramon Barros [contato@ramon-barros.com]
- * @date   2016-04-11
- * Copyright (c) 2016 Ramon Barros
+ * @date   2018-09-21
+ * Copyright (c) 2018 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
 /* global jQuery, twig */
@@ -13,7 +13,7 @@
     /**
      * Inicia propriedades da classe
      * @author Ramon Barros [contato@ramon-barros.com]
-     * @date   2016-04-11
+     * @date   2018-09-21
      * @return {SlimView}
      */
     var SlimView = function() {
@@ -33,7 +33,7 @@
     /**
      * Construtor da classe
      * @author Ramon Barros [contato@ramon-barros.com]
-     * @date   2016-04-11
+     * @date   2018-09-21
      * @return {SlimView}
      */
     SlimView.prototype.__constructor = function() {

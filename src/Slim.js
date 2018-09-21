@@ -2,12 +2,12 @@
  * Classe Slim
  *
  * @author Ramon Barros [contato@ramon-barros.com]
- * @date   2016-04-11
- * @version 1.0.2
- * Copyright (c) 2016 Ramon Barros
+ * @date   2018-09-21
+ * @version 1.0.3
+ * Copyright (c) 2018 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
-/* global SlimUrl, SlimConfig, SlimCore, SlimExtensions  */
+/* global jQuery, SlimUrl, SlimConfig, SlimCore, SlimExtensions  */
 // @import "SlimCore.js";
 (function (window, $) {
   'use strict';
@@ -15,7 +15,7 @@
   /**
    * Inicia propriedades da classe
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    * @return {Slim}
    */
   var Slim = function(settings) {
@@ -34,7 +34,7 @@
       // 'cookies.secure': false,
       // 'cookies.httponly': false,
     };
-    this.version = '1.0.2';
+    this.version = '1.0.3';
     this.settings = $.extend({}, defaultSettings, settings);
     return this.__constructor();
   };
@@ -49,7 +49,7 @@
   /**
    * Construtor da classe
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    * @return {View}
    */
   Slim.prototype.__constructor = function() {

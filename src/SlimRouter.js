@@ -2,8 +2,8 @@
  * Classe SlimRouter
  *
  * @author Ramon Barros [contato@ramon-barros.com]
- * @date   2016-04-11
- * Copyright (c) 2016 Ramon Barros
+ * @date   2018-09-21
+ * Copyright (c) 2018 Ramon Barros
  * http://krasimirtsonev.com/blog/article/A-modern-JavaScript-router-in-100-lines-history-api-pushState-hash-url
  */
 /* jslint devel: true, unparam: true, indent: 2 */
@@ -13,7 +13,7 @@
   /**
    * Inicia propriedades da classe
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    */
   var SlimRouter = function() {
     this.routes = [];
@@ -25,7 +25,7 @@
   /**
    * Construtor da classe
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    * @return {SlimRouter}
    */
   SlimRouter.prototype.__constructor = function() {

@@ -2,8 +2,8 @@
  * Classe $app
  *
  * @author Ramon Barros [contato@ramon-barros.com]
- * @date   2016-04-11
- * Copyright (c) 2016 Ramon Barros
+ * @date   2018-09-21
+ * Copyright (c) 2018 Ramon Barros
  */
 (function ($) {
   'use strict';

@@ -45,6 +45,11 @@ via Bower: <br>
 
 }(this));
 ```
+# Build
+
+```
+$ grunt
+```
 
 ## Tests
 

@@ -2,8 +2,8 @@
  * Classe SlimUrl
  *
  * @author Ramon Barros [contato@ramon-barros.com]
- * @date   2016-04-11
- * Copyright (c) 2016 Ramon Barros
+ * @date   2018-09-21
+ * Copyright (c) 2018 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
 (function (window) {
@@ -12,7 +12,7 @@
     /**
      * Inicia propriedades da classe
      * @author Ramon Barros [contato@ramon-barros.com]
-     * @date   2016-04-11
+     * @date   2018-09-21
      * @return {SlimUrl}
      */
     var SlimUrl = function() {
@@ -33,7 +33,7 @@
     /**
      * Construtor da classe
      * @author Ramon Barros [contato@ramon-barros.com]
-     * @date   2016-04-11
+     * @date   2018-09-21
      * @return {SlimUrl}
      */
     SlimUrl.prototype.__constructor = function() {
@@ -100,8 +100,8 @@
     /**
      * Redireciona para a url especificada.
      * @author Ramon Barros <contato@ramon-barros.com>
-     * @date      2016-04-11
-     * @copyright Copyright (c) 2016 Ramon Barros
+     * @date      2018-09-21
+     * @copyright Copyright (c) 2018 Ramon Barros
      * @param     {string}   url
      * @return    {void}
      */
@@ -121,8 +121,8 @@
     /**
      * Retorna os segmentos da url
      * @author Ramon Barros <contato@ramon-barros.com>
-     * @date      2016-04-11
-     * @copyright Copyright (c) 2016 Ramon Barros
+     * @date      2018-09-21
+     * @copyright Copyright (c) 2018 Ramon Barros
      * @return    {string}
      */
     SlimUrl.prototype.segments = function(key) {

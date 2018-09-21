@@ -2,8 +2,8 @@
  * Classe SlimConfig
  *
  * @author Ramon Barros [contato@ramon-barros.com]
- * @date   2016-04-11
- * Copyright (c) 2016 Ramon Barros
+ * @date   2018-09-21
+ * Copyright (c) 2018 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
 /* global SlimUrl */
@@ -13,7 +13,7 @@
   /**
    * Inicia propriedades da classe
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    */
   var SlimConfig = function() {
     this.options = null;
@@ -33,7 +33,7 @@
   /**
    * Construtor da classe
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    * @return {SlimConfig}
    */
   SlimConfig.prototype.__constructor = function() {

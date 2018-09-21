@@ -2,8 +2,8 @@
  * Classe SlimCore
  *
  * @author Ramon Barros [contato@ramon-barros.com]
- * @date   2016-04-11
- * Copyright (c) 2016 Ramon Barros
+ * @date   2018-09-21
+ * Copyright (c) 2018 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
 /* global jQuery, FormData, SlimUrl, EventListener, SlimView, SlimRouter */
@@ -23,7 +23,7 @@
   /**
    * Inicia propriedades da classe
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    */
   var SlimCore = function() {
     this.view = null;
@@ -84,7 +84,7 @@
    /**
    * Construtor da classe
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    * @return {SlimCore}
    */
   SlimCore.prototype.__constructor = function() {
@@ -157,8 +157,6 @@
     });
     $(document).on('submit', 'form', function (e) {
       console.log('SlimCore:form.submit');
-      e.stopPropagation(); // Stop stuff happening
-      e.preventDefault(); // Totally stop stuff happening
       var //elementOrigin = e.originalEvent.currentTarget.activeElement,
           request = ($(this).data('request') || 'enabled') === 'enabled' ? true : false,
           action = $(this).attr('action') || SlimUrl.cleanUri(window.location.hash),
@@ -167,6 +165,8 @@
           data = $(this).serialize(); // Serialize the form data
       if (self.routes.hasOwnProperty(method)) {
         if (self.routes[method].hasOwnProperty(action)) {
+          e.stopPropagation(); // Stop stuff happening
+          e.preventDefault(); // Totally stop stuff happening
           self.params = [];
           if (enctype === 'multipart/form-data') {
             data = new FormData(e.target);
@@ -181,10 +181,16 @@
             self.params.push(data);
             (self.routes[method][action]).apply(self, self.params);
           }
+        } else if (action.match('http')) {
+          return;
         } else {
+          e.stopPropagation(); // Stop stuff happening
+          e.preventDefault(); // Totally stop stuff happening
           throw 'Rota não encontrada ['+method+':'+action+']!';
         }
       } else {
+        e.stopPropagation(); // Stop stuff happening
+        e.preventDefault(); // Totally stop stuff happening
         throw 'Rota não encontrada['+method+':'+action+']!';
       }
     });

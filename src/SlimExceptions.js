@@ -2,8 +2,8 @@
  * Classe SlimExceptions
  *
  * @author Ramon Barros [contato@ramon-barros.com]
- * @date   2016-04-11
- * Copyright (c) 2016 Ramon Barros
+ * @date   2018-09-21
+ * Copyright (c) 2018 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
 (function (window) {
@@ -12,7 +12,7 @@
   /**
    * Inicia propriedades da classe
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    */
   var SlimExceptions = function() {
     return this.__constructor();
@@ -21,7 +21,7 @@
   /**
    * Construtor da classe
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    * @return {SlimExceptions}
    */
   SlimExceptions.prototype.__constructor = function() {
@@ -52,7 +52,7 @@
   /**
    * Mensagem de retorno do ajax amigável para o usuário
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    * @return {SlimExceptions}
    */
   SlimExceptions.prototype.ajax = function() {

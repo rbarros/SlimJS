@@ -2,19 +2,19 @@
  * Classe Slim
  *
  * @author Ramon Barros [contato@ramon-barros.com]
- * @date   2016-04-11
- * @version 1.0.2
- * Copyright (c) 2016 Ramon Barros
+ * @date   2018-09-21
+ * @version 1.0.3
+ * Copyright (c) 2018 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
-/* global SlimUrl, SlimConfig, SlimCore, SlimExtensions  */
+/* global jQuery, SlimUrl, SlimConfig, SlimCore, SlimExtensions  */
 
 /*!
  * Classe SlimCore
  *
  * @author Ramon Barros [contato@ramon-barros.com]
- * @date   2016-04-11
- * Copyright (c) 2016 Ramon Barros
+ * @date   2018-09-21
+ * Copyright (c) 2018 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
 /* global jQuery, FormData, SlimUrl, EventListener, SlimView, SlimRouter */
@@ -100,7 +100,7 @@
  *
  * @author Ramon Barros [contato@ramon-barros.com]
  * @date   2016-09-16
- * Copyright (c) 2016 Ramon Barros
+ * Copyright (c) 2018 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
 (function (window) {
@@ -225,8 +225,8 @@
  * Classe SlimUrl
  *
  * @author Ramon Barros [contato@ramon-barros.com]
- * @date   2016-04-11
- * Copyright (c) 2016 Ramon Barros
+ * @date   2018-09-21
+ * Copyright (c) 2018 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
 (function (window) {
@@ -235,7 +235,7 @@
     /**
      * Inicia propriedades da classe
      * @author Ramon Barros [contato@ramon-barros.com]
-     * @date   2016-04-11
+     * @date   2018-09-21
      * @return {SlimUrl}
      */
     var SlimUrl = function() {
@@ -256,7 +256,7 @@
     /**
      * Construtor da classe
      * @author Ramon Barros [contato@ramon-barros.com]
-     * @date   2016-04-11
+     * @date   2018-09-21
      * @return {SlimUrl}
      */
     SlimUrl.prototype.__constructor = function() {
@@ -323,8 +323,8 @@
     /**
      * Redireciona para a url especificada.
      * @author Ramon Barros <contato@ramon-barros.com>
-     * @date      2016-04-11
-     * @copyright Copyright (c) 2016 Ramon Barros
+     * @date      2018-09-21
+     * @copyright Copyright (c) 2018 Ramon Barros
      * @param     {string}   url
      * @return    {void}
      */
@@ -344,8 +344,8 @@
     /**
      * Retorna os segmentos da url
      * @author Ramon Barros <contato@ramon-barros.com>
-     * @date      2016-04-11
-     * @copyright Copyright (c) 2016 Ramon Barros
+     * @date      2018-09-21
+     * @copyright Copyright (c) 2018 Ramon Barros
      * @return    {string}
      */
     SlimUrl.prototype.segments = function(key) {
@@ -367,8 +367,8 @@
  * Classe EventListener
  *
  * @author Ramon Barros [contato@ramon-barros.com]
- * @date   2016-04-11
- * Copyright (c) 2016 Ramon Barros
+ * @date   2018-09-21
+ * Copyright (c) 2018 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
 (function (window) {
@@ -377,7 +377,7 @@
   /**
   * Inicia propriedades da classe
   * @author Ramon Barros [contato@ramon-barros.com]
-  * @date   2016-04-11
+  * @date   2018-09-21
   * @return {EventListener}
   */
   var EventListener = function() {
@@ -387,7 +387,7 @@
   /**
    * Construtor da classe
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    * @return {EventListener}
    */
   EventListener.prototype.__constructor = function() {
@@ -470,8 +470,8 @@
  * Classe SlimExceptions
  *
  * @author Ramon Barros [contato@ramon-barros.com]
- * @date   2016-04-11
- * Copyright (c) 2016 Ramon Barros
+ * @date   2018-09-21
+ * Copyright (c) 2018 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
 (function (window) {
@@ -480,7 +480,7 @@
   /**
    * Inicia propriedades da classe
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    */
   var SlimExceptions = function() {
     return this.__constructor();
@@ -489,7 +489,7 @@
   /**
    * Construtor da classe
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    * @return {SlimExceptions}
    */
   SlimExceptions.prototype.__constructor = function() {
@@ -520,7 +520,7 @@
   /**
    * Mensagem de retorno do ajax amigável para o usuário
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    * @return {SlimExceptions}
    */
   SlimExceptions.prototype.ajax = function() {
@@ -558,8 +558,8 @@
  * Classe SlimConfig
  *
  * @author Ramon Barros [contato@ramon-barros.com]
- * @date   2016-04-11
- * Copyright (c) 2016 Ramon Barros
+ * @date   2018-09-21
+ * Copyright (c) 2018 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
 /* global SlimUrl */
@@ -569,7 +569,7 @@
   /**
    * Inicia propriedades da classe
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    */
   var SlimConfig = function() {
     this.options = null;
@@ -589,7 +589,7 @@
   /**
    * Construtor da classe
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    * @return {SlimConfig}
    */
   SlimConfig.prototype.__constructor = function() {
@@ -715,8 +715,8 @@
  * Classe SlimView
  *
  * @author Ramon Barros [contato@ramon-barros.com]
- * @date   2016-04-11
- * Copyright (c) 2016 Ramon Barros
+ * @date   2018-09-21
+ * Copyright (c) 2018 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
 /* global jQuery, twig */
@@ -726,7 +726,7 @@
     /**
      * Inicia propriedades da classe
      * @author Ramon Barros [contato@ramon-barros.com]
-     * @date   2016-04-11
+     * @date   2018-09-21
      * @return {SlimView}
      */
     var SlimView = function() {
@@ -746,7 +746,7 @@
     /**
      * Construtor da classe
      * @author Ramon Barros [contato@ramon-barros.com]
-     * @date   2016-04-11
+     * @date   2018-09-21
      * @return {SlimView}
      */
     SlimView.prototype.__constructor = function() {
@@ -828,8 +828,8 @@
  * Classe SlimRouter
  *
  * @author Ramon Barros [contato@ramon-barros.com]
- * @date   2016-04-11
- * Copyright (c) 2016 Ramon Barros
+ * @date   2018-09-21
+ * Copyright (c) 2018 Ramon Barros
  * http://krasimirtsonev.com/blog/article/A-modern-JavaScript-router-in-100-lines-history-api-pushState-hash-url
  */
 /* jslint devel: true, unparam: true, indent: 2 */
@@ -839,7 +839,7 @@
   /**
    * Inicia propriedades da classe
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    */
   var SlimRouter = function() {
     this.routes = [];
@@ -851,7 +851,7 @@
   /**
    * Construtor da classe
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    * @return {SlimRouter}
    */
   SlimRouter.prototype.__constructor = function() {
@@ -973,7 +973,7 @@
  *
  * @author Ramon Barros [contato@ramon-barros.com]
  * @date   2016-07-12
- * Copyright (c) 2016 Ramon Barros
+ * Copyright (c) 2018 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
 /* global SlimUrl, Twig  */
@@ -1076,7 +1076,7 @@
   /**
    * Inicia propriedades da classe
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    */
   var SlimCore = function() {
     this.view = null;
@@ -1137,7 +1137,7 @@
    /**
    * Construtor da classe
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    * @return {SlimCore}
    */
   SlimCore.prototype.__constructor = function() {
@@ -1162,6 +1162,11 @@
     this.defaultRouter = uri;
   };
 
+  /**
+   * Seta o hash da url
+   * @param {string} uri
+   * @return {SlimCore}
+   */
   SlimCore.prototype.setHash = function(uri) {
     var hash,
         params,
@@ -1205,8 +1210,6 @@
     });
     $(document).on('submit', 'form', function (e) {
       console.log('SlimCore:form.submit');
-      e.stopPropagation(); // Stop stuff happening
-      e.preventDefault(); // Totally stop stuff happening
       var //elementOrigin = e.originalEvent.currentTarget.activeElement,
           request = ($(this).data('request') || 'enabled') === 'enabled' ? true : false,
           action = $(this).attr('action') || SlimUrl.cleanUri(window.location.hash),
@@ -1215,6 +1218,8 @@
           data = $(this).serialize(); // Serialize the form data
       if (self.routes.hasOwnProperty(method)) {
         if (self.routes[method].hasOwnProperty(action)) {
+          e.stopPropagation(); // Stop stuff happening
+          e.preventDefault(); // Totally stop stuff happening
           self.params = [];
           if (enctype === 'multipart/form-data') {
             data = new FormData(e.target);
@@ -1229,10 +1234,16 @@
             self.params.push(data);
             (self.routes[method][action]).apply(self, self.params);
           }
+        } else if (action.match('http')) {
+          return;
         } else {
+          e.stopPropagation(); // Stop stuff happening
+          e.preventDefault(); // Totally stop stuff happening
           throw 'Rota não encontrada ['+method+':'+action+']!';
         }
       } else {
+        e.stopPropagation(); // Stop stuff happening
+        e.preventDefault(); // Totally stop stuff happening
         throw 'Rota não encontrada['+method+':'+action+']!';
       }
     });
@@ -1244,6 +1255,13 @@
     }
   };
 
+  /**
+   * Recupera os parametros para a rota
+   * @param  {string} rule
+   * @param  {array} pathParts
+   * @param  {array} queryParts
+   * @return {array}
+   */
   SlimCore.prototype.getParamsFromRouter = function(rule, pathParts, queryParts) {
     var params = {},
         missingParams = {},
@@ -1300,6 +1318,12 @@
     return this.view.setHook(this.hooks).render(SlimUrl.baseUrl(/* this.settings['templates.path'] */view), data, output);
   };
 
+  /**
+   * Redirect url
+   * @param  {string} uri    url para redirecionamento
+   * @param  {array} params parametros
+   * @return {void}
+   */
   SlimCore.prototype.redirect = function(uri, params) {
     var self = window.SlimCore;
     if (self.routes.get.hasOwnProperty(uri)) {
@@ -1311,11 +1335,16 @@
     }
   };
 
+  /**
+   * Altera o hook padrão
+   * @param  {string} name
+   * @param  {function} callable
+   * @return {SlimCore}
+   */
   SlimCore.prototype.hook = function(name, callable) {
     var self = window.SlimCore;
     if (self.hooks.hasOwnProperty(name)) {
       self.hooks[name] = callable;
-      //self.hooks['before'].apply(self);
     }
     return this;
   };
@@ -1495,13 +1524,13 @@
 
 
 
-(function (window) {
+(function (window, $) {
   'use strict';
 
   /**
    * Inicia propriedades da classe
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    * @return {Slim}
    */
   var Slim = function(settings) {
@@ -1520,7 +1549,7 @@
       // 'cookies.secure': false,
       // 'cookies.httponly': false,
     };
-    this.version = '1.0.2';
+    this.version = '1.0.3';
     this.settings = $.extend({}, defaultSettings, settings);
     return this.__constructor();
   };
@@ -1535,7 +1564,7 @@
   /**
    * Construtor da classe
    * @author Ramon Barros [contato@ramon-barros.com]
-   * @date   2016-04-11
+   * @date   2018-09-21
    * @return {View}
    */
   Slim.prototype.__constructor = function() {
@@ -1647,6 +1676,6 @@
   window.Slim = Slim;
   return window.Slim;
 
-}(this));
+}(this, jQuery));
 
 

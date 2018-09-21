@@ -3,7 +3,7 @@
  *
  * @author Ramon Barros [contato@ramon-barros.com]
  * @date   2016-09-16
- * Copyright (c) 2016 Ramon Barros
+ * Copyright (c) 2018 Ramon Barros
  */
 /* jslint devel: true, unparam: true, indent: 2 */
 (function (window) {
